@@ -27,3 +27,5 @@ Explain what did you expect to see in details, please.
 ## Additional Context
 
 Any thing we should know. 
+
+/label ~bug
