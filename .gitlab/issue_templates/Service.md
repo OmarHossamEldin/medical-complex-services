@@ -24,10 +24,17 @@ Use simple words to describe what is the service and what it does
 > - [ ] Main Consumer.
 > - [ ] Related Consumer [ Associate ].
 
+### What Are The Consumer Type?
+
 ## What is The Price Type?
 
 - [ ] Fixed Price.
 - [ ] Variable Price.
+
+### Billing Options
+
+- [ ] Immediate Cashout
+- [ ] Use Wallet Credit
 
 ## Additional Notes.
 
