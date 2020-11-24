@@ -6,6 +6,10 @@ This system wraps up several currently used modules such as: "منظومة ال�
 
 # Modules
 
+## General Glossary
+
+**System Worker** (sometimes shortened as worker): the entity which is able to register a service for a consumer. 
+
 ## Visitor Services
 
 The module wraps up the following submodules:
@@ -110,15 +114,13 @@ end
 #### Definitions 
 - Service node with no consumer option has to allow the system worker to cashout the node a number of times (e.g., cashout five visit tickets)
 
-### Glossary
+### Module Glossary
 
 **Service**: represents any service that can be registered (or consumed) to a benefit of a service consumer (definition follows). 
 
 **Service Consumer**: the entity which is able to consume the registered services.
 
-**Transaction**: represents a single consumption to a service by a service consumer.
-
-**System Worker** (sometimes shortened as worker): the entity which is able to register a service for a consumer. 
+**Service Transaction**: represents a single consumption to a service by a service consumer.
 
 **Service Stakeholder**: this can be anyone on the system able to consume a service, i.e., a service consumer or a system worker.
 
@@ -296,3 +298,76 @@ Requirements will be collected from the Financial System manager
     - Outing a patient
     - Entering an associate with a patient( have two options: inside or outside the medical card)
     - Money remainder option
+
+## Garage
+
+### Scenario Flow
+
+When a driver is getting into the parking, the flow of the steps they do is:
+
+1. The driver stops by the ticket kiosk
+1. The driver shows his/her driving license.
+1. The System Worker scans the driving license
+1. Side photo of the driver
+
+### Functional Requirements
+
+#### Driver
+
+##### Pre-assumptions
+
+* A driver is expected to have either one or multiple car.
+
+#### Pricing
+
+##### Daily
+
+if it's a daily visit, pricing is measured through the following criteria:
+
+* Each hour in the spent hours inside the parking has different price decided by the administration.
+
+    For example: The driver spent 5 hours:
+    - Hour 1: 5 L. E.
+    - Hour 2: 3 L. E.
+    - Hour 3-5: 1 L. E.
+
+* There is a maximum price limit chosen per number of hours
+    For example: The driver spend 26 hours.
+    - Price is 25 L. E if number of hours passes 24 hours.
+
+##### Subscribtion
+
+* For each subscribtion, there has to be a financial categories where the price differs for each.
+
+    For example:
+    - Non-Military Citizens Subscribtion: 150 L. E.
+    - Soliders Subscribtion: 120 L. E.
+    - Officers Subscribtion: 90 L. E.
+
+* The module should automatically reject the subscribtion if it expired. 
+
+#### Entrace and Leaving
+
+* Each transaction calculation is done through scanning a barcode (that is given at the driver entrance) on leaving. 
+* Whether the driver visit is a subscribtion or daily, system worker should register their visit (if it's a subscribtion, you should add it to the driver history). 
+* On leaving the recepit should contain the following fields, fields should be personalized and shouldn't contain general information (such as prices for different driver category)
+    * Driver name.
+    * Price.
+    * Driver category.
+    * Daily visit or Subscribtion .
+    * Fines with their reasons.
+
+#### Administration 
+
+There has to be an auditing panel where the admin is able to detect fraud transactions. 
+
+##### Offline Workaround
+In case the main system goes off, the system worker is expected to start using paper to register the incoming drivers. However, when the main system comes back, there has to be an administration panel that allows:
+
+* Adding a driver visit
+* Checking out a driver visit
+* Print receipts
+
+#### Reports
+
+The module should use the system's reporting engine to provide the module administrator some beneficial details about the module. 
