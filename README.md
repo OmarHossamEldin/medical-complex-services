@@ -111,13 +111,20 @@ end
 - Service node with no consumer option has to allow the system worker to cashout the node a number of times (e.g., cashout five visit tickets)
 
 ### Glossary
-Service: represents any service that can be registered (or consumed) to a benefit of a service consumer (definition follows). 
-Service Consumer: the entity which is able to consume the registered services.
-Transaction: represents a single consumption to a service by a service consumer.
-System Worker (sometimes shortened as worker): the entity which is able to register a service for a consumer. 
-Service Stakeholder: this can be anyone on the system able to consume a service, i.e., a service consumer or a system worker.
-Service Associate (or related) Consumer: any service consumer who gets a benefit according to being related to another service consumer. For example:
-A parent of a consumer with rank general gets a discount of 75%. This parent is considered a service associate consumer.
+
+**Service**: represents any service that can be registered (or consumed) to a benefit of a service consumer (definition follows). 
+
+**Service Consumer**: the entity which is able to consume the registered services.
+
+**Transaction**: represents a single consumption to a service by a service consumer.
+
+**System Worker** (sometimes shortened as worker): the entity which is able to register a service for a consumer. 
+
+**Service Stakeholder**: this can be anyone on the system able to consume a service, i.e., a service consumer or a system worker.
+
+**Service Associate (or related) Consumer**: any service consumer who gets a benefit according to being related to another service consumer.
+
+> For example: A parent of a consumer with rank general gets a discount of 75%. This parent is considered a service associate consumer.
 If a patient (generally, a consumer) is in a room, and someone wants to stay with them, this "someone" is considered a service associate consumer.
 
 ### Functional Requirements
