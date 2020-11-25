@@ -153,6 +153,7 @@ System workers have to choose the consumer before registering any service, this 
 1. The system given code
 1. The system stakeholder anchor (i.e., the field which the system will use to uniquely identify the stakeholders) is the generated code whenever a stakeholder (either consumer or system worker) is added to the system. This field should be treated exactly as the consumer code retrieved from "الرعاية الصحية" (e.g., printed on receipts, can be used to search for consumers, etc.)
 1. Any other fields designed for the stakeholder entity.
+1. Showing recent transactions that consumer did before, to detect he is the right consumer.
 
 ##### System Workers Management
 
