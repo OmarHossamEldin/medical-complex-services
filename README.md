@@ -372,3 +372,38 @@ In case the main system goes off, the system worker is expected to start using p
 #### Reports
 
 The module should use the system's reporting engine to provide the module administrator some beneficial details about the module. 
+
+# Database ERD
+
+
+# Database ERD Description
+
+1. **Stakeholder**: Any person that uses the system, it may be a system worker, doctor, or consumer, or any other group.
+Not all stakeholders can have login credentials.
+
+1. **Group**: Stakeholder types like system worker, consumer, etc..
+
+1. **Module**: A separate module like Visitor Services, or Garage.
+
+1. **PC**: The pc information, each device that opens the system, should be automatically registered in this table.
+
+1. **Service**: This table should have the service design tree structure.
+
+1. **ServiceType**: Main, continous, or follower.
+
+1. **ClosedInterval**: An interval which a service should be closed within.
+
+1. **VariableLabel**: A dictionary which maps generated variables to labels (used for variable price equations).
+
+1. **PriceType**: Fixed price or variable price.
+
+1. **BillingOption**: Immediate cashout or use wallet credit.
+
+1. **Transaction**: Each operation (consumption) for a service should be saved here.
+
+1. **LinkedNodes**: The linked copies of services (to support continous services).
+
+
+
+
+
