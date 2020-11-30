@@ -140,6 +140,7 @@ If a patient (generally, a consumer) is in a room, and someone wants to stay wit
 - The visitor service module admin can collect the money from the wallet. The money is transferred to the collector's wallet. 
 - A system worker cannot collect from his/her own wallet.
 - A system worker can choose to cashout from/transfer to the consumer wallet credit or not.
+- A consumer should be blocked from consuming more services, if he/she has negative values in wallet. (عليه فلوس)
 
 ##### Stakeholder Querying
 
