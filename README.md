@@ -382,7 +382,7 @@ The module should use the system's reporting engine to provide the module admini
 1. **Stakeholder**: Any person that uses the system, it may be a system worker, doctor, or consumer, or any other group.
 Not all stakeholders can have login credentials.
 
-1. **Group**: Stakeholder types like system worker, consumer, etc..
+1. **Rank**: The normal ranks including (العائلات ، مدنى مصرى ، مدنى أجنبى).
 
 1. **Module**: A separate module like Visitor Services, or Garage.
 
@@ -398,9 +398,13 @@ Not all stakeholders can have login credentials.
 
 1. **PriceType**: Fixed price or variable price.
 
+1. **RankPriceVariable**: To save values for (rank, parameter) pairs. (e.g. (ملازم, سعر الصنف) -> 3 EGP).
+
 1. **BillingOption**: Immediate cashout or use wallet credit.
 
 1. **Transaction**: Each operation (consumption) for a service should be saved here.
+
+1. **FinancialCategory**: (الفئات المحاسبية: والدين، اجنبى، شركات) Financial categories can be automatically detected if it's linked with ranks.
 
 1. **LinkedNodes**: The linked copies of services (to support continous services).
 
