@@ -158,8 +158,8 @@ System workers have to choose the consumer before registering any service, this 
 
 ##### System Workers Management
 
-- There has to be department name for each user 
-- There has to be an account type that describes entities ("المجمع الطبي", "ادارة الخدمات الطبية", "معمل نظم المعلومات"). This type of accounts shouldn't be allowed to 
+- There has to be department name for each user .
+- There has to be an account type(role) that describes entities ("المجمع الطبي", "ادارة الخدمات الطبية", "معمل نظم المعلومات"). This type of accounts shouldn't be allowed to 
     - Login 
     - Make transactions.
 
@@ -380,34 +380,141 @@ The module should use the system's reporting engine to provide the module admini
 # Database ERD Description
 
 1. **Stakeholder**: Any person that uses the system, it may be a system worker, doctor, or consumer, or any other group.
-Not all stakeholders can have login credentials.
+Not all stakeholders can have login credentials. 
+    - Attributes:
+        - name: the name of the person, all person names should be saved here in the stakeholder table.
+        - wallet: the amount of money that the system worker should pay, and the amount of money that the consumer has, it may be positive or negative.
+    - Relations:
+        - Rank (m - 1): each stakeholder **must** have a rank.
+        - Service (m - n): any stakeholder may be blocked to any service. This relation is intended to block very specific stakeholders to any service.
+        - Stakeholder (recursive): to support the relations between stakeholders (العائلات).
+
+1. **Consumer**: Any visitor or patient that consumes a service. It inherits from Stakeholders.
+    - Attributes:
+        - patient_code: it may be optional in some cases (رقم الحاسب).
+    - Relations:
+        - Transaction (m - n): many consumers (main or associates) can be related to one transaction.
+
+1. **SystemWorker**: The users of the system that have login. It inherits from Stakeholders.
+    - Attributes"
+        - username: the login of the username.
+        - password: the password of the user.
+    - Relations:
+        - Module (m - n): each system worker will be able to access some modules.
+        - PC (m - n): each system worker should have access to open the system according to the PC.
+        - Role (m - 1): each system worker has a specific role, roles control many things like permissions.
+        - Transaction (1 - m): a transaction is made by only one system worker.
+
+1. **Doctor**: Inherits from SystemWorker.
+    - Attributes:
+        - degree: استشارى، اخصائى، استاذ.
+    - Relations:
+        - SystemWorker (inheritance): Doctor inherits from SystemWorker as it **may** have login username and password.
+        - Department (1 - m): each doctor should be in a department, e.g.(باطنة، رمد).
 
 1. **Rank**: The normal ranks including (العائلات ، مدنى مصرى ، مدنى أجنبى).
+    - Attributes:
+        - name: the name of the rank (جندى، ملازم، حرم ملازم، ...).
+    - Relations:
+        - FinancialCategory (m - 1): financial cetegories **may** be linked with ranks to be automatically suggested.
+        - RankPriceVariable (m - n)
 
-1. **Module**: A separate module like Visitor Services, or Garage.
+1. **Module**: A separate module like Visitor Services, or Garage. Modules are like tabs or cards in a dashboard.
+    - Attributes:
+        - name: the name of the module (خدمات الزائرين، الجراج).
+    - Relations:
+        - PC (m - n): each module can be accessible for specific PCs.
 
 1. **PC**: The pc information, each device that opens the system, should be automatically registered in this table.
+    - Attributes:
+        - name: the name of the pc, it's optional, the admin should register the names of the PCs.
+        - ip: the ip address of the PC that opens the system.
+        - mac: the mac address of the PC that opens the system. 
+    - Relations:
+
+1. **Permission**: Should have the control of the UI permissions according to system workers' roles.
+    - Attributes:
+        - name: the name of the UI component.
+    - Relations:
+        - Role (m - n): specify the relation between the permissions according to the roles.
+
+1. **Department**: groups of the doctors, like (باطنة، قلب ...) 'only for doctors'.
+    - Attributes:
+        - name: the name of the department.
+    - Relations:
+
+1. **Role**: Roles of the system workers that controls the permissions 'only for system workers'.
+    - Attributes:
+        - name: the name of the role (قسم مالى، أطباء).
+    - Relations:
 
 1. **Service**: This table should have the service design tree structure.
+    - Attributes:
+        - name: the name of the service, e.g.(المرتبات العلاجية).
+        - fixed_price: in case of fixed price services, it should be the fixed price of the service.
+        - timed: a boolean attribute that specifies if the service should be closed in specific intervals and days or not, 
+        e.g. (العيادات المسائية من 2 ل 4).
+        - main_consumer_number: the number of main consumers of the service, it should be zero in case of (خدمة الزيارات) as it does not
+        require any consumers. (until now it should be zero or one only).
+        - associate_consumer_number: the number of associates for each service, for example, it should be one for (المرتبات العلاجية).
+        - variable_price_equation: the string equation that calculates the service price, the equation consists of two main attributes:
+        - parameter: got from DB (RankPriceVariable).
+        - variable: got from user (UI).
+    - Relations:
+        - Service (recursive, tree design)
+        - Service (recursive, following): each follower-type service **may** be linked to a main-type service node (sibling node) on satisfying the following constraints.
+        - Role (m - n): each service has the roles of **system workers** that are allowed to register the service.
+        - Department (m - 1): each service **may** have a specific department of **doctors** to be completed, like in (الكشوفات).
+        - ServiceType (1 - m)
+        - ClosedInterval (1 - m)
+        - PriceType (m - 1)
+        - VariableLabel (1 - m)
+        - BillingOption (m - n)
+        - FinancialCategory (m - n)
+        - LinkedNodes (1 - m)
+        - FollowerConstraint (m - n)
+        - Transaction (1 - m)
 
 1. **ServiceType**: Main, continous, or follower.
+    - Attributes:
+    - Relations:
 
 1. **ClosedInterval**: An interval which a service should be closed within.
+    - Attributes:
+    - Relations:
 
 1. **VariableLabel**: A dictionary which maps generated variables to labels (used for variable price equations).
+    - Attributes:
+    - Relations:
+        - RankPriceVariable (1 - m)
 
 1. **PriceType**: Fixed price or variable price.
+    - Attributes:
+    - Relations:
 
 1. **RankPriceVariable**: To save values for (rank, parameter) pairs. (e.g. (ملازم, سعر الصنف) -> 3 EGP).
+    - Attributes:
+    - Relations:
 
 1. **BillingOption**: Immediate cashout or use wallet credit.
+    - Attributes:
+    - Relations:
 
 1. **Transaction**: Each operation (consumption) for a service should be saved here.
+    - Attributes:
+    - Relations:
 
 1. **FinancialCategory**: (الفئات المحاسبية: والدين، اجنبى، شركات) Financial categories can be automatically detected if it's linked with ranks.
+    - Attributes:
+    - Relations:
 
 1. **LinkedNodes**: The linked copies of services (to support continous services).
+    - Attributes:
+    - Relations:
 
+1. **FollowerConstraint**: the constraints that should be satisfied to accept a follower service to be consumed.
+    - Attributes:
+    - Relations:
 
 
 
