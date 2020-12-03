@@ -465,55 +465,74 @@ Not all stakeholders can have login credentials.
         - Service (recursive, following): each follower-type service **may** be linked to a main-type service node (sibling node) on satisfying the following constraints.
         - Role (m - n): each service has the roles of **system workers** that are allowed to register the service.
         - Department (m - 1): each service **may** have a specific department of **doctors** to be completed, like in (الكشوفات).
-        - ServiceType (1 - m)
-        - ClosedInterval (1 - m)
-        - PriceType (m - 1)
-        - VariableLabel (1 - m)
-        - BillingOption (m - n)
-        - FinancialCategory (m - n)
-        - LinkedNodes (1 - m)
-        - FollowerConstraint (m - n)
-        - Transaction (1 - m)
+        - ServiceType (1 - m): each service **must** have a type (main, continous, follower).
+        - ClosedInterval (1 - m): each service **may** have time intervals in which they are not accessible.
+        - PriceType (m - 1): eah service **must** have a pricing type (fixed, variable).
+        - VariableLabel (1 - m): each service **may** have many variables each with a label (only in variable price).
+        - BillingOption (m - n): each service **may** have another options for billing to allow the system worker to choose from them (cash, use from wallet).
+        - FinancialCategory (m - n): each service **may** have options for financial categories to allow the system worker to choose from them (اجنبى، والدين).
+        - LinkedNodes (1 - m): each **continous** service may have many linked nodes (جلسات).
+        - FollowerConstraint (m - n): each **follower** service should have constraints on its consumption, these constraints are between the follower service and the main service intended to be followed , each constraint may be active or not. Constraints are like: date difference between follwer and main service (15 days), and if the same doctor should be in the two services or not.
+        - Transaction (1 - m): each transaction must made on one service.
 
 1. **ServiceType**: Main, continous, or follower.
     - Attributes:
+        - name
     - Relations:
 
 1. **ClosedInterval**: An interval which a service should be closed within.
     - Attributes:
+        - day: (sat, sun, ...).
+        - from: from specific time.
+        - to: to specific time.
     - Relations:
 
 1. **VariableLabel**: A dictionary which maps generated variables to labels (used for variable price equations).
     - Attributes:
+        - key: the generated key for the variable (X1, X2, ...).
+        - label: the description of the variable like (عدد الأصناف).
     - Relations:
-        - RankPriceVariable (1 - m)
+        - RankPriceVariable (1 - m): some variavles (parameters) **may** have different values according to ranks.
 
 1. **PriceType**: Fixed price or variable price.
     - Attributes:
+        - name
     - Relations:
 
 1. **RankPriceVariable**: To save values for (rank, parameter) pairs. (e.g. (ملازم, سعر الصنف) -> 3 EGP).
     - Attributes:
+        - price_value: the value that should be substituted for the parameter, like ( سعر الصنف للملازم ).
     - Relations:
 
 1. **BillingOption**: Immediate cashout or use wallet credit.
     - Attributes:
+        - name
     - Relations:
 
 1. **Transaction**: Each operation (consumption) for a service should be saved here.
     - Attributes:
+        - time: the time of the transaction.
+        - printing_count: the number of times the receipt was printed.
     - Relations:
 
 1. **FinancialCategory**: (الفئات المحاسبية: والدين، اجنبى، شركات) Financial categories can be automatically detected if it's linked with ranks.
     - Attributes:
+        - name
+        - operator: (+, -, *, /).
+        - value: (0.25, 2, ...).
+        - max_limit: a value that upon it, there is no discount (e.g. علاج الوالدين 200 جنيه حد اقصى).
     - Relations:
 
 1. **LinkedNodes**: The linked copies of services (to support continous services).
     - Attributes:
+        - name
+        - price: the amount of money the consumer payed for each linked node (لكل جلسة).
     - Relations:
 
 1. **FollowerConstraint**: the constraints that should be satisfied to accept a follower service to be consumed.
     - Attributes:
+        - name
+        - active: to allow the constraints to be violated.
     - Relations:
 
 
