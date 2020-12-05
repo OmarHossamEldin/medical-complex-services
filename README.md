@@ -432,6 +432,7 @@ Not all stakeholders can have login credentials.
         - mac: the mac address of the PC that opens the system. 
     - Relations:
         - Service (m - n): each service **may** be allowed only on some PCs.
+        - Transaction (1 - m): any transaction **must** be made on one PC.
 
 1. **Permission**: Should have the control of the UI permissions according to system workers' roles.
     - Attributes:
