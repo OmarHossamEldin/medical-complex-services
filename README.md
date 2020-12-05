@@ -464,7 +464,7 @@ Not all stakeholders can have login credentials.
         - Service (recursive, tree design).
         - Role (m - n): each service has the roles of **system workers** that are allowed to register the service.
         - Department (m - 1): each service **may** have a specific department of **doctors** to be completed, like in (الكشوفات).
-        - ServiceType (1 - m): each service **must** have a type (main, continous, follower).
+        - ServiceType (m - 1): each service **must** have a type (main, continous, follower).
         - ClosedInterval (1 - m): each service **may** have time intervals in which they are not accessible.
         - PriceType (m - 1): eah service **must** have a pricing type (fixed, variable).
         - VariableLabel (1 - m): each service **may** have many variables each with a label (only in variable price).
