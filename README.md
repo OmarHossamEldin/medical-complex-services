@@ -431,6 +431,7 @@ Not all stakeholders can have login credentials.
         - ip: the ip address of the PC that opens the system.
         - mac: the mac address of the PC that opens the system. 
     - Relations:
+        - Service (m - n): each service **may** be allowed only on some PCs.
 
 1. **Permission**: Should have the control of the UI permissions according to system workers' roles.
     - Attributes:
