@@ -458,8 +458,8 @@ Not all stakeholders can have login credentials.
         require any consumers. (until now it should be zero or one only).
         - associate_consumer_number: the number of associates for each service, for example, it should be one for (المرتبات العلاجية).
         - variable_price_equation: the string equation that calculates the service price, the equation consists of two main attributes:
-        - parameter: got from DB (RankPriceVariable).
-        - variable: got from user (UI).
+            - parameter: got from DB (RankPriceVariable).
+            - variable: got from user (UI).
     - Relations:
         - Service (recursive, tree design)
         - Service (recursive, following): each follower-type service **may** be linked to a main-type service node (sibling node) on satisfying the following constraints.
