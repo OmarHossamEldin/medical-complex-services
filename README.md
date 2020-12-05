@@ -524,6 +524,7 @@ Not all stakeholders can have login credentials.
         - value: (0.25, 2, ...).
         - max_limit: a value that upon it, there is no discount (e.g. علاج الوالدين 200 جنيه حد اقصى).
     - Relations:
+        - Transaction (1 - m): each transaction **may** have one financial category to modify (increase/decrease) price.
 
 1. **LinkedNodes**: The linked copies of services (to support continous services).
     - Attributes:
