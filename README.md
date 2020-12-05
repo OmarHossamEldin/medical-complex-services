@@ -539,5 +539,26 @@ Not all stakeholders can have login credentials.
     - Relations:
 
 
+# The Service tree
+
+```mermaid
+graph TB
+  classDef red fill:#B85450;
+  classDef green fill:#82B366;
+  subgraph "The Servie Tree"
+  Visits(Visits)
+  Bakery(Bakery)
+  NightClinics(Night Clinics)
+  Medicine(Medicine)
+  Aranek(Aranek)
+  Internal(Internal)
+  Node8(Home)
+
+  
+end
+
+```
+
+
 
 
