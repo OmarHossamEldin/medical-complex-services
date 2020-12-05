@@ -461,8 +461,7 @@ Not all stakeholders can have login credentials.
             - parameter: got from DB (RankPriceVariable).
             - variable: got from user (UI).
     - Relations:
-        - Service (recursive, tree design)
-        - Service (recursive, following): each follower-type service **may** be linked to a main-type service node (sibling node) on satisfying the following constraints.
+        - Service (recursive, tree design).
         - Role (m - n): each service has the roles of **system workers** that are allowed to register the service.
         - Department (m - 1): each service **may** have a specific department of **doctors** to be completed, like in (الكشوفات).
         - ServiceType (1 - m): each service **must** have a type (main, continous, follower).
@@ -514,6 +513,7 @@ Not all stakeholders can have login credentials.
         - time: the time of the transaction.
         - printing_count: the number of times the receipt was printed.
     - Relations:
+        - Transaction (recursive, following): each follower-type service transaction **may** be linked to a main-type service transaction (sibling node in the service tree) on satisfying the following constraints.
 
 1. **FinancialCategory**: (الفئات المحاسبية: والدين، اجنبى، شركات) Financial categories can be automatically detected if it's linked with ranks.
     - Attributes:
