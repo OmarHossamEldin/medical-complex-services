@@ -546,27 +546,102 @@ graph TB
   classDef red fill:#B85450;
   classDef green fill:#82B366;
   subgraph "The Service Tree"
-  Visits(Visits)
-  Bakery(Bakery)
-  NightClinics(Night Clinics) --> Spec1(قلب)
-  NightClinics(Night Clinics) --> Spec2(باطنة)
-  NightClinics(Night Clinics) --> Spec3(أسنان)
+  Visits(الزيارات)
+  Bakery(المخبز)
+  NightClinics(العيادات المسائية) --> Spec1(قلب)
+  NightClinics(العيادات المسائية) --> Spec2(باطنة)
+  NightClinics(العيادات المسائية) --> Spec3(أسنان)
   Spec1 --> Kashf1(كشف 1)
   Spec1 --> Kashf2(كشف 2)
   Spec1 --> Consult1(استشارة اخصائى)
   Spec1 --> Consult2(استشارة استشارى)
-  Medicine(Medicine)
-  Aranek(Aranek) --> SubService1(معامل)
-  Aranek(Aranek) --> SubService2(اشعة)
-  Aranek(Aranek) --> SubService3(خدمات اخرى)
-  SubService3 --> LeafService(خدمة مسعرة)
-  Internal(Internal)
-  Home(Home)
+  Medicine(المرتبات)
+  Aranek(ارانيك) --> SubService1(معامل)
+  Aranek(ارانيك) --> SubService2(اشعة)
+  Aranek(ارانيك) --> SubService3(خدمات اخرى)
+  SubService3 --> LeafService1(خدمة مسعرة)
+  Internal(القسم الداخلى) --> In(دخول مريض)
+  Internal(القسم الداخلى) --> Out(خروج مريض)
+  Internal(القسم الداخلى) --> AssociateIn(دخول مرافق)
+  Internal(القسم الداخلى) --> AssociateOut(خروج مرافق)
+  Home(السكن الإدارى) --> LeafService2(خدمات مسعرة)
 
-  
 end
 
 ```
+
+## Service Configurations
+- Visits
+    - name: الزيارات
+    - service type: main
+    - price type: fixed
+    - main consumer number: zero
+    - associate consumer number: zero or one
+    - billing options: cash only
+- Bakery
+    - name: المخبز
+    - service type: main
+    - price type: fixed
+    - main consumer number: zero or one
+    - associate consumer number: zero
+    - billing options: cash only
+- NightClinics
+    - name: العيادات المسائية
+    - service type: main
+    - price type: Null (can't be consumed)
+    - main consumer number: zero
+    - associate consumer number: zero
+    - billing options: Null
+        - specialization (many services)
+            - name: تخصصات (قلب، باطنة، ....)
+            - service type: main
+            - price type: Null (can't be consumed)
+            - main consumer number: zero
+            - associate consumer number: zero
+            - billing options: Null
+                - Kashf (many services)
+                    - name: اسم الكشف
+                    - service type: main
+                    - price type: fixed
+                    - main consumer number: one
+                    - associate consumer number: zero
+                    - billing options: cash
+                - Estshara
+                    - name: اسم الاستشارة(استشارة اخصائى، استشارة استاذ، استشارة استشارى)
+                    - service type: follower
+                    - price type: fixed
+                    - main consumer number: one
+                    - associate consumer number: zero
+                    - billing options: cash
+
+- Medicine
+    - name:
+    - service type:
+    - price type:
+    - main consumer number:
+    - associate consumer number:
+    - billing options:
+- Aranek
+    - name:
+    - service type:
+    - price type:
+    - main consumer number:
+    - associate consumer number:
+    - billing options:
+- Internal
+    - name:
+    - service type:
+    - price type:
+    - main consumer number:
+    - associate consumer number:
+    - billing options:
+- Home
+    - name:
+    - service type:
+    - price type:
+    - main consumer number:
+    - associate consumer number:
+    - billing options:
 
 
 
