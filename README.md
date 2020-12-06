@@ -545,14 +545,23 @@ Not all stakeholders can have login credentials.
 graph TB
   classDef red fill:#B85450;
   classDef green fill:#82B366;
-  subgraph "The Servie Tree"
+  subgraph "The Service Tree"
   Visits(Visits)
   Bakery(Bakery)
-  NightClinics(Night Clinics)
+  NightClinics(Night Clinics) --> Spec1(قلب)
+  NightClinics(Night Clinics) --> Spec2(باطنة)
+  NightClinics(Night Clinics) --> Spec3(أسنان)
+  Spec1 --> Kashf1(كشف 1)
+  Spec1 --> Kashf2(كشف 2)
+  Spec1 --> Consult1(استشارة اخصائى)
+  Spec1 --> Consult2(استشارة استشارى)
   Medicine(Medicine)
-  Aranek(Aranek)
+  Aranek(Aranek) --> SubService1(معامل)
+  Aranek(Aranek) --> SubService2(اشعة)
+  Aranek(Aranek) --> SubService3(خدمات اخرى)
+  SubService3 --> LeafService(خدمة مسعرة)
   Internal(Internal)
-  Node8(Home)
+  Home(Home)
 
   
 end
