@@ -571,77 +571,97 @@ end
 ```
 
 ## Service Configurations
-- Visits
+- **Visits**
     - name: الزيارات
     - service type: main
     - price type: fixed
     - main consumer number: zero
     - associate consumer number: zero or one
     - billing options: cash only
-- Bakery
+    - timed: 
+    - department (in case of needing doctors): 
+- **Bakery**
     - name: المخبز
     - service type: main
     - price type: fixed
     - main consumer number: zero or one
     - associate consumer number: zero
     - billing options: cash only
-- NightClinics
+    - timed: 
+    - department (in case of needing doctors): 
+- **NightClinics**
     - name: العيادات المسائية
     - service type: main
     - price type: Null (can't be consumed)
     - main consumer number: zero
     - associate consumer number: zero
     - billing options: Null
-        - specialization (many services)
+    - timed: 
+    - department (in case of needing doctors): 
+        - **specialization** (many services)
             - name: تخصصات (قلب، باطنة، ....)
             - service type: main
             - price type: Null (can't be consumed)
             - main consumer number: zero
             - associate consumer number: zero
             - billing options: Null
-                - Kashf (many services)
+            - timed: 
+            - department (in case of needing doctors): 
+                - **Kashf** (many services)
                     - name: اسم الكشف
                     - service type: main
                     - price type: fixed
                     - main consumer number: one
                     - associate consumer number: zero
                     - billing options: cash
-                - Estshara
+                    - timed: 
+                    - department (in case of needing doctors): 
+                - **Estshara**
                     - name: اسم الاستشارة(استشارة اخصائى، استشارة استاذ، استشارة استشارى)
                     - service type: follower
                     - price type: fixed
                     - main consumer number: one
                     - associate consumer number: zero
                     - billing options: cash
+                    - timed: 
+                    - department (in case of needing doctors): 
 
-- Medicine
-    - name:
+- **Medicine**
+    - name: المرتبات العلاجية
     - service type:
     - price type:
     - main consumer number:
     - associate consumer number:
     - billing options:
-- Aranek
-    - name:
+    - timed: 
+    - department (in case of needing doctors): 
+- **Aranek**
+    - name: الأرانيك
     - service type:
     - price type:
     - main consumer number:
     - associate consumer number:
     - billing options:
-- Internal
-    - name:
+    - timed: 
+    - department (in case of needing doctors): 
+- **Internal**
+    - name: القسم الداخلى
     - service type:
     - price type:
     - main consumer number:
     - associate consumer number:
     - billing options:
-- Home
-    - name:
+    - timed: 
+    - department (in case of needing doctors): 
+- **Home**
+    - name: السكن الإدارى
     - service type:
     - price type:
     - main consumer number:
     - associate consumer number:
     - billing options:
+    - timed: 
+    - department (in case of needing doctors): 
 
 
 
