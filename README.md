@@ -28,7 +28,7 @@ Follow the diagram shown as a reference for building services and their sub*serv
 
 ##### Types 
 
-A service node has three types (they are not mutually exclusive, i.e., a node can have multiple types), check the diagram.
+A service node has four types (they are not mutually exclusive, i.e., a node can have multiple types), check the diagram.
 
 ###### Main
 Has no special architecture, it just has an associated price (either fixed or variable) and is consumed with no pre-requisites
@@ -110,6 +110,38 @@ graph TB
 end
 
 ```
+
+###### Postponed
+
+Postponed service is a service which is not closed immediately, it can be closed later. (e.g. القسم الداخلى).
+
+- The use case of 'القسم الداخلى'
+
+    - The service of 'القسم الداخلى' has two sub-services: ('دخول مريض', 'دخول مرافق').
+    
+    - There are two variable price types: (Immediate, Postponed).
+    
+    - The immediate variable price will be assumed to be paid immediately at the begining of the service consumption, e.g. 'تأمين الدخول'.
+
+    - The postponed variable price will be assumed to be paid later when the service is about to be closed, e.g. 'الاقامة و التليفزيون'.
+    
+    - The postponed variable price is calculated according to the duration (the difference between the service start date and finish date).
+    
+    - The parameter for the postponed variable price is saved as a 'price per day'.
+    
+    - Any other service (e.g. الاشعة) must only has 'use from wallet' option if the consumer has already in a postponed service which is not closed yet.
+    
+    - Rank is linked with Service in a constrained relation to allow or disallow some things for services according to the rank.
+    
+    - If the service is of type follower and postponed together like 'دخول المرافق', it must be closed first before the main one (دخول المريض).
+    
+    - Each service has a department_id (if necessary).
+    
+    - Each service has a boolean variable 'require_doctor'.
+    
+    - The Doctor should be linked to the Transaction.
+
+
 
 #### Definitions 
 - Service node with no consumer option has to allow the system worker to cashout the node a number of times (e.g., cashout five visit tickets)
@@ -411,6 +443,7 @@ Not all stakeholders can have login credentials.
     - Relations:
         - SystemWorker (inheritance): Doctor inherits from SystemWorker as it **may** have login username and password.
         - Department (1 - m): each doctor should be in a department, e.g.(باطنة، رمد).
+        - **Transaction (1 - m): each doctor can make many transactions.**
 
 1. **Rank**: The normal ranks including (العائلات ، مدنى مصرى ، مدنى أجنبى).
     - Attributes:
@@ -462,6 +495,7 @@ Not all stakeholders can have login credentials.
         - variable_price_equation: the string equation that calculates the service price, the equation consists of two main attributes:
             - parameter: got from DB (RankPriceVariable).
             - variable: got from user (UI).
+        - requires_doctor: to indicate if the service requires a doctor to be consumed or not.
     - Relations:
         - Service (recursive, tree design).
         - Role (m - n): each service has the roles of **system workers** that are allowed to register the service.
@@ -475,6 +509,7 @@ Not all stakeholders can have login credentials.
         - LinkedNodes (1 - m): each **continous** service may have many linked nodes (جلسات).
         - FollowerConstraint (m - n): each **follower** service should have constraints on its consumption, these constraints are between the follower service and the main service intended to be followed , each constraint may be active or not. Constraints are like: date difference between follwer and main service (15 days), and if the same doctor should be in the two services or not.
         - Transaction (1 - m): each transaction must made on one service.
+        - **Rank (m - n) (constrained relation): to control the differences inside the service according to the ranks.**
 
 1. **ServiceType**: Main, continous, or follower.
     - Attributes:
@@ -492,6 +527,9 @@ Not all stakeholders can have login credentials.
     - Attributes:
         - key: the generated key for the variable (X1, X2, ...).
         - label: the description of the variable like (عدد الأصناف).
+        - **data_type: number or boolean.**
+        - **time_type: immediate or postponed.**
+
     - Relations:
         - RankPriceVariable (1 - m): some variavles (parameters) **may** have different values according to ranks.
 
@@ -548,22 +586,17 @@ graph TB
   subgraph "The Service Tree"
   Visits(الزيارات)
   Bakery(المخبز)
-  NightClinics(العيادات المسائية) --> Spec1(قلب)
-  NightClinics(العيادات المسائية) --> Spec2(باطنة)
-  NightClinics(العيادات المسائية) --> Spec3(أسنان)
-  Spec1 --> Kashf1(كشف 1)
-  Spec1 --> Kashf2(كشف 2)
-  Spec1 --> Consult1(استشارة اخصائى)
-  Spec1 --> Consult2(استشارة استشارى)
+  NightClinics(العيادات المسائية) --> Kashf1(كشف 1)
+  NightClinics(العيادات المسائية) --> Kashf2(كشف 2)
+  NightClinics(العيادات المسائية) --> Consult1(استشارة اخصائى)
+  NightClinics(العيادات المسائية) --> Consult2(استشارة استشارى)
   Medicine(المرتبات)
   Aranek(ارانيك) --> SubService1(معامل)
   Aranek(ارانيك) --> SubService2(اشعة)
   Aranek(ارانيك) --> SubService3(خدمات اخرى)
   SubService3 --> LeafService1(خدمة مسعرة)
   Internal(القسم الداخلى) --> In(دخول مريض)
-  Internal(القسم الداخلى) --> Out(خروج مريض)
   Internal(القسم الداخلى) --> AssociateIn(دخول مرافق)
-  Internal(القسم الداخلى) --> AssociateOut(خروج مرافق)
   Home(السكن الإدارى) --> LeafService2(خدمات مسعرة)
 
 end
@@ -579,7 +612,8 @@ end
     - associate consumer number: zero or one
     - billing options: cash only
     - timed: 
-    - department (in case of needing doctors): 
+    - department:
+    - requires_doctor: 
 - **Bakery**
     - name: المخبز
     - service type: main
@@ -588,7 +622,8 @@ end
     - associate consumer number: zero
     - billing options: cash only
     - timed: 
-    - department (in case of needing doctors): 
+    - department:
+    - requires_doctor: 
 - **NightClinics**
     - name: العيادات المسائية
     - service type: main
@@ -597,34 +632,28 @@ end
     - associate consumer number: zero
     - billing options: Null
     - timed: 
-    - department (in case of needing doctors): 
-        - **specialization** (many services)
-            - name: تخصصات (قلب، باطنة، ....)
+    - department:
+    - requires_doctor:  
+        - **Kashf** (many services)
+            - name: اسم الكشف
             - service type: main
-            - price type: Null (can't be consumed)
-            - main consumer number: zero
+            - price type: fixed
+            - main consumer number: one
             - associate consumer number: zero
-            - billing options: Null
+            - billing options: cash
             - timed: 
-            - department (in case of needing doctors): 
-                - **Kashf** (many services)
-                    - name: اسم الكشف
-                    - service type: main
-                    - price type: fixed
-                    - main consumer number: one
-                    - associate consumer number: zero
-                    - billing options: cash
-                    - timed: 
-                    - department (in case of needing doctors): 
-                - **Estshara**
-                    - name: اسم الاستشارة(استشارة اخصائى، استشارة استاذ، استشارة استشارى)
-                    - service type: follower
-                    - price type: fixed
-                    - main consumer number: one
-                    - associate consumer number: zero
-                    - billing options: cash
-                    - timed: 
-                    - department (in case of needing doctors): 
+            - department:
+            - requires_doctor: 
+        - **Estshara**
+            - name: اسم الاستشارة(استشارة اخصائى، استشارة استاذ، استشارة استشارى)
+            - service type: follower
+            - price type: fixed
+            - main consumer number: one
+            - associate consumer number: zero
+            - billing options: cash
+            - timed: 
+            - department:
+            - requires_doctor: 
 
 - **Medicine**
     - name: المرتبات العلاجية
@@ -634,7 +663,8 @@ end
     - associate consumer number:
     - billing options:
     - timed: 
-    - department (in case of needing doctors): 
+    - department:
+    - requires_doctor: 
 - **Aranek**
     - name: الأرانيك
     - service type:
@@ -643,16 +673,38 @@ end
     - associate consumer number:
     - billing options:
     - timed: 
-    - department (in case of needing doctors): 
+    - department:
+    - requires_doctor: 
 - **Internal**
     - name: القسم الداخلى
-    - service type:
-    - price type:
-    - main consumer number:
-    - associate consumer number:
-    - billing options:
+    - service type: main
+    - price type: Null (can't be consumed) 
+    - main consumer number: zero
+    - associate consumer number: zero
+    - billing options: Null
     - timed: 
-    - department (in case of needing doctors): 
+    - department:
+    - requires_doctor: 
+        - **PatientIn**
+            - name: دخول مريض
+            - service type: postponed
+            - price type: variable 
+            - main consumer number: one
+            - associate consumer number: one or zero
+            - billing options: cash or wallet
+            - timed: 
+            - department:
+            - requires_doctor: 
+        - **MorafkIn**
+            - name: دخول مرافق
+            - service type: postponed
+            - price type: variable 
+            - main consumer number: one
+            - associate consumer number: one or zero
+            - billing options: cash or wallet
+            - timed: 
+            - department:
+            - requires_doctor:  
 - **Home**
     - name: السكن الإدارى
     - service type:
@@ -661,7 +713,8 @@ end
     - associate consumer number:
     - billing options:
     - timed: 
-    - department (in case of needing doctors): 
+    - department:
+    - requires_doctor:
 
 
 
