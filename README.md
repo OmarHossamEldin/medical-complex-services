@@ -443,7 +443,7 @@ Not all stakeholders can have login credentials.
     - Relations:
         - SystemWorker (inheritance): Doctor inherits from SystemWorker as it **may** have login username and password.
         - Department (1 - m): each doctor should be in a department, e.g.(باطنة، رمد).
-        - **Transaction (1 - m): each doctor can make many transactions.**
+        - Transaction (1 - m): each doctor can make many transactions.
 
 1. **Rank**: The normal ranks including (العائلات ، مدنى مصرى ، مدنى أجنبى).
     - Attributes:
@@ -495,7 +495,7 @@ Not all stakeholders can have login credentials.
         - variable_price_equation: the string equation that calculates the service price, the equation consists of two main attributes:
             - parameter: got from DB (RankPriceVariable).
             - variable: got from user (UI).
-        - **requires_doctor: to indicate if the service requires a doctor to be consumed or not.**
+        - requires_doctor: to indicate if the service requires a doctor to be consumed or not.
     - Relations:
         - Service (recursive, tree design).
         - Role (m - n): each service has the roles of **system workers** that are allowed to register the service.
@@ -509,7 +509,7 @@ Not all stakeholders can have login credentials.
         - LinkedNodes (1 - m): each **continous** service may have many linked nodes (جلسات).
         - FollowerConstraint (m - n): each **follower** service should have constraints on its consumption, these constraints are between the follower service and the main service intended to be followed , each constraint may be active or not. Constraints are like: date difference between follwer and main service (15 days), and if the same doctor should be in the two services or not.
         - Transaction (1 - m): each transaction must made on one service.
-        - **Rank (m - n) (constrained relation): to control the differences inside the service according to the ranks.**
+        - Rank (m - n) (constrained relation): to control the differences inside the service according to the ranks.
 
 1. **ServiceType**: Main, continous, or follower.
     - Attributes:
@@ -527,8 +527,8 @@ Not all stakeholders can have login credentials.
     - Attributes:
         - key: the generated key for the variable (X1, X2, ...).
         - label: the description of the variable like (عدد الأصناف).
-        - **data_type: number or boolean.**
-        - **time_type: immediate or postponed.**
+        - data_type: number or boolean.
+        - time_type: immediate or postponed.
 
     - Relations:
         - RankPriceVariable (1 - m): some variavles (parameters) **may** have different values according to ranks.
