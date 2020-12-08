@@ -495,7 +495,7 @@ Not all stakeholders can have login credentials.
         - variable_price_equation: the string equation that calculates the service price, the equation consists of two main attributes:
             - parameter: got from DB (RankPriceVariable).
             - variable: got from user (UI).
-        - requires_doctor: to indicate if the service requires a doctor to be consumed or not.
+        - **requires_doctor: to indicate if the service requires a doctor to be consumed or not.**
     - Relations:
         - Service (recursive, tree design).
         - Role (m - n): each service has the roles of **system workers** that are allowed to register the service.
