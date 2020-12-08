@@ -605,7 +605,8 @@ graph TB
   Aranek(ارانيك) --> SubService2(اشعة)
   Aranek(ارانيك) --> SubService3(خدمات اخرى)
   SubService3 --> LeafService1(خدمة مسعرة)
-  Internal(القسم الداخلى) --> In(دخول مريض)
+  Internal(القسم الداخلى) --> In1(باطنة - دخول مريض)
+  Internal(القسم الداخلى) --> In2(قلب - دخول مريض)
   Internal(القسم الداخلى) --> AssociateIn(دخول مرافق)
   Home(السكن الإدارى) --> LeafService2(خدمات مسعرة)
 
@@ -618,113 +619,124 @@ end
     - name: الزيارات
     - service type: main
     - price type: fixed
+    - variable_price_equation: Null
     - main consumer number: zero
-    - associate consumer number: zero or one
+    - associate consumer number: zero
     - billing options: cash only
-    - timed: 
-    - department:
-    - requires_doctor: 
+    - timed: true
+    - department: Null
+    - requires_doctor: false 
 - **Bakery**
     - name: المخبز
     - service type: main
     - price type: fixed
-    - main consumer number: zero or one
+    - variable_price_equation: Null
+    - main consumer number: zero
     - associate consumer number: zero
     - billing options: cash only
-    - timed: 
-    - department:
-    - requires_doctor: 
+    - timed: false
+    - department: Null 
+    - requires_doctor: false 
 - **NightClinics**
     - name: العيادات المسائية
     - service type: main
     - price type: Null (can't be consumed)
+    - variable_price_equation: Null
     - main consumer number: zero
     - associate consumer number: zero
     - billing options: Null
-    - timed: 
-    - department:
-    - requires_doctor:  
+    - timed: true
+    - department: Null
+    - requires_doctor: true
         - **Kashf** (many services)
             - name: اسم الكشف
-            - service type: main
+            - service type: main or continous
             - price type: fixed
+            - variable_price_equation: false
             - main consumer number: one
             - associate consumer number: zero
-            - billing options: cash
-            - timed: 
-            - department:
-            - requires_doctor: 
+            - billing options: cash or wallet
+            - timed: true
+            - department: department_id
+            - requires_doctor: true
         - **Estshara**
             - name: اسم الاستشارة(استشارة اخصائى، استشارة استاذ، استشارة استشارى)
             - service type: follower
             - price type: fixed
+            - variable_price_equation: Null
             - main consumer number: one
             - associate consumer number: zero
-            - billing options: cash
-            - timed: 
-            - department:
-            - requires_doctor: 
+            - billing options: cash or wallet
+            - timed: true
+            - department: department_id
+            - requires_doctor: true
 
 - **Medicine**
     - name: المرتبات العلاجية
-    - service type:
-    - price type:
-    - main consumer number:
-    - associate consumer number:
-    - billing options:
-    - timed: 
-    - department:
-    - requires_doctor: 
+    - service type: main
+    - price type: variable
+    - variable_price_equation: item price (parameter) * items no. (variable) * months (variable)
+    - main consumer number: one (العائلات)
+    - associate consumer number: one (العائل)
+    - billing options: cash or wallet
+    - timed: fasle
+    - department: Null
+    - requires_doctor: false 
 - **Aranek**
     - name: الأرانيك
-    - service type:
-    - price type:
-    - main consumer number:
-    - associate consumer number:
-    - billing options:
-    - timed: 
-    - department:
-    - requires_doctor: 
+    - service type: main
+    - price type: variable
+    - variable_price_equation: price (parameter)
+    - main consumer number: one
+    - associate consumer number: zero
+    - billing options: cash or wallet
+    - timed: false
+    - department: Null
+    - requires_doctor: false 
 - **Internal**
     - name: القسم الداخلى
     - service type: main
-    - price type: Null (can't be consumed) 
+    - price type: Null (can't be consumed)
+    - variable_price_equation: Null 
     - main consumer number: zero
     - associate consumer number: zero
     - billing options: Null
-    - timed: 
-    - department:
-    - requires_doctor: 
+    - timed: false 
+    - department: department_id
+    - requires_doctor: false
         - **PatientIn**
             - name: دخول مريض
             - service type: postponed
             - price type: variable 
+            - variable_price_equation: (TV(boolean variable) * TV price (parameter) + stay price (parameter)) * duration (automatically calculated)
             - main consumer number: one
-            - associate consumer number: one or zero
+            - associate consumer number: zero
             - billing options: cash or wallet
-            - timed: 
-            - department:
-            - requires_doctor: 
+            - timed: false
+            - department: department_id
+            - requires_doctor: fasle
         - **MorafkIn**
             - name: دخول مرافق
-            - service type: postponed
+            - service type: postponed, follower
             - price type: variable 
-            - main consumer number: one
-            - associate consumer number: one or zero
+            - variable_price_equation: in card (boolean variable) * stay price for in card (parameter) * duration + ! in card (boolean variable) * stay price for out card (parameter) * duration
+            - main consumer number: one (patient)
+            - associate consumer number: one (Morafek)
             - billing options: cash or wallet
-            - timed: 
-            - department:
-            - requires_doctor:  
+            - timed: false
+            - department: Null
+            - requires_doctor: false  
 - **Home**
     - name: السكن الإدارى
-    - service type:
-    - price type:
-    - main consumer number:
-    - associate consumer number:
-    - billing options:
-    - timed: 
-    - department:
-    - requires_doctor:
+    - service type: main
+    - price type: fixed
+    - variable_price_equation: Null
+    - main consumer number: one
+    - associate consumer number: zero
+    - billing options: cash or wallet
+    - timed: false
+    - department: Null
+    - requires_doctor: false
 
 
 
