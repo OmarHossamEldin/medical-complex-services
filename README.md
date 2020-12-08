@@ -158,6 +158,8 @@ Postponed service is a service which is not closed immediately, it can be closed
 
 **Service Associate (or related) Consumer**: any service consumer who gets a benefit according to being related to another service consumer.
 
+**Utility**: 
+
 > For example: A parent of a consumer with rank general gets a discount of 75%. This parent is considered a service associate consumer.
 If a patient (generally, a consumer) is in a room, and someone wants to stay with them, this "someone" is considered a service associate consumer.
 
@@ -416,6 +418,7 @@ Not all stakeholders can have login credentials.
     - Attributes:
         - name: the name of the person, all person names should be saved here in the stakeholder table.
         - wallet: the amount of money that the system worker should pay, and the amount of money that the consumer has, it may be positive or negative.
+        - patient_code: it may be optional in some cases (رقم الحاسب).
     - Relations:
         - Rank (m - 1): each stakeholder **must** have a rank.
         - Service (m - n): any stakeholder may be blocked to any service. This relation is intended to block very specific stakeholders to any service.
@@ -423,7 +426,7 @@ Not all stakeholders can have login credentials.
 
 1. **Consumer**: Any visitor or patient that consumes a service. It inherits from Stakeholders.
     - Attributes:
-        - patient_code: it may be optional in some cases (رقم الحاسب).
+        
     - Relations:
         - Transaction (m - n): many consumers (main or associates) can be related to one transaction.
 
@@ -439,11 +442,12 @@ Not all stakeholders can have login credentials.
 
 1. **Doctor**: Inherits from SystemWorker.
     - Attributes:
-        - degree: استشارى، اخصائى، استاذ.
+        
     - Relations:
         - SystemWorker (inheritance): Doctor inherits from SystemWorker as it **may** have login username and password.
         - Department (1 - m): each doctor should be in a department, e.g.(باطنة، رمد).
         - Transaction (1 - m): each doctor can make many transactions.
+        - Degree (m - 1): each doctor should have a degree(استشارى، اخصائى، استاذ).
 
 1. **Rank**: The normal ranks including (العائلات ، مدنى مصرى ، مدنى أجنبى).
     - Attributes:
@@ -451,6 +455,11 @@ Not all stakeholders can have login credentials.
     - Relations:
         - FinancialCategory (m - 1): financial cetegories **may** be linked with ranks to be automatically suggested.
         - RankPriceVariable (m - n)
+
+1. **Degree**: The degree of the doctor: استشارى، اخصائى، استاذ.
+    - Attributes:
+        - name
+    - Relations:
 
 1. **Module**: A separate module like Visitor Services, or Garage. Modules are like tabs or cards in a dashboard.
     - Attributes:
@@ -507,9 +516,10 @@ Not all stakeholders can have login credentials.
         - BillingOption (m - n): each service **may** have another options for billing to allow the system worker to choose from them (cash, use from wallet).
         - FinancialCategory (m - n): each service **may** have options for financial categories to allow the system worker to choose from them (اجنبى، والدين).
         - LinkedNodes (1 - m): each **continous** service may have many linked nodes (جلسات).
-        - FollowerConstraint (m - n): each **follower** service should have constraints on its consumption, these constraints are between the follower service and the main service intended to be followed , each constraint may be active or not. Constraints are like: date difference between follwer and main service (15 days), and if the same doctor should be in the two services or not.
+        - FollowerConstraint (m - n): each **follower** service should have constraints on its consumption, these constraints are between the follower service and the main service intended to be followed , each constraint may be active or not. Constraints are like: date difference between follower and main service (15 days), and if the same doctor should be in the two services or not.
         - Transaction (1 - m): each transaction must made on one service.
         - Rank (m - n) (constrained relation): to control the differences inside the service according to the ranks.
+        - Degree (m - n): each service **may** be valid for specific degree only.
 
 1. **ServiceType**: Main, continous, or follower.
     - Attributes:
