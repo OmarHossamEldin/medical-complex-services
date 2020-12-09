@@ -255,15 +255,20 @@ A service node price can be fixed or variable.
 - The system should keep history of distribution amounts if they were edited. 
     - Anoynmously (i.e., without the system worker knowing it), you should create a new price distribution tree and all next transactions will use it (as if you were activating it instead of the previous one).
 
-######  Payment Types
+######  Payment Types (Billing Options)
 
 A service transaction billing can have several payment types:
 
 - Cash
 This should be added to the system worker wallet cash.
 - Visa
+The process of paying through credit cards is done as follows:
+    1. When the consumer is about to consume a service and pay through credit card, The system prints a credit card receipt with the required amount (cost).
+    1. The consumer goes to a specific department in the Financial Dept. to pay through credit card.
+    1. The system worker writes the paid receipt number, the system checks if the consumer has already paid, then the service is consumed successfuly.
+    1. Another solution is to allow the credit card system worker to consume the service for the consumer directly to prevent the consumer from going to many workers.
 *(discuss with Financial Dept. Manager)* whether should we add to wallet details that the system worker has done transactions of type Visa with total of [NUMBER] and the system worker is expected to have receipts equal to the number of transactions made in Visa.
-- ...
+- Use from wallet (credit like Uber).
 
 ###### Billing 
 
