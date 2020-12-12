@@ -422,6 +422,7 @@ The module should use the system's reporting engine to provide the module admini
 Not all stakeholders can have login credentials. 
     - Attributes:
         - name: the name of the person, all person names should be saved here in the stakeholder table.
+        - barcode: a barcode number will be associated with any stakeholder.
         - wallet: the amount of money that the system worker should pay, and the amount of money that the consumer has, it may be positive or negative.
         - patient_code: it may be optional in some cases (رقم الحاسب).
     - Relations:
