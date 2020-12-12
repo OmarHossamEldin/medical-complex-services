@@ -158,7 +158,9 @@ Postponed service is a service which is not closed immediately, it can be closed
 
 **Service Associate (or related) Consumer**: any service consumer who gets a benefit according to being related to another service consumer.
 
-**Utility**: 
+**Utilities**: 
+
+    - Barcode
 
 > For example: A parent of a consumer with rank general gets a discount of 75%. This parent is considered a service associate consumer.
 If a patient (generally, a consumer) is in a room, and someone wants to stay with them, this "someone" is considered a service associate consumer.
