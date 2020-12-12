@@ -451,7 +451,7 @@ Not all stakeholders can have login credentials.
     - Relations:
         - SystemWorker (inheritance): Doctor inherits from SystemWorker as it **may** have login username and password.
         - Department (1 - m): each doctor should be in a department, e.g.(باطنة، رمد).
-        - Transaction (1 - m): each doctor can make many transactions.
+        - Transaction (m - n): each doctor can make many transactions, a transaction can be made with many doctors, the first doctor **must** be in the same department of the service, the optional other doctors **may** be from other departments. Example: A heart internal department can have a main doctor for a surgery, and another doctor for (التخدير).
         - Degree (m - 1): each doctor should have a degree(استشارى، اخصائى، استاذ).
 
 1. **Rank**: The normal ranks including (العائلات ، مدنى مصرى ، مدنى أجنبى).
