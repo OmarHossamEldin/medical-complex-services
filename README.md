@@ -747,5 +747,34 @@ end
     - requires_doctor: false
 
 
+# Frontend Design (Vue Project Structure)
+
+## Pages
+
+- Login
+- Modules
+- UserProfile
+- ServicesMainPage
+- ConsumerFinding
+- DoctorFinding
+- PricesPage
+- BillingPage
+
+- Admin
+    - Reports
+    - TransactionsHistory
+    - Users
+    - Modules
+    - Services
+    - FinancialCategories
+    - Departments
+    - Doctors
+    - PCs
+
+## Layouts
+
+## Components
+
+
 
 
