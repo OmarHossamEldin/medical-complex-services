@@ -1,0 +1,1845 @@
+openapi: 3.0.0
+info:
+  title: Medical Complex Services
+  version: '1.0'
+  description: 'API for backend operations. [CRUD,ACOUNTING,REPORTS,etc]'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /stakeholders:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      operationId: get-stakeholders
+      description: This route will get all resources.
+      responses:
+        '202':
+          description: Resources
+          headers: {}
+      parameters: []
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-stakeholders
+      responses:
+        '201':
+          description: Created
+      description: This route store a new resource.
+  '/stakeholders/{stakeholder}':
+    parameters:
+      - schema:
+          type: integer
+        name: stakeholder
+        in: path
+        required: true
+        description: the id of the stakeholder
+    get:
+      summary: ''
+      operationId: get-stakeholders-stakeholder
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      description: this route will get selected resource.
+    patch:
+      summary: ''
+      operationId: patch-stakeholders-stakeholder
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    put:
+      summary: ''
+      operationId: put-stakeholders-stakeholder
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-stakeholders-stakeholder
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      description: this route will destroy selected resource.
+  /consumers:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-consumer
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-consumer
+      responses:
+        '201':
+          description: Created
+      description: this route will store a new resource.
+    parameters: []
+  '/consumers/{consumer}':
+    parameters:
+      - schema:
+          type: integer
+        name: consumer
+        in: path
+        required: true
+        description: the id of the consumer
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-consumer-consumer
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-consumer-consumer
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-consumer-consumer
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-consumer-consumer
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+  /systemworkers:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-systemworker
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-systemworker
+      responses:
+        '201':
+          description: Created
+      description: This route store a new resource.
+    parameters: []
+  '/systemworkers/{systemworker}':
+    parameters:
+      - schema:
+          type: integer
+        name: systemworker
+        in: path
+        required: true
+        description: the id of the systemworker
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-systemworker-systemworker
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-systemworker-systemworker
+      responses:
+        '206':
+          description: Partial Content
+        '':
+          description: ''
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-systemworker-systemworker
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-systemworker-systemworker
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+  /doctors:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-doctors
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-doctors
+      responses:
+        '201':
+          description: Created
+      description: This route store a new resource.
+  '/doctors/{doctor}':
+    parameters:
+      - schema:
+          type: string
+        name: doctor
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-doctors-doctors
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-doctors-doctors
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-doctors-doctors
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-doctors-doctors
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+  /ranks:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-ranks
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-ranks
+      responses:
+        '201':
+          description: Created
+      description: This route store a new resource.
+  '/ranks/{rank}':
+    parameters:
+      - schema:
+          type: integer
+        name: rank
+        in: path
+        required: true
+        description: the id of the rank
+    get:
+      summary: Your GET endpoint
+      tags: []
+      operationId: get-ranks-ranks
+      description: this route will get selected resource.
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+    put:
+      summary: ''
+      operationId: put-ranks-rank
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-ranks-rank
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-ranks-rank
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+  /degrees:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-degrees
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-degrees
+      responses:
+        '201':
+          description: Created
+      description: this route store a new resource.
+  '/degrees/{degree}':
+    parameters:
+      - schema:
+          type: integer
+        name: degree
+        in: path
+        required: true
+        description: the id of the degree
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-degrees-degree
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-degrees-degree
+      responses:
+        '206':
+          description: Partial Content
+        '404':
+          description: Not Found
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-degrees-degree
+      responses:
+        '206':
+          description: Partial Content
+        '404':
+          description: Not Found
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-degrees-degree
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+      description: this route will destory selected resource.
+  /modules:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-modules
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-modules
+      responses:
+        '201':
+          description: Created
+      description: this route store a new resource.
+  '/modules/{module}':
+    parameters:
+      - schema:
+          type: integer
+        name: module
+        in: path
+        required: true
+        description: the id for the module
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-modules-module
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-modules-module
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-modules-module
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-modules-module
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+  /pcs:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-pc
+      description: This route will get all resources.
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-pcs
+      responses:
+        '201':
+          description: Created
+      description: this route store a new resource.
+  '/pcs/{pc}':
+    parameters:
+      - schema:
+          type: integer
+        name: pc
+        in: path
+        required: true
+        description: the id for the pc
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-pc-pc
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-pcs-pc
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-pcs-pc
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-pcs-pc
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+  /permissions:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-permissions
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-permissions
+      responses:
+        '201':
+          description: Created
+      description: this route store a new resource.
+  '/permissions/{permission}':
+    parameters:
+      - schema:
+          type: integer
+        name: permission
+        in: path
+        required: true
+        description: the id for the permissions
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-permissions-permission
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-permissions-permission
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-permissions-permission
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-permissions-permission
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+  /departments/:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-departments
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-departments
+      responses:
+        '201':
+          description: Created
+      description: this route store a new resource.
+  '/departments/{department}':
+    parameters:
+      - schema:
+          type: integer
+        name: department
+        in: path
+        required: true
+        description: the id for the department
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-departments-department
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-departments-department
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-departments-department
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-departments-department
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+  /roles:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-roles
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-roles
+      responses:
+        '201':
+          description: Created
+      description: This route store a new resource.
+  '/roles/{role}':
+    parameters:
+      - schema:
+          type: integer
+        name: role
+        in: path
+        required: true
+        description: the id for the role
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-roles-roles
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-roles-role
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-roles-role
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-roles-role
+      responses:
+        '200':
+          description: OK
+      description: this route will destory selected resource.
+  /services:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-services
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-services
+      responses:
+        '201':
+          description: Created
+      description: This route store a new resource.
+  '/services/{service}':
+    parameters:
+      - schema:
+          type: integer
+        name: service
+        in: path
+        required: true
+        description: the id for the service
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-services-service
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-services-service
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-services-service
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-services-service
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+  /service-type:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-service-type
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-service-type
+      responses:
+        '201':
+          description: Created
+      description: This route store a new resource.
+  '/service-type/{serviceType}':
+    parameters:
+      - schema:
+          type: integer
+        name: serviceType
+        in: path
+        required: true
+        description: ' the id for the serviceType'
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-service-type-serviceType
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-service-type-serviceType
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-service-type-serviceType
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-service-type-serviceType
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+  /closed-interval:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-closed-interval
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-closed-interval
+      responses:
+        '201':
+          description: Created
+      description: This route store a new resource.
+  '/closed-interval/{closedInterval}':
+    parameters:
+      - schema:
+          type: integer
+        name: closedInterval
+        in: path
+        required: true
+        description: ' the id for the closedInterval'
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-closed-interval-closedInterval
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-closed-interval-closedInterval
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-closed-interval-closedInterval
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-closed-interval-closedInterval
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+  /variableLabels:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-variableLabel
+      description: This route will get all resources.
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-variableLabels
+      responses:
+        '200':
+          description: OK
+      description: |
+        This route store a new resource.
+  '/variableLabels/{variableLabel}':
+    parameters:
+      - schema:
+          type: integer
+        name: variableLabel
+        in: path
+        required: true
+        description: the id for the varuableLabel
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-variableLabels-variableLabel
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-variableLabels-variableLabel
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-variableLabels-variableLabel
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-variableLabels-variableLabel
+      responses:
+        '204':
+          description: No Content
+      description: this route will destroy selected resource.
+  /priceTypes:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-priceTypes
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-priceTypes
+      responses:
+        '201':
+          description: Created
+      description: this route store a new resource.
+  '/pricetypes/{pricetype}':
+    parameters:
+      - schema:
+          type: integer
+        name: pricetype
+        in: path
+        required: true
+        description: the id for the priceType
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-pricetypes-pricetype
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-pricetypes-pricetype
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-pricetypes-pricetype
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-pricetypes-pricetype
+      responses:
+        '204':
+          description: No Content
+      description: this route will destroy selected resource.
+  /rank-price-variables:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-rank-price-variables
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-rank-price-variables
+      responses:
+        '201':
+          description: Created
+      description: This route store a new resource.
+  '/rank-price-variables/{rankPriceVariables}':
+    parameters:
+      - schema:
+          type: integer
+        name: rankPriceVariables
+        in: path
+        required: true
+        description: the id for the rank Price Variables
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-rank-price-variables-rankPriceVariables
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-rank-price-variables-rankPriceVariables
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-rank-price-variables-rankPriceVariables
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-rank-price-variables-rankPriceVariables
+      responses:
+        '204':
+          description: No Content
+      description: this route will destroy selected resource.
+  /transactions:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-transactions
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-transactions
+      responses:
+        '201':
+          description: Created
+      description: This route store a new resource.
+  '/transactions/{transaction}':
+    parameters:
+      - schema:
+          type: integer
+        name: transaction
+        in: path
+        required: true
+        description: the id for the transaction
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-transactions-transaction
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-transactions-transaction
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-transactions-transaction
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-transactions-transaction
+      responses:
+        '204':
+          description: No Content
+      description: this route will update selected resource.
+  /financialcategories:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Reources
+      operationId: get-financialcategy
+      description: This route will get all resources.
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-financialcategories
+      responses:
+        '201':
+          description: Created
+      description: this route store a new resource.
+  '/financialcategories/{financialcategory}':
+    parameters:
+      - schema:
+          type: integer
+        name: financialcategory
+        in: path
+        required: true
+        description: the id for the financail category
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-financialcategories-financialcategory
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-financialcategories-financialcategory
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-financialcategories-financialcategory
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-financialcategories-financialcategory
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+  /billing-options:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-billing-options
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-billing-options
+      responses:
+        '201':
+          description: Created
+      description: this route will store a new resource.
+  '/billing-options/{BillingOptions}':
+    parameters:
+      - schema:
+          type: integer
+        name: BillingOptions
+        in: path
+        required: true
+        description: the id for the billing options
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-billing-options-BillingOptions
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-billing-options-BillingOptions
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-billing-options-BillingOptions
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-billing-options-BillingOptions
+      responses:
+        '204':
+          description: No Content
+  /linked-nodes:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-linked-nodes
+      description: This route will get all resources.
+    post:
+      summary: ''
+      operationId: post-linked-nodes
+      responses:
+        '201':
+          description: Created
+      description: this route store a new resource.
+  '/linked-nodes/{LinkedNode}':
+    parameters:
+      - schema:
+          type: integer
+        name: LinkedNode
+        in: path
+        required: true
+        description: the id for the linkedNode
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-linked-nodes-LinkedNode
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-linked-nodes-LinkedNode
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-linked-nodes-LinkedNode
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-linked-nodes-LinkedNode
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      description: this route will destory selected resource.
+  /follower-constraints:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '202':
+          description: Resources
+      operationId: get-followerConstraints
+      description: This route will get all resources.
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-follower-constraints
+      responses:
+        '201':
+          description: Created
+      description: this route store a new resource.
+  '/follower-constraints/{followerConstraint}':
+    parameters:
+      - schema:
+          type: integer
+        name: followerConstraint
+        in: path
+        required: true
+        description: the id for the follower constraint
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+      operationId: get-follower-constraints-followerConstraint
+      description: this route will get selected resource.
+    put:
+      summary: ''
+      operationId: put-follower-constraints-followerConstraint
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    patch:
+      summary: ''
+      operationId: patch-follower-constraints-followerConstraint
+      responses:
+        '206':
+          description: Partial Content
+      description: this route will update selected resource.
+    delete:
+      summary: ''
+      operationId: delete-follower-constraints-followerConstraint
+      responses:
+        '204':
+          description: No Content
+      description: this route will destory selected resource.
+components:
+  schemas:
+    stakeholder:
+      title: Stakeholder
+      type: object
+      description: |-
+        Any person that uses the system, it may be a system worker, doctor, or consumer, or any other group.
+        Not all stakeholders can have login credentials.
+      x-examples:
+        example-1:
+          id: 0
+          name: string
+          createDate: '2019-08-24'
+          wallet: -100.5
+          patient_code: 0
+          barcode: KQ_654987
+          rank_id:
+            id: 1
+            name: مشير
+          stakeholder_id:
+            id: 0
+            name: string
+            createDate: '2019-08-24'
+            wallet: -100.5
+            patient_code: 0
+            barcode: KQ_654987
+            rank_id:
+              id: 1
+              name: مشير
+            stakeholder_id: {}
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        name:
+          type: string
+          description: 'the name of the person, all person names should be saved here in the stakeholder table.'
+        create_date:
+          type: string
+          format: date
+          description: The date that the user was created.
+        wallet:
+          type: number
+          default: '0'
+          example: -100.5
+          format: float
+          description: 'the amount of money that the system worker should pay, and the amount of money that the consumer has, it may be positive or negative.'
+        patient_code:
+          type: integer
+          format: int64
+          description: it may be optional in some cases (رقم الحاسب).
+        barcode:
+          type: string
+          description: a barcode number will be associated with any stakeholder.
+          default: KQ_654987
+        rank_id:
+          $ref: '#/components/schemas/Rank'
+        stakeholder_id:
+          $ref: '#/components/schemas/stakeholder'
+      required:
+        - id
+        - name
+        - barcode
+        - rank_id
+    Rank:
+      title: Rank
+      type: object
+      description: |
+        The normal ranks including (العائلات ، مدنى مصرى ، مدنى أجنبى).
+      x-examples:
+        مشير:
+          id: 1
+          name: مشير
+      properties:
+        id:
+          type: integer
+          description: ''
+          default: 1
+        name:
+          type: string
+          description: the name of the rank (جندى، ملازم، حرم ملازم، ...).
+          default: مشير
+      required:
+        - id
+        - name
+    Consumer:
+      title: Consumer
+      type: object
+      description: Any visitor or patient that consumes a service. It inherits from Stakeholders.
+      properties:
+        id:
+          $ref: '#/components/schemas/stakeholder'
+      required:
+        - id
+    SystemWorker:
+      title: SystemWorker
+      type: object
+      description: |
+        The users of the system that have login. It inherits from Stakeholders.
+      x-examples:
+        example-1:
+          id:
+            id: 0
+            name: string
+            create_date: '2019-08-24'
+            wallet: -100.5
+            patient_code: 0
+            barcode: KQ_654987
+            rank_id:
+              id: 1
+              name: مشير
+            stakeholder_id: {}
+          username: string
+          password: pa$$word
+      properties:
+        id:
+          $ref: '#/components/schemas/stakeholder'
+        username:
+          type: string
+          description: the login of the username.
+        password:
+          type: string
+          description: the password of the user.
+          format: password
+      required:
+        - id
+        - username
+        - password
+    Doctor:
+      title: Doctor
+      type: object
+      description: Inherits from SystemWorker.
+      properties:
+        id:
+          $ref: '#/components/schemas/SystemWorker'
+        degree_id:
+          $ref: '#/components/schemas/Degree'
+      required:
+        - id
+    Degree:
+      title: Degree
+      type: object
+      description: 'The degree of the doctor: استشارى، اخصائى، استاذ.'
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      x-examples:
+        example-1:
+          id: 0
+          name: string
+    PC_SystemWorker:
+      title: PC_SystemWorker
+      type: object
+      description: each system worker should have access to open the system according to the PC.
+      properties:
+        id:
+          type: integer
+        pc_id:
+          $ref: '#/components/schemas/PC'
+        system_worker_id:
+          $ref: '#/components/schemas/SystemWorker'
+    PC:
+      title: PC
+      type: object
+      description: 'The pc information, each device that opens the system, should be automatically registered in this table.'
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: 'the name of the pc, it''s optional, the admin should register the names of the PCs.'
+        ip:
+          type: string
+          format: ipv4
+          description: the ip address of the PC that opens the system.
+        mac:
+          type: string
+          description: the mac address of the PC that opens the system.
+    Consumer_Transaction:
+      title: Consumer_Transaction
+      type: object
+      description: many consumers (main or associates) can be related to one transaction.
+      properties:
+        id:
+          type: integer
+        consumer_id:
+          $ref: '#/components/schemas/Consumer'
+        transaction_id:
+          $ref: '#/components/schemas/Transaction'
+      x-examples: {}
+    Transaction:
+      title: Transaction
+      type: object
+      description: Each operation (consumption) for a service should be saved here.
+      properties:
+        id:
+          type: integer
+        printing_count:
+          type: integer
+          description: the number of times the receipt was printed.
+        time:
+          type: string
+          description: the time of the transaction.
+          format: date-time
+        system_worker_id:
+          $ref: '#/components/schemas/SystemWorker'
+        pc_id:
+          $ref: '#/components/schemas/PC'
+        financial_category_id:
+          $ref: '#/components/schemas/Transaction'
+        service_id:
+          $ref: '#/components/schemas/Service'
+    FinancialCategory:
+      title: FinancialCategory
+      type: object
+      description: '(الفئات المحاسبية: والدين، اجنبى، شركات) Financial categories can be automatically detected if it''s linked with ranks.'
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        operator:
+          type: string
+          description: '(+, -, *, /).'
+        value:
+          type: number
+          format: float
+          description: '(0.25, 2, ...).'
+        max_limit:
+          type: number
+          format: float
+          description: 'a value that upon it, there is no discount (e.g. علاج الوالدين 200 جنيه حد اقصى).'
+    Service:
+      title: Service
+      type: object
+      description: This table should have the service design tree structure.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: 'the name of the service, e.g.(المرتبات العلاجية).'
+        fixed_price:
+          type: number
+          format: float
+          description: 'in case of fixed price services, it should be the fixed price of the service.'
+        timed:
+          type: boolean
+          description: |-
+            a boolean attribute that specifies if the service should be closed in specific intervals and days or not,
+            e.g. (العيادات المسائية من 2 ل 4).
+        requires_doctor:
+          type: boolean
+          description: to indicate if the service requires a doctor to be consumed or not.
+        main_consumer_number:
+          type: integer
+          description: 'the number of main consumers of the service, it should be zero in case of (خدمة الزيارات) as it does not require any consumers. (until now it should be zero or one only).'
+        associate_consumer_number:
+          type: integer
+          description: 'the number of associates for each service, for example, it should be one for (المرتبات العلاجية).'
+        variable_price_equation:
+          type: string
+          description: |-
+            the string equation that calculates the service price, the equation consists of two main attributes:
+
+            parameter: got from DB (RankPriceVariable).
+            variable: got from user (UI).
+        price_type_id:
+          $ref: '#/components/schemas/PriceType'
+        service_type_id:
+          $ref: '#/components/schemas/ServiceType'
+        department_id:
+          $ref: '#/components/schemas/Department'
+        service_id:
+          $ref: '#/components/schemas/Service'
+    Module:
+      title: Module
+      type: object
+      description: 'A separate module like Visitor Services, or Garage. Modules are like tabs or cards in a dashboard.'
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: the name of the module (خدمات الزائرين، الجراج).
+    Module_Systemworker:
+      title: Module_Systemworker
+      type: object
+      properties:
+        id:
+          type: integer
+        module_id:
+          $ref: '#/components/schemas/Module'
+        system_worker_id:
+          $ref: '#/components/schemas/SystemWorker'
+      description: each system worker will be able to access some modules.
+    Permission:
+      title: Permission
+      type: object
+      description: Should have the control of the UI permissions according to system workers' roles.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: the name of the UI component.
+    Role:
+      title: Role
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      description: |
+        Roles of the system workers that controls the permissions 'only for system workers'.
+    Permission_Role:
+      title: Permission_Role
+      type: object
+      properties:
+        id:
+          type: integer
+        permission_id:
+          $ref: '#/components/schemas/Permission'
+        role_id:
+          $ref: '#/components/schemas/Role'
+      description: specify the relation between the permissions according to the roles.
+    Service_stakeholder:
+      title: Service_stakeholder
+      type: object
+      properties:
+        id:
+          type: integer
+        service_id:
+          $ref: '#/components/schemas/Service'
+        stakeholder_id:
+          $ref: '#/components/schemas/stakeholder'
+      description: any stakeholder may be blocked to any service. This relation is intended to block very specific stakeholders to any service.
+    Module_PC:
+      title: Module_PC
+      type: object
+      properties:
+        id:
+          type: integer
+        module_id:
+          $ref: '#/components/schemas/Module'
+        pc_id:
+          $ref: '#/components/schemas/PC'
+      description: each module can be accessible for specific PCs.
+    Service_Rank:
+      title: Service_Rank
+      type: object
+      properties:
+        id:
+          type: integer
+        service_id:
+          $ref: '#/components/schemas/Service'
+        rank_id:
+          $ref: '#/components/schemas/Rank'
+      description: '(constrained relation): to control the differences inside the service according to the ranks.'
+    Transaction_Doctor:
+      title: Transaction_Doctor
+      type: object
+      properties:
+        id:
+          type: integer
+        transaction_id:
+          $ref: '#/components/schemas/Transaction'
+        doctor_id:
+          $ref: '#/components/schemas/Doctor'
+      description: 'each doctor can make many transactions, a transaction can be made with many doctors, the first doctor must be in the same department of the service, the optional other doctors may be from other departments. Example: A heart internal department can have a main doctor for a surgery, and another doctor for (التخدير).'
+    Department:
+      title: Department
+      type: object
+      description: 'groups of the doctors, like (باطنة، قلب ...) ''only for doctors''.'
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: the name of the department.
+        doctor_id:
+          $ref: '#/components/schemas/Doctor'
+    Service_Role:
+      title: Service_Role
+      type: object
+      properties:
+        id:
+          type: integer
+        service_id:
+          $ref: '#/components/schemas/Service'
+        role_id:
+          $ref: '#/components/schemas/Role'
+      description: each service has the roles of system workers that are allowed to register the service.
+    ServiceType:
+      title: ServiceType
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      description: 'Main, continous, follower or postponed.'
+    LinkedNodes:
+      title: LinkedNodes
+      type: object
+      description: The linked copies of services (to support continous services).
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        price:
+          type: number
+          format: float
+          description: the amount of money the consumer payed for each linked node (لكل جلسة).
+        service_id:
+          $ref: '#/components/schemas/Service'
+    VariableLabel:
+      title: VariableLabel
+      type: object
+      properties:
+        id:
+          type: integer
+        key:
+          type: string
+        label:
+          type: string
+        data_type:
+          type: string
+        time_type:
+          type: string
+        service_id:
+          $ref: '#/components/schemas/Service'
+      description: A dictionary which maps generated variables to labels (used for variable price equations).
+    ClosedInterval:
+      title: ClosedInterval
+      type: object
+      description: An interval which a service should be closed within.
+      properties:
+        id:
+          type: integer
+        day:
+          type: string
+          description: '(sat, sun, ...).'
+        from:
+          type: string
+          format: time
+          description: from specific time.
+        to:
+          type: string
+          format: time
+          description: to specific time.
+        service_id:
+          $ref: '#/components/schemas/Service'
+    PriceType:
+      title: PriceType
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      description: Fixed price or variable price.
+    BillingOption:
+      title: BillingOption
+      type: object
+      description: Immediate cashout or use wallet credit.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    FollowerConstraint:
+      title: FollowerConstraint
+      type: object
+      description: the constraints that should be satisfied to accept a follower service to be consumed.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        active:
+          type: boolean
+          description: to allow the constraints to be violated.
+    RankPriceVariable_Rank:
+      title: RankPriceVariable_Rank
+      type: object
+      description: ''
+      properties:
+        id:
+          type: integer
+        rank_price_variable_id:
+          $ref: '#/components/schemas/RankPriceVariable'
+        rank_id:
+          $ref: '#/components/schemas/Rank'
+    Service_PC:
+      title: Service_PC
+      type: object
+      properties:
+        id:
+          type: integer
+        service_id:
+          $ref: '#/components/schemas/Service'
+        pc_id:
+          $ref: '#/components/schemas/PC'
+      description: each service may be allowed only on some PCs.
+    Service_FollowerConstraint:
+      title: Service_FollowerConstraint
+      type: object
+      properties:
+        id:
+          type: integer
+        service_id:
+          $ref: '#/components/schemas/Service'
+        follower_constraint_id:
+          $ref: '#/components/schemas/FollowerConstraint'
+      description: 'each follower service should have constraints on its consumption, these constraints are between the follower service and the main service intended to be followed , each constraint may be active or not. Constraints are like: date difference between follower and main service (15 days), and if the same doctor should be in the two services or not.'
+    Service_FinancialCategory:
+      title: Service_FinancialCategory
+      type: object
+      properties:
+        id:
+          type: integer
+        service_id:
+          $ref: '#/components/schemas/Service'
+        financial_category_id:
+          $ref: '#/components/schemas/FinancialCategory'
+      description: each service may have options for financial categories to allow the system worker to choose from them (اجنبى، والدين).
+    Service_BillingOption:
+      title: Service_BillingOption
+      type: object
+      properties:
+        id:
+          type: integer
+        service_id:
+          $ref: '#/components/schemas/Service'
+        billing_option_id:
+          $ref: '#/components/schemas/BillingOption'
+        code:
+          type: string
+      description: 'each service may have another options for billing to allow the system worker to choose from them (cash, use from wallet). A code like (رقم الفاتورة - رقم التسجيل) may be saved.'
+    RankPriceVariable:
+      title: RankPriceVariable
+      type: object
+      description: 'To save values for (rank, parameter) pairs. (e.g. (ملازم, سعر الصنف) -> 3 EGP).'
+      properties:
+        id:
+          type: integer
+        price_value:
+          type: string
+          description: 'the value that should be substituted for the parameter, like ( سعر الصنف للملازم ).'
+  responses: {}
