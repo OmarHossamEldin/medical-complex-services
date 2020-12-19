@@ -513,6 +513,7 @@ Not all stakeholders can have login credentials.
             - parameter: got from DB (RankPriceVariable).
             - variable: got from user (UI).
         - requires_doctor: to indicate if the service requires a doctor to be consumed or not.
+        - pc_dependent: check if the service is dependent on PCs or allowed for any PC.
     - Relations:
         - Service (recursive, tree design).
         - Role (m - n): each service has the roles of **system workers** that are allowed to register the service.
