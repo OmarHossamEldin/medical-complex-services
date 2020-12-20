@@ -1382,6 +1382,19 @@ components:
           $ref: '#/components/schemas/stakeholder'
       required:
         - id
+      x-examples:
+        example-1:
+          id:
+            id: 0
+            name: string
+            create_date: '2019-08-24'
+            wallet: -100.5
+            patient_code: 0
+            barcode: KQ_654987
+            rank_id:
+              id: 1
+              name: مشير
+            stakeholder_id: {}
     SystemWorker:
       title: SystemWorker
       type: object
@@ -1565,6 +1578,9 @@ components:
           $ref: '#/components/schemas/Department'
         service_id:
           $ref: '#/components/schemas/Service'
+        pc_dependent:
+          type: boolean
+          description: check if the service is dependent on PCs or allowed for any PC.
     Module:
       title: Module
       type: object
