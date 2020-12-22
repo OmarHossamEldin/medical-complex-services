@@ -427,6 +427,7 @@ Not all stakeholders can have login credentials.
         - barcode: a barcode number will be associated with any stakeholder.
         - wallet: the amount of money that the system worker should pay, and the amount of money that the consumer has, it may be positive or negative.
         - patient_code: it may be optional in some cases (رقم الحاسب).
+        - blocked: to allow admins to block some stakeholders.
     - Relations:
         - Rank (m - 1): each stakeholder **must** have a rank.
         - Service (m - n): any stakeholder may be blocked to any service. This relation is intended to block very specific stakeholders to any service.
@@ -519,7 +520,7 @@ Not all stakeholders can have login credentials.
         - Role (m - n): each service has the roles of **system workers** that are allowed to register the service.
         - Department (m - 1): each service **may** have a specific department of **doctors** to be completed, like in (الكشوفات).
         - ServiceType (m - 1): each service **must** have a type (main, continous, follower).
-        - ClosedInterval (1 - m): each service **may** have time intervals in which they are not accessible.
+        - ClosedInterval (m - n): each service **may** have time intervals in which they are not accessible.
         - PriceType (m - 1): eah service **must** have a pricing type (fixed, variable).
         - VariableLabel (1 - m): each service **may** have many variables each with a label (only in variable price).
         - BillingOption (m - n): each service **may** have another options for billing to allow the system worker to choose from them (cash, use from wallet). A code like (رقم الفاتورة - رقم التسجيل) **may** be saved.
