@@ -525,7 +525,7 @@ Not all stakeholders can have login credentials.
         - VariableLabel (1 - m): each service **may** have many variables each with a label (only in variable price).
         - BillingOption (m - n): each service **may** have another options for billing to allow the system worker to choose from them (cash, use from wallet). A code like (رقم الفاتورة - رقم التسجيل) **may** be saved.
         - FinancialCategory (m - n): each service **may** have options for financial categories to allow the system worker to choose from them (اجنبى، والدين).
-        - LinkedNodes (1 - m): each **continous** service may have many linked nodes (جلسات).
+        
         - FollowerConstraint (m - n): each **follower** service should have constraints on its consumption, these constraints are between the follower service and the main service intended to be followed , each constraint may be active or not. Constraints are like: date difference between follower and main service (15 days), and if the same doctor should be in the two services or not.
         - Transaction (1 - m): each transaction must made on one service.
         - Rank (m - n) (constrained relation): to control the differences inside the service according to the ranks.
@@ -574,6 +574,7 @@ Not all stakeholders can have login credentials.
         - printing_count: the number of times the receipt was printed.
     - Relations:
         - Transaction (recursive, following): each follower-type service transaction **may** be linked to a main-type service transaction (sibling node in the service tree) on satisfying the following constraints.
+        - LinkedNodes (1 - m): each **continous** service transaction may have many linked nodes (جلسات).
 
 1. **FinancialCategory**: (الفئات المحاسبية: والدين، اجنبى، شركات) Financial categories can be automatically detected if it's linked with ranks.
     - Attributes:
