@@ -10,4 +10,9 @@ class Degree extends Model
     use HasFactory;
 
     public $fillable = ['name'];
+
+    public function doctors()
+    {
+        return $this->hasMany('App\Models\Doctor');
+    }
 }

@@ -9,4 +9,9 @@ class ServiceType extends Model
 {
     use HasFactory;
     public $fillable = ['name'];
+
+    public function services()
+    {
+        return $this->hasMany('App\Models\Service');
+    }
 }

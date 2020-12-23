@@ -9,4 +9,9 @@ class VariableLabel extends Model
 {
     use HasFactory;
     public $fillable = ['key', 'label', 'data_type', 'time_type', 'service_id'];
+
+    public function service()
+     {
+         return $this->belongsTo('App\Models\Service');
+     }
 }
