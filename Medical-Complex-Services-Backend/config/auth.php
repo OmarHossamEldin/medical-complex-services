@@ -66,7 +66,7 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'system_workers' => [
             'driver' => 'eloquent',
             'model' => App\Models\SystemWorker::class,
         ],
@@ -93,7 +93,7 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'system_workers' => [
             'provider' => 'system_workers',
             'table' => 'password_resets',
             'expire' => 60,

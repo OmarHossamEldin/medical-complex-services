@@ -14,6 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::group(['middleware' => ['cors', 'json.response']], function () {
+
+    //UnAuthenticated
+    Route::group(['prefix'=>'/'],function(){
+        Route::get('/welcome',function(){
+            return 'welcome';
+        });
+    });
+
+    //Authenticated 
+    Route::group(['middleware'=>['auth:api']],function(){
+        
+        Route::get('/SystemWorker', function (Request $request) {
+            return $request->SystemWorker();
+        });
+    });
 });
+
