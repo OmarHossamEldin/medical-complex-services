@@ -10,4 +10,8 @@ class Consumer extends Model
     use HasFactory;
     public $fillable = ['stakeholder_id'];
 
+    public function transactions()
+    {
+        return $this->belongsToMany('App\Models\Transaction', 'consumer_transaction');
+    }
 }

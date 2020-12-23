@@ -19,4 +19,9 @@ class Doctor extends Model
     {
         return $this->belongsTo('App\Models\Department');
     }
+
+    public function transactions()
+    {
+        return $this->belongsToMany('App\Models\Transaction', 'doctor_transaction');
+    }
 }

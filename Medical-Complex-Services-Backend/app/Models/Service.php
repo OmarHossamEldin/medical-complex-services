@@ -37,5 +37,43 @@ class Service extends Model
         return $this->hasMany('App\Models\VariableLabel');
     }
 
+    public function billing_options()
+    {
+        return $this->belongsToMany('App\Models\BillingOption');
+    }
 
+    public function closed_intervals()
+    {
+        return $this->belongsToMany('App\Models\ClosedInterval');
+    }
+
+    public function financial_categories()
+    {
+        return $this->belongsToMany('App\Models\FinancialCategory');
+    }
+
+    public function follower_constraints()
+    {
+        return $this->belongsToMany('App\Models\FollowerConstraint');
+    }
+
+    public function pcs()
+    {
+        return $this->belongsToMany('App\Models\Pc');
+    }
+
+    public function ranks()
+    {
+        return $this->belongsToMany('App\Models\Rank');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+    public function stakeholders()
+    {
+        return $this->belongsToMany('App\Models\Stakeholder', 'service_stakeholder');
+    }
 }

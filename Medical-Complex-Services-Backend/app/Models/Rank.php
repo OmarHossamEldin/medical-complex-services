@@ -15,4 +15,14 @@ class Rank extends Model
     {
         return $this->hasMany('App\Models\Stakeholder');
     }
+
+    public function rank_price_variables()
+    {
+        return $this->belongsToMany('App\Models\RankPriceVariable');
+    }
+
+    public function services()
+    {
+        return $this->belongsToMany('App\Models\Service', 'rank_service');
+    }
 }

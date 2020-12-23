@@ -15,4 +15,9 @@ class FinancialCategory extends Model
     {
         return $this->hasMany('App\Models\Transaction');
     }
+
+    public function services()
+    {
+        return $this->belongsToMany('App\Models\Service', 'financial_category_service');
+    }
 }

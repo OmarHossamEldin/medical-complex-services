@@ -15,4 +15,9 @@ class Stakeholder extends Model
     {
         return $this->belongsTo('App\Models\Rank');
     }
+
+    public function services()
+    {
+        return $this->belongsToMany('App\Models\Service', 'service_stakeholder');
+    }
 }

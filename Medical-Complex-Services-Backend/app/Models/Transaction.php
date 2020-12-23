@@ -34,4 +34,14 @@ class Transaction extends Model
     {
         return $this->hasMany('App\Models\LinkedNodes');
     }
+
+    public function consumers()
+    {
+        return $this->belongsToMany('App\Models\Consumer');
+    }
+
+    public function doctors()
+    {
+        return $this->belongsToMany('App\Models\Doctor', 'doctor_transaction');
+    }
 }

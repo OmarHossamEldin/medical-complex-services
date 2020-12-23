@@ -15,4 +15,19 @@ class Pc extends Model
     {
         return $this->hasMany('App\Models\Transaction');
     }
+
+    public function modules()
+    {
+        return $this->belongsToMany('App\Models\Module');
+    }
+
+    public function systemworkers()
+    {
+        return $this->belongsToMany('App\Models\SystemWorker');
+    }
+
+    public function services()
+    {
+        return $this->belongsToMany('App\Models\Service' , 'pc_service');
+    }
 }

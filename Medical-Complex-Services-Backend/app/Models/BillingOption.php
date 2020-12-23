@@ -10,4 +10,9 @@ class BillingOption extends Model
     use HasFactory;
 
     public $fillable = ['name'];
+
+    public function services()
+    {
+        return $this->belongsToMany('App\Models\Service', 'billing_option_service');
+    }
 }

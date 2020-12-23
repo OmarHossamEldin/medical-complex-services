@@ -9,4 +9,9 @@ class RankPriceVariable extends Model
 {
     use HasFactory;
     public $fillable = ['price_value'];
+
+    public function ranks()
+    {
+        return $this->belongsToMany('App\Models\Rank', 'rank_price_variable_rank');
+    }
 }
