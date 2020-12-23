@@ -10,4 +10,9 @@ class Pc extends Model
     use HasFactory;
 
     public $fillable = ['name', 'ip', 'mac_address'];
+
+    public function transactions()
+    {
+        return $this->hasMany('App\Models\Transaction');
+    }
 }

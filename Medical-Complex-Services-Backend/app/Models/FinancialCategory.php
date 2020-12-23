@@ -10,4 +10,9 @@ class FinancialCategory extends Model
     use HasFactory;
 
     public $fillable = ['name', 'operator', 'value', 'max_limit'];
+
+    public function transactions()
+    {
+        return $this->hasMany('App\Models\Transaction');
+    }
 }

@@ -14,4 +14,3 @@ class SystemWorker extends Authenticatable
 
     protected $hidden = ['password'];
 }
-    
