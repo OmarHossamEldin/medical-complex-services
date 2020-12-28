@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SystemWorker extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     public $fillable = ['stakeholder_id', 'username', 'password', 'api_token'];
+
+    protected $primaryKey = 'stakeholder_id';
 
     protected $hidden = ['password'];
 

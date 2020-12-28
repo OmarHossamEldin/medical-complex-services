@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ClosedIntervalController extends Controller
 {
+    private $validationRules = [
+            "day" => "required|string|max:255",
+            "from" => "required|date_format:H:i",
+            "to" => "required|date_format:H:i",
+    ];
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,8 @@ class ClosedIntervalController extends Controller
      */
     public function index()
     {
-        //
+        $closedInterval = ClosedInterval::all();
+        return response()->json([$closedInterval], 202);
     }
 
     /**
@@ -26,8 +33,14 @@ class ClosedIntervalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+
+
+        $closedInterval = ClosedInterval::create($validatedRequest);
+        return response()->json([$closedInterval], 201);
     }
+
 
     /**
      * Display the specified resource.
@@ -37,9 +50,8 @@ class ClosedIntervalController extends Controller
      */
     public function show(ClosedInterval $closedInterval)
     {
-        //
+        return response()->json([$closedInterval], 200);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -49,8 +61,12 @@ class ClosedIntervalController extends Controller
      */
     public function update(Request $request, ClosedInterval $closedInterval)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $closedInterval->update($validatedRequest);
+        return response()->json([$closedInterval], 206);
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -60,6 +76,7 @@ class ClosedIntervalController extends Controller
      */
     public function destroy(ClosedInterval $closedInterval)
     {
-        //
+        $closedInterval->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

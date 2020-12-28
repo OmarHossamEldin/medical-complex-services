@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ConsumerController extends Controller
 {
+    private $validationRules = [
+        "stakeholder_id"=>"exists:stakeholders,id",
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,8 @@ class ConsumerController extends Controller
      */
     public function index()
     {
-        //
+        $consumer = Consumer::all();
+        return response()->json([$consumer], 202);
     }
 
     /**
@@ -26,7 +31,13 @@ class ConsumerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+
+
+
+        $consumer = Consumer::create($validatedRequest);
+        return response()->json([$consumer], 201);
     }
 
     /**
@@ -37,7 +48,7 @@ class ConsumerController extends Controller
      */
     public function show(Consumer $consumer)
     {
-        //
+        return response()->json([$consumer], 200);
     }
 
     /**
@@ -49,7 +60,10 @@ class ConsumerController extends Controller
      */
     public function update(Request $request, Consumer $consumer)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $consumer->update($validatedRequest);
+        return response()->json([$consumer], 206);
     }
 
     /**
@@ -60,6 +74,7 @@ class ConsumerController extends Controller
      */
     public function destroy(Consumer $consumer)
     {
-        //
+        $consumer->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

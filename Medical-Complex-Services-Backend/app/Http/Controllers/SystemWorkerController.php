@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class SystemWorkerController extends Controller
 {
+    private $validationRules = [
+            "stakeholder_id"=>"exists:stakeholders,id",
+            "username"=>"required|string|max:255|unique:system_workers",
+            "password"=>"required|string|max:255",
+            "barcode"=>"required|string|max:255",
+            "api_token"=>"nullable|string|max:255",
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,8 @@ class SystemWorkerController extends Controller
      */
     public function index()
     {
-        //
+        $systemworker = SystemWorker::all();
+        return response()->json([$systemworker], 202);
     }
 
     /**
@@ -26,7 +35,12 @@ class SystemWorkerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+
+
+        $systemworker = SystemWorker::create($validatedRequest);
+        return response()->json([$systemworker], 201);
     }
 
     /**
@@ -37,7 +51,7 @@ class SystemWorkerController extends Controller
      */
     public function show(SystemWorker $systemWorker)
     {
-        //
+        return response()->json([$systemWorker], 200);
     }
 
     /**
@@ -49,7 +63,10 @@ class SystemWorkerController extends Controller
      */
     public function update(Request $request, SystemWorker $systemWorker)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $systemWorker->update($validatedRequest);
+        return response()->json([$systemWorker], 206);
     }
 
     /**
@@ -60,6 +77,7 @@ class SystemWorkerController extends Controller
      */
     public function destroy(SystemWorker $systemWorker)
     {
-        //
+        $systemWorker->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

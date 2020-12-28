@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
+    private $validationRules = [
+        "printing_count"=>"required|numeric",
+        "system_worker_id"=>"numeric|exists:system_workers,stakeholder_id",
+        "pc_id"=>"numeric|exists:pcs,id",
+        "financial_category_id"=>"numeric|exists:financial_categories,id",
+        "service_id"=>"numeric|exists:services,id",
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transaction = Transaction::all();
+        return response()->json([$transaction], 202);
     }
 
     /**
@@ -26,7 +35,10 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $transaction = Transaction::create($validatedRequest);
+        return response()->json([$transaction], 201);
     }
 
     /**
@@ -37,7 +49,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        return response()->json([$transaction], 200);
     }
 
     /**
@@ -49,7 +61,10 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $transaction->update($validatedRequest);
+        return response()->json([$transaction], 206);
     }
 
     /**
@@ -60,6 +75,7 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

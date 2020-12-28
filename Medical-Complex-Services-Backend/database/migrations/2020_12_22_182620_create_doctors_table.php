@@ -18,6 +18,7 @@ class CreateDoctorsTable extends Migration
             $table->foreignId("degree_id")->constrained("degrees")->onDelete('restrict');
             $table->foreignId("department_id")->constrained("departments")->onDelete('restrict');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

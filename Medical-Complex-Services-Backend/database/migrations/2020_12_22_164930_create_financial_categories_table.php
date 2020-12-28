@@ -16,10 +16,11 @@ class CreateFinancialCategoriesTable extends Migration
         Schema::create('financial_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('operator');
+            $table->string('operator', 3);
             $table->double('value');
             $table->double('max_limit')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

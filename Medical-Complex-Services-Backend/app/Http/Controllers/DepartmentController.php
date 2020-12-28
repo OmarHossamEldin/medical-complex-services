@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
+    private $validationRules = [
+        "name"=>"required|string|max:255|unique:departments"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $department = Department::all();
+        return response()->json([$department], 202);
     }
 
     /**
@@ -26,7 +31,12 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+
+
+        $department = Department::create($validatedRequest);
+        return response()->json([$department], 201);
     }
 
     /**
@@ -37,7 +47,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        //
+        return response()->json([$department], 200);
     }
 
     /**
@@ -49,7 +59,10 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $department->update($validatedRequest);
+        return response()->json([$department], 206);
     }
 
     /**
@@ -60,6 +73,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        $department->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

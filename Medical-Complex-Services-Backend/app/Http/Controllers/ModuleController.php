@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ModuleController extends Controller
 {
+    private $validationRules = [
+        "name"=>"required|string|max:255|unique:modules"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,8 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        //
+        $module = Module::all();
+        return response()->json([$module], 202);
     }
 
     /**
@@ -26,9 +31,11 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validatedRequest = $request->validate($this->validationRules);
 
+        $module = Module::create($validatedRequest);
+        return response()->json([$module], 201);
+    }
     /**
      * Display the specified resource.
      *
@@ -37,7 +44,7 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
-        //
+        return response()->json([$module], 200);
     }
 
     /**
@@ -49,9 +56,11 @@ class ModuleController extends Controller
      */
     public function update(Request $request, Module $module)
     {
-        //
-    }
+        $validatedRequest = $request->validate($this->validationRules);
 
+        $module->update($validatedRequest);
+        return response()->json([$module], 206);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -60,6 +69,7 @@ class ModuleController extends Controller
      */
     public function destroy(Module $module)
     {
-        //
+        $module->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class StakeholderController extends Controller
 {
+    private $validationRules = [
+        "name"=>"required|string|max:255|",
+        "wallet"=>"numeric",
+        "patient_code"=>"numeric|unique:stakeholders",
+        "barcode"=>"required|string|max:255|unique:stakeholders",
+        "rank_id"=>"numeric|exists:ranks,id",
+        "stakeholder_id"=>"nullable|numeric|exists:stakeholders,id"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +24,8 @@ class StakeholderController extends Controller
      */
     public function index()
     {
-        //
+        $stakeholder = Stakeholder::all();
+        return response()->json([$stakeholder], 202);
     }
 
     /**
@@ -26,9 +36,11 @@ class StakeholderController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validatedRequest = $request->validate($this->validationRules);
 
+        $stakeholder = Stakeholder::create($validatedRequest);
+        return response()->json([$stakeholder], 201);
+    }
     /**
      * Display the specified resource.
      *
@@ -37,7 +49,7 @@ class StakeholderController extends Controller
      */
     public function show(Stakeholder $stakeholder)
     {
-        //
+        return response()->json([$stakeholder], 200);
     }
 
     /**
@@ -49,7 +61,10 @@ class StakeholderController extends Controller
      */
     public function update(Request $request, Stakeholder $stakeholder)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $stakeholder->update($validatedRequest);
+        return response()->json([$stakeholder], 206);
     }
 
     /**
@@ -60,6 +75,7 @@ class StakeholderController extends Controller
      */
     public function destroy(Stakeholder $stakeholder)
     {
-        //
+        $stakeholder->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

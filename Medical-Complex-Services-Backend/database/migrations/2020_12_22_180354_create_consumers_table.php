@@ -16,6 +16,7 @@ class CreateConsumersTable extends Migration
         Schema::create('consumers', function (Blueprint $table) {
             $table->foreignId("stakeholder_id")->primary()->constrained("stakeholders")->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

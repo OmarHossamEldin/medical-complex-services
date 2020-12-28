@@ -28,6 +28,7 @@ class CreateServicesTable extends Migration
             $table->foreignId('service_id')->nullable()->constrained('services')->onDelete('cascade');
             $table->boolean('pc_dependent')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

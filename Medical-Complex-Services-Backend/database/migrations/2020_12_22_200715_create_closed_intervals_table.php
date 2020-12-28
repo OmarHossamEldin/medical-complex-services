@@ -19,6 +19,7 @@ class CreateClosedIntervalsTable extends Migration
             $table->time('from');
             $table->time('to');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

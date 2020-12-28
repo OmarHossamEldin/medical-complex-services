@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class VariableLabelController extends Controller
 {
+    private $validationRules = [
+        "key"=>"required|string|max:255|",
+        "label"=>"required|string|max:255|",
+        "data_type"=>"required|string|max:255|",
+        "time_type"=>"required|string|max:255",
+        "service_id"=>"numeric|exists:services,id",
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,8 @@ class VariableLabelController extends Controller
      */
     public function index()
     {
-        //
+        $variableLabel = VariableLabel::all();
+        return response()->json([$variableLabel], 202);
     }
 
     /**
@@ -26,7 +35,10 @@ class VariableLabelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $variableLabel = VariableLabel::create($validatedRequest);
+        return response()->json([$variableLabel], 201);
     }
 
     /**
@@ -37,7 +49,7 @@ class VariableLabelController extends Controller
      */
     public function show(VariableLabel $variableLabel)
     {
-        //
+        return response()->json([$variableLabel], 200);
     }
 
     /**
@@ -49,7 +61,10 @@ class VariableLabelController extends Controller
      */
     public function update(Request $request, VariableLabel $variableLabel)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $variableLabel->update($validatedRequest);
+        return response()->json([$variableLabel], 206);
     }
 
     /**
@@ -60,6 +75,7 @@ class VariableLabelController extends Controller
      */
     public function destroy(VariableLabel $variableLabel)
     {
-        //
+        $variableLabel->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

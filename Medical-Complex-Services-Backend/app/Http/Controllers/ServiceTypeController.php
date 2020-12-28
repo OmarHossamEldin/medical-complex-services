@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ServiceTypeController extends Controller
 {
+    private $validationRules = [
+        "name"=>"required|string|max:255"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,8 @@ class ServiceTypeController extends Controller
      */
     public function index()
     {
-        //
+        $serviceType = ServiceType::all();
+        return response()->json([$serviceType], 202);
     }
 
     /**
@@ -26,7 +31,10 @@ class ServiceTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $serviceType = ServiceType::create($validatedRequest);
+        return response()->json([$serviceType], 201);
     }
 
     /**
@@ -37,7 +45,7 @@ class ServiceTypeController extends Controller
      */
     public function show(ServiceType $serviceType)
     {
-        //
+        return response()->json([$serviceType], 200);
     }
 
     /**
@@ -49,7 +57,10 @@ class ServiceTypeController extends Controller
      */
     public function update(Request $request, ServiceType $serviceType)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $serviceType->update($validatedRequest);
+        return response()->json([$serviceType], 206);
     }
 
     /**
@@ -60,6 +71,7 @@ class ServiceTypeController extends Controller
      */
     public function destroy(ServiceType $serviceType)
     {
-        //
+        $serviceType->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

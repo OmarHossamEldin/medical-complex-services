@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
+    private $validationRules = [
+        "name"=>"required|string|max:255",
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,8 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $permission = Permission::all();
+        return response()->json([$permission], 202);
     }
 
     /**
@@ -26,7 +31,10 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $permission = Permission::create($validatedRequest);
+        return response()->json([$permission], 201);
     }
 
     /**
@@ -37,7 +45,7 @@ class PermissionController extends Controller
      */
     public function show(Permission $permission)
     {
-        //
+        return response()->json([$permission], 200);
     }
 
     /**
@@ -49,7 +57,10 @@ class PermissionController extends Controller
      */
     public function update(Request $request, Permission $permission)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $permission->update($validatedRequest);
+        return response()->json([$permission], 206);
     }
 
     /**
@@ -60,6 +71,7 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

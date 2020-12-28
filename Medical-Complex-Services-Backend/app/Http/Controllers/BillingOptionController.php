@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\BillingOption;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
 
 class BillingOptionController extends Controller
 {
+    private $validationRules = [
+        "name"=>"required|string|max:255|unique:billing_options"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,8 @@ class BillingOptionController extends Controller
      */
     public function index()
     {
-        //
+        $billingOption = BillingOption::all();
+        return response()->json([$billingOption], 202);
     }
 
     /**
@@ -26,7 +32,10 @@ class BillingOptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $billingOption = BillingOption::create($validatedRequest);
+        return response()->json([$billingOption], 201);
     }
 
     /**
@@ -37,7 +46,7 @@ class BillingOptionController extends Controller
      */
     public function show(BillingOption $billingOption)
     {
-        //
+        return response()->json([$billingOption], 200);
     }
 
     /**
@@ -49,7 +58,10 @@ class BillingOptionController extends Controller
      */
     public function update(Request $request, BillingOption $billingOption)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $billingOption->update($validatedRequest);
+        return response()->json([$billingOption], 206);
     }
 
     /**
@@ -60,6 +72,7 @@ class BillingOptionController extends Controller
      */
     public function destroy(BillingOption $billingOption)
     {
-        //
+        $billingOption->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

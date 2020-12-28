@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Transaction extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     public $fillable = ['printing_count', 'system_worker_id', 'pc_id', 'financial_category_id', 'service_id'];
 
     public function system_worker()

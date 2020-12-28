@@ -17,11 +17,12 @@ class CreateStakeholdersTable extends Migration
             $table->id();
             $table->string("name");
             $table->double("wallet")->default(0);
-            $table->integer("patient_code")->unique();
+            $table->unsignedInteger("patient_code")->unique();
             $table->string("barcode")->unique();
             $table->foreignId("rank_id")->constrained("ranks")->onDelete('restrict');
             $table->foreignId("stakeholder_id")->nullable()->constrained("stakeholders")->onDelete('set null');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class LinkedNodesController extends Controller
 {
+    private $validationRules = [
+            "name"=>"required|string|max:255|",
+            "price"=>"required|numeric",
+            "transaction_id"=>"required|numeric|exists:transactions,id",
+    ];
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,8 @@ class LinkedNodesController extends Controller
      */
     public function index()
     {
-        //
+        $linkedNodes = LinkedNodes::all();
+        return response()->json([$linkedNodes], 202);
     }
 
     /**
@@ -26,7 +33,13 @@ class LinkedNodesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+
+
+
+        $linkedNodes = LinkedNodes::create($validatedRequest);
+        return response()->json([$linkedNodes], 201);
     }
 
     /**
@@ -35,9 +48,9 @@ class LinkedNodesController extends Controller
      * @param  \App\Models\LinkedNodes  $linkedNodes
      * @return \Illuminate\Http\Response
      */
-    public function show(LinkedNodes $linkedNodes)
+    public function show(LinkedNodes $linkedNode)
     {
-        //
+        return response()->json([$linkedNode], 200);
     }
 
     /**
@@ -47,9 +60,12 @@ class LinkedNodesController extends Controller
      * @param  \App\Models\LinkedNodes  $linkedNodes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LinkedNodes $linkedNodes)
+    public function update(Request $request, LinkedNodes $linkedNode)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $linkedNode->update($validatedRequest);
+        return response()->json([$linkedNode], 206);
     }
 
     /**
@@ -58,8 +74,9 @@ class LinkedNodesController extends Controller
      * @param  \App\Models\LinkedNodes  $linkedNodes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LinkedNodes $linkedNodes)
+    public function destroy(LinkedNodes $linkedNode)
     {
-        //
+        $linkedNode->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

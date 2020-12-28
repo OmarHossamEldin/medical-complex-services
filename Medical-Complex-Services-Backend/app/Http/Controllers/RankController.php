@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class RankController extends Controller
 {
+    private $validationRules = [
+        "name"=>"required|string|max:255|unique:ranks",
+    ];
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +19,9 @@ class RankController extends Controller
      */
     public function index()
     {
-        //
+        $ranks = Rank::all();
+        return response()->json([$ranks], 202);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -26,7 +30,10 @@ class RankController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $rank = Rank::create($validatedRequest);
+        return response()->json([$rank], 201);
     }
 
     /**
@@ -37,7 +44,7 @@ class RankController extends Controller
      */
     public function show(Rank $rank)
     {
-        //
+        return response()->json([$rank], 200);
     }
 
     /**
@@ -49,7 +56,10 @@ class RankController extends Controller
      */
     public function update(Request $request, Rank $rank)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $rank->update($validatedRequest);
+        return response()->json([$rank], 206);
     }
 
     /**
@@ -60,6 +70,7 @@ class RankController extends Controller
      */
     public function destroy(Rank $rank)
     {
-        //
+        $rank->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

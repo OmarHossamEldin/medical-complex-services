@@ -20,11 +20,8 @@ class CreateVariableLabelsTable extends Migration
             $table->string('data_type');
             $table->string('time_type');
             $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
-
-
-
-
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

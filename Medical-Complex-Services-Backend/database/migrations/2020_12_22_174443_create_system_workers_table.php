@@ -19,6 +19,7 @@ class CreateSystemWorkersTable extends Migration
             $table->string("password");
             $table->string("api_token")->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

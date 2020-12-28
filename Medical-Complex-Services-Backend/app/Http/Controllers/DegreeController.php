@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class DegreeController extends Controller
 {
+    private $validationRules = [
+        "name"=>"required|string|max:255|unique:degrees"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,8 @@ class DegreeController extends Controller
      */
     public function index()
     {
-        //
+        $degree = Degree::all();
+        return response()->json([$degree], 202);
     }
 
     /**
@@ -26,7 +31,10 @@ class DegreeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $degree = Degree::create($validatedRequest);
+        return response()->json([$degree], 201);
     }
 
     /**
@@ -37,7 +45,7 @@ class DegreeController extends Controller
      */
     public function show(Degree $degree)
     {
-        //
+        return response()->json([$degree], 200);
     }
 
     /**
@@ -49,7 +57,10 @@ class DegreeController extends Controller
      */
     public function update(Request $request, Degree $degree)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $degree->update($validatedRequest);
+        return response()->json([$degree], 206);
     }
 
     /**
@@ -60,6 +71,7 @@ class DegreeController extends Controller
      */
     public function destroy(Degree $degree)
     {
-        //
+        $degree->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

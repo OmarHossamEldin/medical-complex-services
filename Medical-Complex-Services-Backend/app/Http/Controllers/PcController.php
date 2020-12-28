@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pc;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Rules\MacAddress;
 
 class PcController extends Controller
 {
@@ -15,7 +16,10 @@ class PcController extends Controller
      */
     public function index()
     {
-        //
+        {
+            $pc = Pc::all();
+            return response()->json([$pc], 202);
+        }
     }
 
     /**
@@ -26,7 +30,15 @@ class PcController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate([
+            "name"=>"nullable|string|max:255",
+            "ip"=>"required|ipv4|unique:pcs",
+            "mac_address"=>[new MacAddress, 'unique:pcs', 'required']
+
+        ]);
+
+        $pc = Pc::create($validatedRequest);
+        return response()->json([$pc], 201);
     }
 
     /**
@@ -37,7 +49,7 @@ class PcController extends Controller
      */
     public function show(Pc $pc)
     {
-        //
+        return response()->json([$pc], 200);
     }
 
     /**
@@ -49,7 +61,14 @@ class PcController extends Controller
      */
     public function update(Request $request, Pc $pc)
     {
-        //
+        $validatedRequest = $request->validate([
+            "name"=>"nullable|string|max:255",
+            "ip"=>"required|ipv4|unique:pcs",
+            "mac_address"=>[new MacAddress, 'unique:pcs', 'required']
+        ]);
+
+        $pc->update($validatedRequest);
+        return response()->json([$pc], 206);
     }
 
     /**
@@ -60,6 +79,7 @@ class PcController extends Controller
      */
     public function destroy(Pc $pc)
     {
-        //
+        $pc->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

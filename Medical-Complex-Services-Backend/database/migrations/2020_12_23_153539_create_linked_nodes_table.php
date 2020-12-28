@@ -19,6 +19,7 @@ class CreateLinkedNodesTable extends Migration
             $table->double("price");
             $table->foreignId("transaction_id")->constrained('transactions')->onDelete('restrict');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

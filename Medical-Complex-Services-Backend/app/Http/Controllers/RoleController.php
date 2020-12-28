@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    private $validationRules = [
+        "name"=>"required|string|max:255"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $role = Role::all();
+        return response()->json([$role], 202);
     }
 
     /**
@@ -26,7 +31,10 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $role = Role::create($validatedRequest);
+        return response()->json([$role], 201);
     }
 
     /**
@@ -37,7 +45,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return response()->json([$role], 200);
     }
 
     /**
@@ -49,7 +57,10 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $role->update($validatedRequest);
+        return response()->json([$role], 206);
     }
 
     /**
@@ -60,6 +71,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

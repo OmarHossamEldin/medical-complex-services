@@ -17,6 +17,7 @@ class CreateRankPriceVariablesTable extends Migration
             $table->id();
             $table->double('price_value');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class FollowerConstraintController extends Controller
 {
+    private $validationRules = [
+        "name"=>"required|string|max:255|unique:follower_constraints",
+        "active"=>"required|boolean"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,8 @@ class FollowerConstraintController extends Controller
      */
     public function index()
     {
-        //
+        $degree = FollowerConstraint::all();
+        return response()->json([$degree], 202);
     }
 
     /**
@@ -26,7 +32,10 @@ class FollowerConstraintController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $degree = FollowerConstraint::create($validatedRequest);
+        return response()->json([$degree], 201);
     }
 
     /**
@@ -37,7 +46,7 @@ class FollowerConstraintController extends Controller
      */
     public function show(FollowerConstraint $followerConstraint)
     {
-        //
+        return response()->json([$followerConstraint], 200);
     }
 
     /**
@@ -49,7 +58,10 @@ class FollowerConstraintController extends Controller
      */
     public function update(Request $request, FollowerConstraint $followerConstraint)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $followerConstraint->update($validatedRequest);
+        return response()->json([$followerConstraint], 206);
     }
 
     /**
@@ -60,6 +72,7 @@ class FollowerConstraintController extends Controller
      */
     public function destroy(FollowerConstraint $followerConstraint)
     {
-        //
+        $followerConstraint->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

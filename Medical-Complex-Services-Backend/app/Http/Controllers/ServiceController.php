@@ -8,6 +8,21 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+    private $validationRules = [
+        "name"=>"required|string|max:255|",
+        "fixed_price"=>"numeric",
+        "timed"=>"boolean",
+        "requires_doctor"=>"boolean",
+        "main_consumer_number"=>"numeric",
+        "associate_consumer_number"=>"numeric",
+        "variable_price_equation"=>"nullable|string|max:255|",
+        "price_type_id"=>"numeric|exists:price_types,id",
+        "service_type_id"=>"numeric|exists:service_types,id",
+        "department_id"=>"numeric|exists:departments,id",
+        "service_id"=>"nullable|numeric|exists:services,id",
+        "pc_dependent"=>"boolean",
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +30,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $service = Service::all();
+        return response()->json([$service], 202);
     }
 
     /**
@@ -26,7 +42,10 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $service = Service::create($validatedRequest);
+        return response()->json([$service], 201);
     }
 
     /**
@@ -37,7 +56,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        return response()->json([$service], 200);
     }
 
     /**
@@ -49,7 +68,10 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $service->update($validatedRequest);
+        return response()->json([$service], 206);
     }
 
     /**
@@ -60,6 +82,7 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class PriceTypeController extends Controller
 {
+    private $validationRules = [
+        "name"=>"required|string|max:255|unique:price_types"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,8 @@ class PriceTypeController extends Controller
      */
     public function index()
     {
-        //
+        $priceType = PriceType::all();
+        return response()->json([$priceType], 202);
     }
 
     /**
@@ -26,7 +31,10 @@ class PriceTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $priceType = PriceType::create($validatedRequest);
+        return response()->json([$priceType], 201);
     }
 
     /**
@@ -37,7 +45,7 @@ class PriceTypeController extends Controller
      */
     public function show(PriceType $priceType)
     {
-        //
+        return response()->json([$priceType], 200);
     }
 
     /**
@@ -49,7 +57,10 @@ class PriceTypeController extends Controller
      */
     public function update(Request $request, PriceType $priceType)
     {
-        //
+        $validatedRequest = $request->validate($this->validationRules);
+
+        $priceType->update($validatedRequest);
+        return response()->json([$priceType], 206);
     }
 
     /**
@@ -60,6 +71,7 @@ class PriceTypeController extends Controller
      */
     public function destroy(PriceType $priceType)
     {
-        //
+        $priceType->delete();
+        return response()->json(["message" => "Deleted Successfully"], 204);
     }
 }

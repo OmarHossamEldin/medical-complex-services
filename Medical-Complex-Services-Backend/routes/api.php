@@ -14,22 +14,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::group(['middleware' => ['cors', 'json.response']], function () {
 
     //UnAuthenticated
     Route::group(['prefix'=>'/'],function(){
-        Route::get('/welcome',function(){
-            return 'welcome';
-        });
+        Route::apiResources([
+            'billing-options' => 'BillingOptionController',
+            'consumers' => 'ConsumerController',
+            'closed-intervals' => 'ClosedIntervalController',
+            'doctors' => 'DoctorController',
+            'degrees' => 'DegreeController',
+            'departments' => 'DepartmentController',
+            'financial-categories' => 'FinancialCategoryController',
+            'follower-constraints' => 'FollowerConstraintController',
+            'linked-nodes' => 'LinkedNodesController',
+            'modules' => 'ModuleController',
+            'pcs' => 'PcController',
+            'permissions' => 'PermissionController',
+            'price-types' => 'PriceTypeController',
+            'ranks' => 'RankController',
+            'roles' => 'RoleController',
+            'rank-price-variables' => 'RankPriceVariableController',
+            'stakeholders' => 'StakeholderController',
+            'system-workers' => 'SystemWorkerController',
+            'services' => 'ServiceController',
+            'service-types' => 'ServiceTypeController',
+            'transactions' => 'TransactionController',
+            'variable-labels' => 'VariableLabelController',
+        ]);
     });
 
-    //Authenticated 
+    //Authenticated
     Route::group(['middleware'=>['auth:api']],function(){
-        
         Route::get('/SystemWorker', function (Request $request) {
             return $request->SystemWorker();
         });
     });
 });
-

@@ -19,6 +19,7 @@ class CreatePcsTable extends Migration
             $table->ipAddress("ip")->unique();
             $table->macAddress("mac_address")->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
