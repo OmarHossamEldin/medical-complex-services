@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class SystemWorker extends Authenticatable
 {
@@ -14,7 +15,7 @@ class SystemWorker extends Authenticatable
 
     protected $primaryKey = 'stakeholder_id';
 
-    protected $hidden = ['password'];
+    protected $hidden = ['password','api_token'];
 
     public function transactions()
     {
@@ -29,5 +30,12 @@ class SystemWorker extends Authenticatable
     public function pcs()
     {
         return $this->belongsToMany('App\Models\Pc', 'pc_system_worker');
+    }
+
+    public function ApiTokenGenerater()
+    {
+        $this->api_token=Str::random(60);
+        $this->save();
+        return $this->api_token;
     }
 }
