@@ -13,6 +13,6 @@ class StakeholderSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Stakeholder::factory(1)->create();
     }
 }

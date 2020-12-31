@@ -22,7 +22,8 @@ class StakeholderFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>'admin',
+            'rank_id'=>1
         ];
     }
 }
