@@ -22,7 +22,9 @@ class SystemWorkerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'stakeholder_id'=>1,
+            'username'=>'admin',
+            'password'=>bcrypt('P@ssw0rd@admin')
         ];
     }
 }

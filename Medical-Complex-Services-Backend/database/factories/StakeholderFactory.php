@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Stakeholder;
+use Illuminate\Support\Str;
 
 class StakeholderFactory extends Factory
 {
@@ -22,7 +23,7 @@ class StakeholderFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>Str::random(10),
         ];
     }
 }

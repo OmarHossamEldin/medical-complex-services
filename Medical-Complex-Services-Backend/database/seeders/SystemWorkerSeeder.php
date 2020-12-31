@@ -13,6 +13,6 @@ class SystemWorkerSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\SystemWorker::factory(1)->create();
     }
 }
