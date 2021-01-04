@@ -11,12 +11,16 @@ class SystemWorker extends Authenticatable
 {
     use HasFactory, SoftDeletes;
 
-    public $fillable = ['stakeholder_id', 'username', 'password', 'api_token'];
+    public $fillable = ['stakeholder_id', 'username', 'password','role_id', 'api_token'];
 
     protected $primaryKey = 'stakeholder_id';
 
     protected $hidden = ['password','api_token'];
 
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role');
+    }
     public function transactions()
     {
         return $this->hasMany('App\Models\Transaction');
@@ -31,7 +35,6 @@ class SystemWorker extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Pc', 'pc_system_worker');
     }
-
     public function ApiTokenGenerater()
     {
         $this->api_token=Str::random(60);
