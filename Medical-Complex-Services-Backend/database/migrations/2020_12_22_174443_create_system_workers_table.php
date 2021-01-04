@@ -17,6 +17,7 @@ class CreateSystemWorkersTable extends Migration
             $table->foreignId("stakeholder_id")->primary()->constrained("stakeholders")->onDelete('cascade');
             $table->string("username")->unique();
             $table->string("password");
+            $table->foreignId("role_id")->nullable()->constrained('roles')->onDelete('restrict');
             $table->string("api_token")->nullable();
             $table->timestamps();
             $table->softDeletes();

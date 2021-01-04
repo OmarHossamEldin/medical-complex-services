@@ -35,6 +35,6 @@ class MacAddress implements Rule
      */
     public function message()
     {
-        return 'The mac address is not in the given format.';
+        return 'الماك ادرس لا يتبع الشكل المطلوب.';
     }
 }
