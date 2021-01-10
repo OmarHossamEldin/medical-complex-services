@@ -35,10 +35,25 @@ class SystemWorker extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Pc', 'pc_system_worker');
     }
+    /**
+     * this function will generate random 60 unique character to used it as api_token 
+     * @return string $this->api_token
+     */
     public function ApiTokenGenerater()
     {
         $this->api_token=Str::random(60);
         $this->save();
         return $this->api_token;
+    }
+    /**
+     * this function will return boolean [true|false] if the systemWorker has/n't the passed permission"]
+     * @param string $permission
+     * @return boolean 
+    */
+    public function hasAccess(string $permission)
+    {
+        foreach($this->role->permissions as $action){
+            return $action->name == $permission ? true : false;   
+        }
     }
 }
