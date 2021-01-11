@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    /**
+     * authorization systemWorker actions to check if he have permission to do action or not 
+     */
+    public function __construct(){
+        $this->authorizeResource(Role::class,'Role');
+    }
     private $validationRules = [
         "name"=>"required|string|max:255"
     ];

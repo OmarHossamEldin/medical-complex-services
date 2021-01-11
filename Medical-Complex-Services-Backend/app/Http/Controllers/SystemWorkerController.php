@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class SystemWorkerController extends Controller
 {
+    public function __construct(){
+        $this->authorizeResource(SystemWorker::class,'SystemWorker');
+    }
     private $validationRules = [
             "stakeholder_id"=>"exists:stakeholders,id",
             "username"=>"required|string|max:255|unique:system_workers",

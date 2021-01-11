@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class StakeholderController extends Controller
 {
+    /**
+     * authorization systemWorker actions to check if he have permission to do action or not 
+     */
+    public function __construct(){
+        $this->authorizeResource(Stakeholder::class,'Stakeholder');
+    }
     private $validationRules = [
         "name"=>"required|string|max:255|",
         "wallet"=>"numeric",

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
+    /**
+     * authorization systemWorker actions to check if he have permission to do action or not 
+     */
+    public function __construct(){
+        $this->authorizeResource(Doctor::class,'Doctor');
+    }
     private $validationRules = [
             "system_worker_id"=>"numeric|exists:system_workers,stakeholder_id",
             "degree_id"=>"numeric|exists:degrees,id",
