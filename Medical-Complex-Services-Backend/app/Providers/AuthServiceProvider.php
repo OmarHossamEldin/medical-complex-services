@@ -46,6 +46,49 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::resource('billing-options', BillingOptionPolicy::class);
+
+        Gate::resource('consumers', ConsumerPolicy::class);
+
+        Gate::resource('closed-intervals', ClosedIntervalPolicy::class);
+
+        Gate::resource('doctors', DoctorPolicy::class);
+
+        Gate::resource('degrees', DegreePolicy::class);
+
+        Gate::resource('departments', DepartmentPolicy::class);
+
+        Gate::resource('financial-categories', FinancialCategoryPolicy::class);
+        
+        Gate::resource('follower-constraints', FollowerConstraintPolicy::class);
+
+        Gate::resource('linked-nodes', LinkedNodesPolicy::class);
+        
+        Gate::resource('modules', ModulePolicy::class);
+
+        Gate::resource('pcs', PcPolicy::class);
+        
+        Gate::resource('permissions', PermissionPolicy::class);
+
+        Gate::resource('price-types', PriceTypePolicy::class);
+
+        Gate::resource('ranks', RankPolicy::class);
+        
+        Gate::resource('roles', RolePolicy::class);
+
+        Gate::resource('rank-price-variables', RankPriceVariablePolicy::class);
+
+        Gate::resource('stakeholders', StakeholderPolicy::class);
+
+        Gate::resource('system-workers', SystemWorkerPolicy::class);
+        
+        Gate::resource('services', ServicePolicy::class);
+
+        Gate::resource('service-types', ServicePolicy::class);
+
+        Gate::resource('transactions', ServicePolicy::class);
+
+        Gate::resource('variable-labels', ServicePolicy::class);
+        
     }
 }
