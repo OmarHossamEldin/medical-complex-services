@@ -52,8 +52,16 @@ class SystemWorker extends Authenticatable
     */
     public function hasAccess(string $permission)
     {
-        foreach($this->role->permissions as $action){
-            return $action->name == $permission ? true : false;   
+        if($this->role!=null){
+            foreach($this->role->permissions as $action){
+                if($action->name == $permission){
+                    return true;
+                }   
+            }
+            return false;
+        }
+        else{
+            return false;
         }
     }
 }
