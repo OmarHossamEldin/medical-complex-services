@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ClosedIntervalController extends Controller
 {
+    /**
+     * authorization systemWorker actions to check if he have permission to do action or not 
+     */
+    public function __construct(){
+        $this->authorizeResource(ClosedInterval::class,'ClosedInterval');
+    }
     private $validationRules = [
             "day" => "required|string|max:255",
             "from" => "required|date_format:H:i",

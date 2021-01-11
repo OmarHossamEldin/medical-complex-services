@@ -18,7 +18,7 @@ class BillingOptionPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-billingOption');
     }
 
     /**
@@ -30,7 +30,7 @@ class BillingOptionPolicy
      */
     public function view(SystemWorker $systemWorker, BillingOption $billingOption)
     {
-        //
+        return $systemWorker->hasAccess('show-billingOption');
     }
 
     /**
@@ -41,7 +41,7 @@ class BillingOptionPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-billingOption');
     }
 
     /**
@@ -53,7 +53,7 @@ class BillingOptionPolicy
      */
     public function update(SystemWorker $systemWorker, BillingOption $billingOption)
     {
-        //
+        return $systemWorker->hasAccess('update-billingOption');
     }
 
     /**
@@ -65,7 +65,7 @@ class BillingOptionPolicy
      */
     public function delete(SystemWorker $systemWorker, BillingOption $billingOption)
     {
-        //
+        return $systemWorker->hasAccess('delete-billingOption');
     }
 
     /**
@@ -77,7 +77,7 @@ class BillingOptionPolicy
      */
     public function restore(SystemWorker $systemWorker, BillingOption $billingOption)
     {
-        //
+        return $systemWorker->hasAccess('restore-billingOption');
     }
 
     /**
@@ -89,6 +89,6 @@ class BillingOptionPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, BillingOption $billingOption)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-billingOption');
     }
 }

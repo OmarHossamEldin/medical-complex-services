@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\BillingOption;
 use App\Http\Controllers\Controller;
-use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
 
 class BillingOptionController extends Controller
 {
+    /**
+     * authorization systemWorker actions to check if he have permission to do action or not 
+     */
+    public function __construct(){
+        $this->authorizeResource(BillingOption::class,'BillingOption');
+    }
     private $validationRules = [
         "name"=>"required|string|max:255|unique:billing_options"
     ];

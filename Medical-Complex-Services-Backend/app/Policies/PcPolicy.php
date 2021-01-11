@@ -18,7 +18,7 @@ class PcPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-Pc');
     }
 
     /**
@@ -30,7 +30,7 @@ class PcPolicy
      */
     public function view(SystemWorker $systemWorker, Pc $pc)
     {
-        //
+        return $systemWorker->hasAccess('show-pc');
     }
 
     /**
@@ -41,7 +41,7 @@ class PcPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-pc');
     }
 
     /**
@@ -53,7 +53,7 @@ class PcPolicy
      */
     public function update(SystemWorker $systemWorker, Pc $pc)
     {
-        //
+        return $systemWorker->hasAccess('update-pc');
     }
 
     /**
@@ -65,7 +65,7 @@ class PcPolicy
      */
     public function delete(SystemWorker $systemWorker, Pc $pc)
     {
-        //
+        return $systemWorker->hasAccess('delete-pc');
     }
 
     /**
@@ -77,7 +77,7 @@ class PcPolicy
      */
     public function restore(SystemWorker $systemWorker, Pc $pc)
     {
-        //
+        return $systemWorker->hasAccess('restore-pc');
     }
 
     /**
@@ -89,6 +89,6 @@ class PcPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Pc $pc)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-pc');
     }
 }

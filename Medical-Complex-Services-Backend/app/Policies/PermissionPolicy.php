@@ -18,7 +18,7 @@ class PermissionPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-permission');
     }
 
     /**
@@ -30,7 +30,7 @@ class PermissionPolicy
      */
     public function view(SystemWorker $systemWorker, Permission $permission)
     {
-        //
+        return $systemWorker->hasAccess('show-permission');
     }
 
     /**
@@ -41,7 +41,7 @@ class PermissionPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-permission');
     }
 
     /**
@@ -53,7 +53,7 @@ class PermissionPolicy
      */
     public function update(SystemWorker $systemWorker, Permission $permission)
     {
-        //
+        return $systemWorker->hasAccess('update-permission');
     }
 
     /**
@@ -65,7 +65,7 @@ class PermissionPolicy
      */
     public function delete(SystemWorker $systemWorker, Permission $permission)
     {
-        //
+        return $systemWorker->hasAccess('delete-permission');
     }
 
     /**
@@ -77,7 +77,7 @@ class PermissionPolicy
      */
     public function restore(SystemWorker $systemWorker, Permission $permission)
     {
-        //
+        return $systemWorker->hasAccess('restore-permission');
     }
 
     /**
@@ -89,6 +89,6 @@ class PermissionPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Permission $permission)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-permission');
     }
 }

@@ -18,7 +18,7 @@ class FinancialCategoryPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-financialCategory');
     }
 
     /**
@@ -30,7 +30,7 @@ class FinancialCategoryPolicy
      */
     public function view(SystemWorker $systemWorker, FinancialCategory $financialCategory)
     {
-        //
+        return $systemWorker->hasAccess('show-financialCategory');
     }
 
     /**
@@ -41,7 +41,7 @@ class FinancialCategoryPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-financialCategory');
     }
 
     /**
@@ -53,7 +53,7 @@ class FinancialCategoryPolicy
      */
     public function update(SystemWorker $systemWorker, FinancialCategory $financialCategory)
     {
-        //
+        return $systemWorker->hasAccess('update-financialCategory');
     }
 
     /**
@@ -65,7 +65,7 @@ class FinancialCategoryPolicy
      */
     public function delete(SystemWorker $systemWorker, FinancialCategory $financialCategory)
     {
-        //
+        return $systemWorker->hasAccess('delete-financialCategory');
     }
 
     /**
@@ -77,7 +77,7 @@ class FinancialCategoryPolicy
      */
     public function restore(SystemWorker $systemWorker, FinancialCategory $financialCategory)
     {
-        //
+        return $systemWorker->hasAccess('restore-financialCategory');
     }
 
     /**
@@ -89,6 +89,6 @@ class FinancialCategoryPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, FinancialCategory $financialCategory)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-financialCategory');
     }
 }

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+    /**
+     * authorization systemWorker actions to check if he have permission to do action or not 
+     */
+    public function __construct(){
+        $this->authorizeResource(Service::class,'Service');
+    }
     private $validationRules = [
         "name"=>"required|string|max:255|",
         "fixed_price"=>"numeric",

@@ -16,9 +16,7 @@ class VariableLabelPolicy
      * @param  \App\Models\SystemWorker  $systemWorker
      * @return mixed
      */
-    public function viewAny(SystemWorker $systemWorker)
-    {
-        //
+    public function viewAny(SystemWorker $systemW        return $systemWorker->hasAccess('index-variableLabel');
     }
 
     /**
@@ -30,7 +28,7 @@ class VariableLabelPolicy
      */
     public function view(SystemWorker $systemWorker, VariableLabel $variableLabel)
     {
-        //
+        return $systemWorker->hasAccess('show-variableLabel');
     }
 
     /**
@@ -41,7 +39,7 @@ class VariableLabelPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-variableLabel');
     }
 
     /**
@@ -53,7 +51,7 @@ class VariableLabelPolicy
      */
     public function update(SystemWorker $systemWorker, VariableLabel $variableLabel)
     {
-        //
+        return $systemWorker->hasAccess('update-variableLabel');
     }
 
     /**
@@ -65,7 +63,7 @@ class VariableLabelPolicy
      */
     public function delete(SystemWorker $systemWorker, VariableLabel $variableLabel)
     {
-        //
+        return $systemWorker->hasAccess('delete-variableLabel');
     }
 
     /**
@@ -77,7 +75,7 @@ class VariableLabelPolicy
      */
     public function restore(SystemWorker $systemWorker, VariableLabel $variableLabel)
     {
-        //
+        return $systemWorker->hasAccess('restore-variableLabel');
     }
 
     /**
@@ -89,6 +87,6 @@ class VariableLabelPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, VariableLabel $variableLabel)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-variableLabel');
     }
 }

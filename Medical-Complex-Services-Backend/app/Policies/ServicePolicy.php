@@ -18,7 +18,7 @@ class ServicePolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-service');
     }
 
     /**
@@ -30,7 +30,7 @@ class ServicePolicy
      */
     public function view(SystemWorker $systemWorker, Service $service)
     {
-        //
+        return $systemWorker->hasAccess('show-service');
     }
 
     /**
@@ -41,7 +41,7 @@ class ServicePolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-service');
     }
 
     /**
@@ -53,7 +53,7 @@ class ServicePolicy
      */
     public function update(SystemWorker $systemWorker, Service $service)
     {
-        //
+        return $systemWorker->hasAccess('update-service');
     }
 
     /**
@@ -65,7 +65,7 @@ class ServicePolicy
      */
     public function delete(SystemWorker $systemWorker, Service $service)
     {
-        //
+        return $systemWorker->hasAccess('delete-service');
     }
 
     /**
@@ -77,7 +77,7 @@ class ServicePolicy
      */
     public function restore(SystemWorker $systemWorker, Service $service)
     {
-        //
+        return $systemWorker->hasAccess('restore-service');
     }
 
     /**
@@ -89,6 +89,6 @@ class ServicePolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Service $service)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-service');
     }
 }

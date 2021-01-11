@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class RankPriceVariableController extends Controller
 {
+    /**
+     * authorization systemWorker actions to check if he have permission to do action or not 
+     */
+    public function __construct(){
+        $this->authorizeResource(RankPriceVariable::class,'RankPriceVariable');
+    }
     private $validationRules = [
         "price_value"=>"required|numeric"
     ];

@@ -18,7 +18,7 @@ class LinkedNodesPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-LinkedNodes');
     }
 
     /**
@@ -30,7 +30,7 @@ class LinkedNodesPolicy
      */
     public function view(SystemWorker $systemWorker, LinkedNodes $linkedNodes)
     {
-        //
+        return $systemWorker->hasAccess('show-LinkedNodes');
     }
 
     /**
@@ -41,7 +41,7 @@ class LinkedNodesPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-LinkedNodes');
     }
 
     /**
@@ -53,7 +53,7 @@ class LinkedNodesPolicy
      */
     public function update(SystemWorker $systemWorker, LinkedNodes $linkedNodes)
     {
-        //
+        return $systemWorker->hasAccess('show-LinkedNodes');
     }
 
     /**
@@ -65,7 +65,7 @@ class LinkedNodesPolicy
      */
     public function delete(SystemWorker $systemWorker, LinkedNodes $linkedNodes)
     {
-        //
+        return $systemWorker->hasAccess('delete-LinkedNodes');
     }
 
     /**
@@ -77,7 +77,7 @@ class LinkedNodesPolicy
      */
     public function restore(SystemWorker $systemWorker, LinkedNodes $linkedNodes)
     {
-        //
+        return $systemWorker->hasAccess('restore-LinkedNodes');
     }
 
     /**
@@ -89,6 +89,6 @@ class LinkedNodesPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, LinkedNodes $linkedNodes)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-LinkedNodes');
     }
 }

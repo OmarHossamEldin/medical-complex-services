@@ -18,7 +18,7 @@ class ServiceTypePolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-serviceType');
     }
 
     /**
@@ -30,7 +30,7 @@ class ServiceTypePolicy
      */
     public function view(SystemWorker $systemWorker, ServiceType $serviceType)
     {
-        //
+        return $systemWorker->hasAccess('show-serviceType');
     }
 
     /**
@@ -41,7 +41,7 @@ class ServiceTypePolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-serviceType');
     }
 
     /**
@@ -53,7 +53,7 @@ class ServiceTypePolicy
      */
     public function update(SystemWorker $systemWorker, ServiceType $serviceType)
     {
-        //
+        return $systemWorker->hasAccess('update-serviceType');
     }
 
     /**
@@ -65,7 +65,7 @@ class ServiceTypePolicy
      */
     public function delete(SystemWorker $systemWorker, ServiceType $serviceType)
     {
-        //
+        return $systemWorker->hasAccess('delete-serviceType');
     }
 
     /**
@@ -77,7 +77,7 @@ class ServiceTypePolicy
      */
     public function restore(SystemWorker $systemWorker, ServiceType $serviceType)
     {
-        //
+        return $systemWorker->hasAccess('restore-serviceType');
     }
 
     /**
@@ -89,6 +89,6 @@ class ServiceTypePolicy
      */
     public function forceDelete(SystemWorker $systemWorker, ServiceType $serviceType)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-serviceType');
     }
 }

@@ -18,7 +18,7 @@ class DegreePolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-degree');
     }
 
     /**
@@ -30,7 +30,7 @@ class DegreePolicy
      */
     public function view(SystemWorker $systemWorker, Degree $degree)
     {
-        //
+        return $systemWorker->hasAccess('show-degree');
     }
 
     /**
@@ -41,7 +41,7 @@ class DegreePolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-degree');
     }
 
     /**
@@ -53,7 +53,7 @@ class DegreePolicy
      */
     public function update(SystemWorker $systemWorker, Degree $degree)
     {
-        //
+        return $systemWorker->hasAccess('update-degree');
     }
 
     /**
@@ -65,7 +65,7 @@ class DegreePolicy
      */
     public function delete(SystemWorker $systemWorker, Degree $degree)
     {
-        //
+        return $systemWorker->hasAccess('delete-degree');
     }
 
     /**
@@ -77,7 +77,7 @@ class DegreePolicy
      */
     public function restore(SystemWorker $systemWorker, Degree $degree)
     {
-        //
+        return $systemWorker->hasAccess('restore-degree');
     }
 
     /**
@@ -89,6 +89,6 @@ class DegreePolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Degree $degree)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-degree');
     }
 }
