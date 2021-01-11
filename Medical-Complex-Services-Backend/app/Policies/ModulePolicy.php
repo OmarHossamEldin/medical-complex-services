@@ -18,7 +18,7 @@ class ModulePolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-Module');
     }
 
     /**
@@ -30,7 +30,7 @@ class ModulePolicy
      */
     public function view(SystemWorker $systemWorker, Module $module)
     {
-        //
+        return $systemWorker->hasAccess('show-Module');
     }
 
     /**
@@ -41,7 +41,7 @@ class ModulePolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-Module');
     }
 
     /**
@@ -53,7 +53,7 @@ class ModulePolicy
      */
     public function update(SystemWorker $systemWorker, Module $module)
     {
-        //
+        return $systemWorker->hasAccess('update-Module');
     }
 
     /**
@@ -65,7 +65,7 @@ class ModulePolicy
      */
     public function delete(SystemWorker $systemWorker, Module $module)
     {
-        //
+        return $systemWorker->hasAccess('delete-Module');
     }
 
     /**
@@ -77,7 +77,7 @@ class ModulePolicy
      */
     public function restore(SystemWorker $systemWorker, Module $module)
     {
-        //
+        return $systemWorker->hasAccess('restore-Module');
     }
 
     /**
@@ -89,6 +89,6 @@ class ModulePolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Module $module)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-Module');
     }
 }

@@ -18,7 +18,7 @@ class StakeholderPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-stakeholder');
     }
 
     /**
@@ -30,7 +30,7 @@ class StakeholderPolicy
      */
     public function view(SystemWorker $systemWorker, Stakeholder $stakeholder)
     {
-        //
+        return $systemWorker->hasAccess('show-stakeholder');
     }
 
     /**
@@ -41,7 +41,7 @@ class StakeholderPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-stakeholder');
     }
 
     /**
@@ -53,7 +53,7 @@ class StakeholderPolicy
      */
     public function update(SystemWorker $systemWorker, Stakeholder $stakeholder)
     {
-        //
+        return $systemWorker->hasAccess('update-stakeholder');
     }
 
     /**
@@ -65,7 +65,7 @@ class StakeholderPolicy
      */
     public function delete(SystemWorker $systemWorker, Stakeholder $stakeholder)
     {
-        //
+        return $systemWorker->hasAccess('delete-stakeholder');
     }
 
     /**
@@ -77,7 +77,7 @@ class StakeholderPolicy
      */
     public function restore(SystemWorker $systemWorker, Stakeholder $stakeholder)
     {
-        //
+        return $systemWorker->hasAccess('restore-stakeholder');
     }
 
     /**
@@ -89,6 +89,6 @@ class StakeholderPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Stakeholder $stakeholder)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-stakeholder');
     }
 }

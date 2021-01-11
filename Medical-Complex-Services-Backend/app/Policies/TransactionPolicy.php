@@ -18,7 +18,7 @@ class TransactionPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-transaction');
     }
 
     /**
@@ -30,7 +30,7 @@ class TransactionPolicy
      */
     public function view(SystemWorker $systemWorker, Transaction $transaction)
     {
-        //
+        return $systemWorker->hasAccess('show-transaction');
     }
 
     /**
@@ -41,7 +41,7 @@ class TransactionPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-transaction');
     }
 
     /**
@@ -53,7 +53,7 @@ class TransactionPolicy
      */
     public function update(SystemWorker $systemWorker, Transaction $transaction)
     {
-        //
+        return $systemWorker->hasAccess('update-transaction');
     }
 
     /**
@@ -65,7 +65,7 @@ class TransactionPolicy
      */
     public function delete(SystemWorker $systemWorker, Transaction $transaction)
     {
-        //
+        return $systemWorker->hasAccess('delete-transaction');
     }
 
     /**
@@ -77,7 +77,7 @@ class TransactionPolicy
      */
     public function restore(SystemWorker $systemWorker, Transaction $transaction)
     {
-        //
+        return $systemWorker->hasAccess('restore-transaction');
     }
 
     /**
@@ -89,6 +89,6 @@ class TransactionPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Transaction $transaction)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-transaction');
     }
 }

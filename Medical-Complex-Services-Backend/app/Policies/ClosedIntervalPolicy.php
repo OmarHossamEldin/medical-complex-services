@@ -18,7 +18,7 @@ class ClosedIntervalPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-closedInterval');
     }
 
     /**
@@ -30,7 +30,7 @@ class ClosedIntervalPolicy
      */
     public function view(SystemWorker $systemWorker, ClosedInterval $closedInterval)
     {
-        //
+        return $systemWorker->hasAccess('show-closedInterval');
     }
 
     /**
@@ -41,7 +41,7 @@ class ClosedIntervalPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-closedInterval');
     }
 
     /**
@@ -53,7 +53,7 @@ class ClosedIntervalPolicy
      */
     public function update(SystemWorker $systemWorker, ClosedInterval $closedInterval)
     {
-        //
+        return $systemWorker->hasAccess('update-closedInterval');
     }
 
     /**
@@ -65,7 +65,7 @@ class ClosedIntervalPolicy
      */
     public function delete(SystemWorker $systemWorker, ClosedInterval $closedInterval)
     {
-        //
+        return $systemWorker->hasAccess('delete-closedInterval');
     }
 
     /**
@@ -77,7 +77,7 @@ class ClosedIntervalPolicy
      */
     public function restore(SystemWorker $systemWorker, ClosedInterval $closedInterval)
     {
-        //
+        return $systemWorker->hasAccess('restore-closedInterval');
     }
 
     /**
@@ -89,6 +89,6 @@ class ClosedIntervalPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, ClosedInterval $closedInterval)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-closedInterval');
     }
 }

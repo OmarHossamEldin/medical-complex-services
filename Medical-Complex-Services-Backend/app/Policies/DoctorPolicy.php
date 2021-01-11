@@ -18,7 +18,7 @@ class DoctorPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-doctor');
     }
 
     /**
@@ -30,7 +30,7 @@ class DoctorPolicy
      */
     public function view(SystemWorker $systemWorker, Doctor $doctor)
     {
-        //
+        return $systemWorker->hasAccess('show-doctor');
     }
 
     /**
@@ -41,7 +41,7 @@ class DoctorPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-doctor');
     }
 
     /**
@@ -53,7 +53,7 @@ class DoctorPolicy
      */
     public function update(SystemWorker $systemWorker, Doctor $doctor)
     {
-        //
+        return $systemWorker->hasAccess('update-doctor');
     }
 
     /**
@@ -65,7 +65,7 @@ class DoctorPolicy
      */
     public function delete(SystemWorker $systemWorker, Doctor $doctor)
     {
-        //
+        return $systemWorker->hasAccess('delete-doctor');
     }
 
     /**
@@ -77,7 +77,7 @@ class DoctorPolicy
      */
     public function restore(SystemWorker $systemWorker, Doctor $doctor)
     {
-        //
+        return $systemWorker->hasAccess('restore-doctor');
     }
 
     /**
@@ -89,6 +89,6 @@ class DoctorPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Doctor $doctor)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-doctor');
     }
 }

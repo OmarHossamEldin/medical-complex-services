@@ -18,7 +18,7 @@ class PriceTypePolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('index-priceType');
     }
 
     /**
@@ -30,7 +30,7 @@ class PriceTypePolicy
      */
     public function view(SystemWorker $systemWorker, PriceType $priceType)
     {
-        //
+        return $systemWorker->hasAccess('show-priceType');
     }
 
     /**
@@ -41,7 +41,7 @@ class PriceTypePolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        //
+        return $systemWorker->hasAccess('create-priceType');
     }
 
     /**
@@ -53,7 +53,7 @@ class PriceTypePolicy
      */
     public function update(SystemWorker $systemWorker, PriceType $priceType)
     {
-        //
+        return $systemWorker->hasAccess('update-priceType');
     }
 
     /**
@@ -65,7 +65,7 @@ class PriceTypePolicy
      */
     public function delete(SystemWorker $systemWorker, PriceType $priceType)
     {
-        //
+        return $systemWorker->hasAccess('delete-priceType');
     }
 
     /**
@@ -77,7 +77,7 @@ class PriceTypePolicy
      */
     public function restore(SystemWorker $systemWorker, PriceType $priceType)
     {
-        //
+        return $systemWorker->hasAccess('restore-priceType');
     }
 
     /**
@@ -89,6 +89,6 @@ class PriceTypePolicy
      */
     public function forceDelete(SystemWorker $systemWorker, PriceType $priceType)
     {
-        //
+        return $systemWorker->hasAccess('Force-delete-priceType');
     }
 }
