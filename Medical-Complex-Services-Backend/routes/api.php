@@ -50,7 +50,7 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
         
         Route::get('/test', function (Request $request) {
             
-            return $request->user();
-        });
+             return auth()->user();
+        })->middleware('can:');
     });
 });
