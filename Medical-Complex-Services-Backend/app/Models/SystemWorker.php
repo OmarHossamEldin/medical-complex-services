@@ -17,6 +17,11 @@ class SystemWorker extends Authenticatable
 
     protected $hidden = ['password','api_token'];
 
+    public function stakeholder()
+    {
+        return $this->hasOne('App\Models\Stakeholder', 'id');
+    }
+
     public function role()
     {
         return $this->belongsTo('App\Models\Role');

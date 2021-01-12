@@ -27,4 +27,9 @@ class Doctor extends Model
     {
         return $this->belongsToMany('App\Models\Transaction', 'doctor_transaction');
     }
+
+    public function system_worker()
+    {
+        return $this->hasOne('App\Models\SystemWorker', 'stakeholder_id');
+    }
 }

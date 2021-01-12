@@ -13,6 +13,11 @@ class Consumer extends Model
 
     protected $primaryKey = 'stakeholder_id';
 
+    public function stakeholder()
+    {
+        return $this->hasOne('App\Models\Stakeholder', 'id');
+    }
+    
     public function transactions()
     {
         return $this->belongsToMany('App\Models\Transaction', 'consumer_transaction');
