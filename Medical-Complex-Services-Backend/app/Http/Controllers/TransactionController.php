@@ -29,7 +29,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::all();
+        $transaction = Transaction::with(['system_worker', 'pc', 'financial_category', 'service'])->get();
         return response()->json([$transaction], 202);
     }
 

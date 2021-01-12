@@ -30,7 +30,7 @@ class StakeholderController extends Controller
      */
     public function index()
     {
-        $stakeholder = Stakeholder::all();
+        $stakeholder = Stakeholder::with(['rank:id,name'])->get();
         return response()->json([$stakeholder], 202);
     }
 

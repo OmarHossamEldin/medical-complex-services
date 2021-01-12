@@ -27,7 +27,7 @@ class LinkedNodesController extends Controller
      */
     public function index()
     {
-        $linkedNodes = LinkedNodes::all();
+        $linkedNodes = LinkedNodes::with(['transaction'])->get();
         return response()->json([$linkedNodes], 202);
     }
 

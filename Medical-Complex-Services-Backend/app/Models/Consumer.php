@@ -20,6 +20,6 @@ class Consumer extends Model
     
     public function transactions()
     {
-        return $this->belongsToMany('App\Models\Transaction', 'consumer_transaction');
+        return $this->belongsToMany('App\Models\Transaction', 'consumer_transaction', 'consumer_id');
     }
 }

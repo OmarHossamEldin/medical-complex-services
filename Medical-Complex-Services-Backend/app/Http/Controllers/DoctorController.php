@@ -27,7 +27,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctor = Doctor::all();
+        $doctor = Doctor::with(['system_worker', 'degree', 'department'])->get();
         return response()->json([$doctor], 202);
     }
 

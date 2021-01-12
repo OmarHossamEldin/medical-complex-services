@@ -29,7 +29,7 @@ class VariableLabelController extends Controller
      */
     public function index()
     {
-        $variableLabel = VariableLabel::all();
+        $variableLabel = VariableLabel::with(['service'])->get();
         return response()->json([$variableLabel], 202);
     }
 

@@ -25,7 +25,7 @@ class Service extends Model
 
      public function department()
      {
-         return $this->belongsTo('App\Models\Departments');
+         return $this->belongsTo('App\Models\Department');
      }
 
     public function transactions()

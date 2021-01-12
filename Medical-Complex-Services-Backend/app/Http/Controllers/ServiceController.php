@@ -36,7 +36,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $service = Service::all();
+        $service = Service::with(['price_type', 'service_type', 'department'])->get();
         return response()->json([$service], 202);
     }
 

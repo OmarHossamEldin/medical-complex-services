@@ -26,7 +26,7 @@ class SystemWorkerController extends Controller
      */
     public function index()
     {
-        $systemworker = SystemWorker::all();
+        $systemworker = SystemWorker::with(['role', 'stakeholder'])->get();
         return response()->json([$systemworker], 202);
     }
 

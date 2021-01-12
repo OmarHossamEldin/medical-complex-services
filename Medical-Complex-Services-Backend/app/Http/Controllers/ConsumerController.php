@@ -25,7 +25,7 @@ class ConsumerController extends Controller
      */
     public function index()
     {
-        $consumer = Consumer::all();
+        $consumer = Consumer::with(['stakeholder'])->get();
         return response()->json([$consumer], 202);
     }
 
