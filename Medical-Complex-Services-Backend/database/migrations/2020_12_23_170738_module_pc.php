@@ -17,6 +17,7 @@ class ModulePc extends Migration
             $table->foreignId("module_id")->constrained('modules')->onDelete('restrict');
             $table->foreignId("pc_id")->constrained('pcs')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['module_id','pc_id']);
         });
     }
     /**

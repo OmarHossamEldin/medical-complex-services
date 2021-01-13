@@ -17,6 +17,7 @@ class RoleService extends Migration
             $table->foreignId("role_id")->constrained('roles')->onDelete('restrict');
             $table->foreignId("service_id")->constrained('services')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['role_id','service_id']);
         });
     }
 

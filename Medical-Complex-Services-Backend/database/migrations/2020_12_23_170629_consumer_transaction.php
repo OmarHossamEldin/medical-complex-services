@@ -17,6 +17,7 @@ class ConsumerTransaction extends Migration
             $table->foreignId("consumer_id")->constrained('consumers', 'stakeholder_id')->onDelete('restrict');
             $table->foreignId("transaction_id")->constrained('transactions')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['consumer_id','transaction_id']);
         });
     }
     /**

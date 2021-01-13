@@ -17,6 +17,7 @@ class ModuleSystemWorker extends Migration
             $table->foreignId("module_id")->constrained('modules')->onDelete('restrict');
             $table->foreignId("system_worker_id")->constrained('system_workers', 'stakeholder_id')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['module_id','system_worker_id']);
         });
     }
     /**

@@ -17,6 +17,7 @@ class BillingOptionService extends Migration
             $table->foreignId("billing_option_id")->constrained('billing_options')->onDelete('restrict');
             $table->foreignId("service_id")->constrained('services')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['billing_option_id','service_id']);
         });
     }
 

@@ -17,6 +17,7 @@ class ServiceStakeholder extends Migration
             $table->foreignId("stakeholder_id")->constrained('stakeholders')->onDelete('restrict');
             $table->foreignId("service_id")->constrained('services')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['stakeholder_id','service_id']);
         });
     }
 

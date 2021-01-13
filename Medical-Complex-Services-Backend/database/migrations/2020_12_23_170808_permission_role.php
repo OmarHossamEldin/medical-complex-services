@@ -17,6 +17,7 @@ class PermissionRole extends Migration
             $table->foreignId("permission_id")->constrained('permissions')->onDelete('restrict');
             $table->foreignId("role_id")->constrained('roles')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['permission_id','role_id']);
         });
     }
 

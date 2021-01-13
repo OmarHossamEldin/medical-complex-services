@@ -17,6 +17,7 @@ class PcSystemWorker extends Migration
             $table->foreignId("pc_id")->constrained('pcs')->onDelete('restrict');
             $table->foreignId("system_worker_id")->constrained('system_workers', 'stakeholder_id')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['pc_id','system_worker_id']);
         });
     }
     /**

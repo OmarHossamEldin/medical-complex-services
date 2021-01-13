@@ -17,6 +17,7 @@ class ClosedIntervalService extends Migration
             $table->foreignId("closed_interval_id")->constrained('closed_intervals')->onDelete('restrict');
             $table->foreignId("service_id")->constrained('services')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['closed_interval_id','service_id']);
         });
     }
 

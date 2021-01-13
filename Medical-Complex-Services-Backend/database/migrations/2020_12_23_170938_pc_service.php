@@ -17,6 +17,7 @@ class PcService extends Migration
             $table->foreignId("pc_id")->constrained('pcs')->onDelete('restrict');
             $table->foreignId("service_id")->constrained('services')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['pc_id','service_id']);
         });
     }
 

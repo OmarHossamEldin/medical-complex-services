@@ -17,6 +17,7 @@ class RankService extends Migration
             $table->foreignId("rank_id")->constrained('ranks')->onDelete('restrict');
             $table->foreignId("service_id")->constrained('services')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['rank_id','service_id']);
         });
     }
 

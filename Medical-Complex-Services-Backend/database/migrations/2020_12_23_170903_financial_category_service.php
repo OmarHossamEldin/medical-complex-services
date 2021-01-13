@@ -17,6 +17,7 @@ class FinancialCategoryService extends Migration
             $table->foreignId("financial_category_id")->constrained('financial_categories')->onDelete('restrict');
             $table->foreignId("service_id")->constrained('services')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['financial_category_id','service_id']);
         });
     }
 

@@ -17,6 +17,7 @@ class FollowerConstraintService extends Migration
             $table->foreignId("follower_constraint_id")->constrained('follower_constraints')->onDelete('restrict');
             $table->foreignId("service_id")->constrained('services')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['follower_constraint_id','service_id']);
         });
     }
 

@@ -17,6 +17,7 @@ class DoctorTransaction extends Migration
             $table->foreignId("doctor_id")->constrained('doctors', 'system_worker_id')->onDelete('restrict');
             $table->foreignId("transaction_id")->constrained('transactions')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['doctor_id','transaction_id']);
         });
     }
 

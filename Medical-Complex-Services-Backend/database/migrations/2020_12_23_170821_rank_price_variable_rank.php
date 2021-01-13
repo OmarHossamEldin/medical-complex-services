@@ -17,6 +17,7 @@ class RankPriceVariableRank extends Migration
             $table->foreignId("rank_price_variable_id")->constrained('rank_price_variables')->onDelete('restrict');
             $table->foreignId("rank_id")->constrained('ranks')->onDelete('restrict');
             $table->timestamps();
+            $table->primary(['rank_price_variable_id','rank_id']);
         });
     }
 
