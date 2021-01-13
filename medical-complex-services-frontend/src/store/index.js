@@ -1,7 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-// import example from './module-example'
+import alerts from './modules/alerts'
+import departments from './modules/departments'
+import pcs from './modules/pcs'
+import financial_categories from './modules/financial-categories'
+import doctors from './modules/doctors'
+import billing_options from './modules/billing-options'
+import transactions from './modules/transactions'
+import modules from './modules/modules'
+import services from './modules/services'
+import closed_intervals from './modules/closed-intervals'
+import system_workers from './modules/system-workers'
 
 Vue.use(Vuex)
 
@@ -17,7 +26,17 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      // example
+      alerts,
+      departments,
+      pcs,
+      financial_categories,
+      doctors,
+      billing_options,
+      transactions,
+      modules,
+      services,
+      closed_intervals,
+      system_workers
     },
 
     // enable strict mode (adds overhead!)

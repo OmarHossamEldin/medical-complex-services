@@ -1,7 +1,7 @@
 <template>
   <div id="q-app">
     <div>
-      <h5 class="text-weight-bold">الخدمات الرئيسية</h5>
+      <h5 class="text-weight-bold">طرق الدفع</h5>
       <q-table
         :data="data"
         :columns="columns"
@@ -30,7 +30,7 @@
             outline
             class="text-weight-bold"
             color="blue-grey-6"
-            label="اضافة خدمة رئيسية"
+            label="اضافة طريقة دفع"
             @click="show_add_dialog = true"
             no-caps
           />
@@ -40,16 +40,16 @@
               <q-card style="font-family: 'JF Flat';">
                 <q-card-section dir="rtl">
                   <div>
-                    <p class="text-weight-bold">اضافة خدمة رئيسية جديد</p>
+                    <p class="text-weight-bold">اضافة طريقة دفع جديدة </p>
 
                     <div class="q-pa-sm q-gutter-sm">
-                      <label>اسم الخدمة</label>
+                      <label> طريقة الدفع</label>
                       <q-input
                         outlined
                         borderless
                         dense
                         v-model="editedItem.name"
-                        placeholder="ادخل اسم الخدمة"
+                        placeholder="ادخل  طريقة الدفع"
                       ></q-input>
                     </div>
 
@@ -122,16 +122,16 @@
                 <q-card style="font-family: 'JF Flat';">
                   <q-card-section dir="rtl">
                     <div>
-                      <p class="text-weight-bold">تعديل الخدمة الرئيسية</p>
+                      <p class="text-weight-bold">تعديل طريقة الدفع</p>
 
                       <div class="q-pa-sm q-gutter-sm">
-                        <label>اسم الخدمة</label>
+                        <label>اسم طريقة الدفع</label>
                         <q-input
                           v-model="editedItem.name"
                           outlined
                           borderless
                           dense
-                          placeholder="ادخل اسم الخدمة"
+                          placeholder="ادخل طريقة الدفع  "
                         ></q-input>
                       </div>
 
@@ -218,7 +218,7 @@ export default {
         {
           name: "name",
           required: true,
-          label: "اسم الخدمة",
+          label: "اسم طريقة الدفع",
           align: "left",
           field: (row) => row.name,
           format: (val) => `${val}`,
@@ -237,7 +237,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      data: "allModules",
+      data: "allBillingOptions",
       errorMessage: "getErrorMessage",
       requestFailed: "getRequestFailed",
     }),
@@ -245,10 +245,10 @@ export default {
   methods: {
     ...mapMutations(["setFailingRequest"]),
     ...mapActions({
-      index: "indexModules",
-      store: "storeModule",
-      update: "updateModule",
-      delete: "deleteModule",
+      index: "indexBillingOptions",
+      store: "storeBillingOption",
+      update: "updateBillingOption",
+      delete: "deleteBillingOption",
     }),
     resetFailingRequest() {
       this.setFailingRequest(false)
@@ -262,7 +262,7 @@ export default {
       this.close();
     },
     deleteItem(item) {
-      confirm("هل تريد حذف هذه الخدمة بالتأكيد؟") &&
+      confirm("هل تريد حذف هذا القسم بالتأكيد؟") &&
         this.delete(item.id);
     },
     close() {

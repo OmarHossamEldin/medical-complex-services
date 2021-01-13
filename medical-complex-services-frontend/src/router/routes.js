@@ -28,7 +28,10 @@ const routes = [
       { path: 'pcs', component: () => import('pages/admin/pcs/Index.vue') },
       { path: 'reports', component: () => import('pages/admin/reports/Index.vue') },
       { path: 'systemworkers', component: () => import('pages/admin/systemworkers/Index.vue') },
-      { path: 'transactions', component: () => import('pages/admin/transactions/Index.vue') }
+      { path: 'transactions', component: () => import('pages/admin/transactions/Index.vue') },
+      { path: 'billing-option', component: () => import('pages/admin/billing-option/Index.vue') },
+      { path: 'closed-interval', component: () => import('pages/admin/closed-interval/Index.vue') }
+
     ]
   },
 

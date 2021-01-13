@@ -1,7 +1,7 @@
 <template>
   <div id="q-app">
     <div>
-      <h5 class="text-weight-bold">الخدمات الرئيسية</h5>
+      <h5 class="text-weight-bold">فترات العمل الغير متاحة </h5>
       <q-table
         :data="data"
         :columns="columns"
@@ -30,7 +30,7 @@
             outline
             class="text-weight-bold"
             color="blue-grey-6"
-            label="اضافة خدمة رئيسية"
+            label="اضافة فترة "
             @click="show_add_dialog = true"
             no-caps
           />
@@ -40,16 +40,36 @@
               <q-card style="font-family: 'JF Flat';">
                 <q-card-section dir="rtl">
                   <div>
-                    <p class="text-weight-bold">اضافة خدمة رئيسية جديد</p>
+                    <p class="text-weight-bold">اضافة فترة    </p>
 
                     <div class="q-pa-sm q-gutter-sm">
-                      <label>اسم الخدمة</label>
+                      <label> اليوم </label>
                       <q-input
                         outlined
                         borderless
                         dense
-                        v-model="editedItem.name"
-                        placeholder="ادخل اسم الخدمة"
+                        v-model="editedItem.day"
+                        placeholder="اليوم   "
+                      ></q-input>
+                    </div>
+                     <div class="q-pa-sm q-gutter-sm">
+                      <label> من </label>
+                      <q-input
+                        outlined
+                        borderless
+                        dense
+                        v-model="editedItem.from"
+                        placeholder="من   "
+                      ></q-input>
+                    </div>
+                    <div class="q-pa-sm q-gutter-sm">
+                      <label> الي </label>
+                      <q-input
+                        outlined
+                        borderless
+                        dense
+                        v-model="editedItem.to"
+                        placeholder="الي   "
                       ></q-input>
                     </div>
 
@@ -86,8 +106,14 @@
 
         <template v-slot:body="props">
           <q-tr :props="props" class="table-body">
-            <q-td key="name" :props="props">
-              {{ props.row.name }}
+            <q-td key="day" :props="props">
+              {{ props.row.day }}
+            </q-td>
+            <q-td key="from" :props="props">
+              {{ props.row.from }}
+            </q-td>
+            <q-td key="to" :props="props">
+              {{ props.row.to }}
             </q-td>
             <q-td key="actions" :props="props">
               <q-icon
@@ -95,7 +121,9 @@
                 name="edit"
                 color="blue-grey-7"
                 @click="
-                  editedItem.name = props.row.name;
+                  editedItem.day = props.row.day;
+                  editedItem.from = props.row.from;
+                  editedItem.to = props.row.to;
                   editId = props.row.id;
                   show_edit_dialog = true;
                 "
@@ -122,16 +150,16 @@
                 <q-card style="font-family: 'JF Flat';">
                   <q-card-section dir="rtl">
                     <div>
-                      <p class="text-weight-bold">تعديل الخدمة الرئيسية</p>
+                      <p class="text-weight-bold">تعديل طريقة الدفع</p>
 
                       <div class="q-pa-sm q-gutter-sm">
-                        <label>اسم الخدمة</label>
+                        <label>اسم طريقة الدفع</label>
                         <q-input
                           v-model="editedItem.name"
                           outlined
                           borderless
                           dense
-                          placeholder="ادخل اسم الخدمة"
+                          placeholder="ادخل طريقة الدفع  "
                         ></q-input>
                       </div>
 
@@ -207,20 +235,42 @@ export default {
       show_edit_dialog: false,
 
       editedItem: {
-        name: "",
+        day: "",
+        from:"",
+        to:""
       },
 
       defaultItem: {
-        name: "",
+        day: "",
+        from:"",
+        to:""
       },
 
       columns: [
         {
-          name: "name",
+          name: "day",
           required: true,
-          label: "اسم الخدمة",
+          label: "اليوم",
           align: "left",
-          field: (row) => row.name,
+          field: (row) => row.day,
+          format: (val) => `${val}`,
+          sortable: true,
+        },
+         {
+          name: "from",
+          required: true,
+          label: "من",
+          align: "left",
+          field: (row) => row.from,
+          format: (val) => `${val}`,
+          sortable: true,
+        },
+         {
+          name: "to",
+          required: true,
+          label: "الي",
+          align: "left",
+          field: (row) => row.to,
           format: (val) => `${val}`,
           sortable: true,
         },
@@ -237,7 +287,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      data: "allModules",
+      data: "allClosedIntervals",
       errorMessage: "getErrorMessage",
       requestFailed: "getRequestFailed",
     }),
@@ -245,10 +295,10 @@ export default {
   methods: {
     ...mapMutations(["setFailingRequest"]),
     ...mapActions({
-      index: "indexModules",
-      store: "storeModule",
-      update: "updateModule",
-      delete: "deleteModule",
+      index: "indexClosedIntervals",
+      store: "storeClosedInterval",
+      update: "updateClosedInterval",
+      delete: "deleteBillingOption",
     }),
     resetFailingRequest() {
       this.setFailingRequest(false)
@@ -262,7 +312,7 @@ export default {
       this.close();
     },
     deleteItem(item) {
-      confirm("هل تريد حذف هذه الخدمة بالتأكيد؟") &&
+      confirm("هل تريد حذف هذا القسم بالتأكيد؟") &&
         this.delete(item.id);
     },
     close() {
