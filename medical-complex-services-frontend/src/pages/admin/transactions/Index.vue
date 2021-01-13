@@ -333,7 +333,7 @@ export default {
 
       columns: [
         {
-          name: "name",
+          name: "printing_count",
           required: true,
           label: "عدد مرات الطباعة",
           align: "left",
@@ -342,7 +342,7 @@ export default {
           sortable: true,
         },
         {
-          name: "name",
+          name: "system_worker_id",
           required: true,
           label: "اسم الموظف",
           align: "left",
@@ -351,7 +351,7 @@ export default {
           sortable: true,
         },
         {
-          name: "ip",
+          name: "pc_id",
           required: true,
           label: "اسم الجهاز",
           align: "left",
@@ -360,7 +360,7 @@ export default {
           sortable: true,
         },
         {
-          name: "mac_address",
+          name: "financial_category_id",
           required: true,
           label: "اسم الخدمة",
           align: "left",
@@ -369,7 +369,7 @@ export default {
           sortable: true,
         },
         {
-          name: "mac_address",
+          name: "service_id",
           required: true,
           label: "عنوان MAC",
           align: "left",

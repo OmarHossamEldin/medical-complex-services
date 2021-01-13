@@ -90,11 +90,11 @@
               {{ props.row.system_worker.username }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td key="degree" :props="props">
               {{ props.row.degree.name }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td key="department" :props="props">
               {{ props.row.department.name }}
             </q-td>
             <q-td key="actions" :props="props">
@@ -135,7 +135,7 @@
                       <div class="q-pa-sm q-gutter-sm">
                         <label>اسم الطبيب</label>
                         <q-input
-                          v-model="editedItem.name"
+                          v-model="editedItem.system_worker_id"
                           outlined
                           borderless
                           dense
@@ -144,13 +144,12 @@
                       </div>
 
                       <div class="q-pa-sm q-gutter-sm">
-                        <label>اسم الطبيب</label>
+                        <label>الرتبة</label>
                         <q-input
                           v-model="editedItem.name"
                           outlined
                           borderless
                           dense
-                          placeholder="ادخل اسم الطبيب"
                         ></q-input>
                       </div>
 
@@ -244,7 +243,7 @@ export default {
           sortable: true,
         },
         {
-          name: "name",
+          name: "degree",
           required: true,
           label: "الدرجة العلمية  ",
           align: "left",
@@ -253,7 +252,7 @@ export default {
           sortable: true,
         },
         {
-           name: "name",
+          name: "department",
           required: true,
           label: "القسم   ",
           align: "left",

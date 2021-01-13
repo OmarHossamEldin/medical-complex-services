@@ -122,15 +122,15 @@
               {{ props.row.name }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td key="operator" :props="props">
               {{ props.row.operator }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td key="value" :props="props">
               {{ props.row.value }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td key="max_limit" :props="props">
               {{ props.row.max_limit }}
             </q-td>
 

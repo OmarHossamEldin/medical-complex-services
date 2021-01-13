@@ -211,47 +211,51 @@
               {{ props.row.name }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td key="fixed_price" :props="props">
               {{ props.row.fixed_price }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td key="timed" :props="props">
               {{ props.row.timed }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td key="requires_doctor" :props="props">
               {{ props.row.requires_doctor }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td key="main_consumer_number" :props="props">
               {{ props.row.main_consumer_number }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td key="associate_consumer_number" :props="props">
               {{ props.row.associate_consumer_number }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td key="variable_price_equation" :props="props">
               {{ props.row.variable_price_equation }}
             </q-td>
 
-            <q-td v-if="props.row.price_type != null" key="name" :props="props">
+            <q-td v-if="props.row.price_type != null" key="price_type_id" :props="props">
               {{ props.row.price_type.name }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td v-else key="price_type_id" :props="props">
+              فاضية
+            </q-td>
+
+            <q-td key="service_type_id" :props="props">
               {{ props.row.service_type.name }}
             </q-td>
 
-            <q-td v-if="props.row.department != null" key="name" :props="props">
+            <q-td v-if="props.row.department != null" key="department_id" :props="props">
               {{ props.row.department.name }}
             </q-td>
 
-            <q-td v-if="props.row.service != null" key="name" :props="props">
+            <q-td v-if="props.row.service != null" key="service_id" :props="props">
               {{ props.row.service.name }}
             </q-td>
 
-            <q-td key="name" :props="props">
+            <q-td key="pc_dependent" :props="props">
               {{ props.row.pc_dependent }}
             </q-td>
 
@@ -422,7 +426,7 @@
                       </div>
 
                       <div class="q-pa-sm q-gutter-sm">
-                        <label>تعتمد علي جهاز؟</label>
+                        <label>تعتمد علي جهاز</label>
                         <q-input
                           v-model="editedItem.pc_dependent"
                           outlined
@@ -505,14 +509,34 @@ export default {
 
       editedItem: {
         name: "",
-        ip: "",
-        mac_address: "",
+        fixed_price: "",
+        timed: "",
+        requires_doctor: "",
+        main_consumer_number: "",
+        associate_consumer_number: "",
+        variable_price_equation: "",
+        price_type_id: "",
+        service_type_id: "",
+        department_id: "",
+        service_id: "",
+        pc_dependent: "",
+        price_type: "",
       },
 
       defaultItem: {
         name: "",
-        ip: "",
-        mac_address: "",
+        fixed_price: "",
+        timed: "",
+        requires_doctor: "",
+        main_consumer_number: "",
+        associate_consumer_number: "",
+        variable_price_equation: "",
+        price_type_id: "",
+        service_type_id: "",
+        department_id: "",
+        service_id: "",
+        pc_dependent: "",
+        price_type: "",
       },
 
       columns: [
@@ -573,7 +597,7 @@ export default {
         {
           name: "variable_price_equation",
           required: true,
-          label: "السعر المتغير ",
+          label: "معادلة السعر المتغير",
           align: "left",
           field: (row) => row.variable_price_equation,
           format: (val) => `${val}`,
@@ -607,18 +631,9 @@ export default {
           sortable: true,
         },
         {
-          name: "service_id",
-          required: true,
-          label: " الأجهزة",
-          align: "left",
-          field: (row) => row.service_id,
-          format: (val) => `${val}`,
-          sortable: true,
-        },
-        {
           name: "pc_dependent",
           required: true,
-          label: "تعتمد على جهاز؟",
+          label: "تعتمد على جهاز",
           align: "left",
           field: (row) => row.pc_dependent,
           format: (val) => `${val}`,
