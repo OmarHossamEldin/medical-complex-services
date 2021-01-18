@@ -9,8 +9,8 @@ const getters = {
 }
 
 const actions = {
-  indexSystemWorkers({ commit }) {
-    axios.get("http://127.0.0.1:8000/api/system-workers").then(
+  indexSystemWorkers ({ commit }) {
+    axios.get('system-workers').then(
       response => { commit('getSystemWorkers', response.data[0]) }
     )
       .catch(error => {
@@ -18,8 +18,8 @@ const actions = {
       })
   },
 
-    storeSystemWorker({ commit }, systemWorker) {
-    axios.post("system-workers", systemWorker).then(
+  storeSystemWorker ({ commit }, systemWorker) {
+    axios.post('system-workers', systemWorker).then(
       response => { commit('storeSystemWorkers', response.data[0]) }
     )
       .catch(error => {
@@ -27,8 +27,7 @@ const actions = {
       })
   },
 
-  updateSystemWorker({ commit }, [systemWorkerId, systemWorker]) {
-
+  updateSystemWorker ({ commit }, [systemWorkerId, systemWorker]) {
     axios.put(`system-workers/${systemWorkerId}`, systemWorker).then(
       response => { commit('updateSystemWorker', [systemWorkerId, response.data[0]]) }
     )
@@ -37,7 +36,7 @@ const actions = {
       })
   },
 
-  deleteSystemWorker({ commit }, systemWorkerId) {
+  deleteSystemWorker ({ commit }, systemWorkerId) {
     axios.delete(`system-workers/${systemWorkerId}`).then(
       response => { commit('deleteSystemWorker', systemWorkerId) }
     )
@@ -48,21 +47,21 @@ const actions = {
 }
 
 const mutations = {
-  getSystemWorkers(state, systemWorkers) {
+  getSystemWorkers (state, systemWorkers) {
     state.systemWorkers = systemWorkers
   },
 
-  storeSystemWorkers(state, systemWorkers) {
+  storeSystemWorkers (state, systemWorkers) {
     state.systemWorkers.push(systemWorkers)
   },
 
-  updatebSystemWorker(state, [systemWorkerId, systemWorker]) {
-    var systemWorkerIndex = state.systemWorker.findIndex((sys) => sys.stakeholder_id == systemWorkerId)
-    state.systemWorker.splice(systemWorkerIndex, 1, systemWorker)
+  updatebSystemWorker (state, [systemWorkerId, systemWorker]) {
+    var systemWorkerIndex = state.systemWorkers.findIndex((sys) => sys.stakeholder_id === systemWorkerId)
+    state.systemWorkers.splice(systemWorkerIndex, 1, systemWorker)
   },
 
-  deleteSystemWorker(state, systemWorkerId) {
-    state.systemWorker = state.systemWorker.filter((sys) => sys.stakeholder_id != systemWorkerId)
+  deleteSystemWorker (state, systemWorkerId) {
+    state.systemWorkers = state.systemWorkers.filter((sys) => sys.stakeholder_id !== systemWorkerId)
   }
 }
 

@@ -3,14 +3,14 @@ import Vuex from 'vuex'
 import alerts from './modules/alerts'
 import departments from './modules/departments'
 import pcs from './modules/pcs'
-import financial_categories from './modules/financial-categories'
+import financialCategories from './modules/financial-categories'
 import doctors from './modules/doctors'
-import billing_options from './modules/billing-options'
+import billingOptions from './modules/billing-options'
 import transactions from './modules/transactions'
 import modules from './modules/modules'
 import services from './modules/services'
-import closed_intervals from './modules/closed-intervals'
-import system_workers from './modules/system-workers'
+import closedIntervals from './modules/closed-intervals'
+import systemWorkers from './modules/system-workers'
 
 Vue.use(Vuex)
 
@@ -29,14 +29,14 @@ export default function (/* { ssrContext } */) {
       alerts,
       departments,
       pcs,
-      financial_categories,
+      financialCategories,
       doctors,
-      billing_options,
+      billingOptions,
       transactions,
       modules,
       services,
-      closed_intervals,
-      system_workers
+      closedIntervals,
+      systemWorkers
     },
 
     // enable strict mode (adds overhead!)

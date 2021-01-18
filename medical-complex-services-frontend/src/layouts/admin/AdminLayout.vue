@@ -52,86 +52,86 @@
 <script>
 const menuList = [
   {
-    icon: "text_snippet",
-    label: "التقارير",
-    route: "reports",
-    separator: true,
+    icon: 'text_snippet',
+    label: 'التقارير',
+    route: 'reports',
+    separator: true
   },
   {
-    icon: "list_alt",
-    label: "سجل العمليات",
-    route: "transactions",
-    separator: false,
+    icon: 'list_alt',
+    label: 'سجل العمليات',
+    route: 'transactions',
+    separator: false
   },
   {
-    icon: "medical_services",
-    label: "الخدمات",
-    route: "medical-services",
-    separator: false,
+    icon: 'medical_services',
+    label: 'الخدمات',
+    route: 'medical-services',
+    separator: false
   },
   {
-    icon: "group",
-    label: "المستخدمين",
-    route: "systemworkers",
-    separator: true,
+    icon: 'group',
+    label: 'المستخدمين',
+    route: 'systemworkers',
+    separator: true
   },
   {
-    icon: "dns",
-    label: "الخدمات الرئيسية",
-    route: "main-services",
-    separator: false,
+    icon: 'dns',
+    label: 'الخدمات الرئيسية',
+    route: 'main-services',
+    separator: false
   },
   {
-    icon: "money",
-    label: "الفئات المحاسبية",
-    route: "financial-categories",
-    separator: false,
+    icon: 'money',
+    label: 'الفئات المحاسبية',
+    route: 'financial-categories',
+    separator: false
   },
   {
-    icon: "category",
-    iconColor: "primary",
-    label: "الأقسام",
-    route: "departments",
-    separator: false,
+    icon: 'category',
+    iconColor: 'primary',
+    label: 'الأقسام',
+    route: 'departments',
+    separator: false
   },
   {
-    icon: "health_and_safety",
-    iconColor: "primary",
-    label: "الأطباء",
-    route: "doctors",
-    separator: false,
+    icon: 'health_and_safety',
+    iconColor: 'primary',
+    label: 'الأطباء',
+    route: 'doctors',
+    separator: false
   },
   {
-    icon: "computer",
-    iconColor: "primary",
-    label: "الأجهزة",
-    route: "pcs",
-    separator: false,
+    icon: 'computer',
+    iconColor: 'primary',
+    label: 'الأجهزة',
+    route: 'pcs',
+    separator: false
   },
   {
-    icon: "payment",
-    iconColor: "primary",
-    label: "طرق الدفع",
-    route: "billing-option",
-    separator: false,
+    icon: 'payment',
+    iconColor: 'primary',
+    label: 'طرق الدفع',
+    route: 'billing-option',
+    separator: false
   },
   {
-    icon: "",
-    iconColor: "primary",
-    label: "فترات العمل الغير متاحة ",
-    route: "closed-interval",
-    separator: false,
-  },
-];
+    icon: '',
+    iconColor: 'primary',
+    label: 'فترات العمل الغير متاحة ',
+    route: 'closed-interval',
+    separator: false
+  }
+]
 
 export default {
-  data() {
+  data () {
     return {
       drawer: false,
-      menuList,
-    };
-  },
-};
+      menuList
+    }
+  }
+}
 </script>
 
 <style>

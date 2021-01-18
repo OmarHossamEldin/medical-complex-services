@@ -9,8 +9,8 @@ const getters = {
 }
 
 const actions = {
-  indexBillingOptions({ commit }) {
-    axios.get("http://127.0.0.1:8000/api/billing-options").then(
+  indexBillingOptions ({ commit }) {
+    axios.get('billing-options').then(
       response => { commit('getBillingOptions', response.data[0]) }
     )
       .catch(error => {
@@ -18,17 +18,16 @@ const actions = {
       })
   },
 
-    storeBillingOption({ commit }, billingOption) {
-    axios.post("billing-options", billingOption).then(
-      response => { commit('storeBillingOptions', response.data[0]) }
+  storeBillingOption ({ commit }, billingOption) {
+    axios.post('billing-options', billingOption).then(
+      response => { commit('storeBillingOption', response.data[0]) }
     )
       .catch(error => {
         commit('failingRequest', error.response.data.errors.name[0])
       })
   },
 
-  updateBillingOption({ commit }, [billingOptionId, billingOption]) {
-
+  updateBillingOption ({ commit }, [billingOptionId, billingOption]) {
     axios.put(`billing-options/${billingOptionId}`, billingOption).then(
       response => { commit('updateBillingOption', [billingOptionId, response.data[0]]) }
     )
@@ -37,32 +36,33 @@ const actions = {
       })
   },
 
-  deleteBillingOption({ commit }, billingOptionId) {
+  deleteBillingOption ({ commit }, billingOptionId) {
     axios.delete(`billing-options/${billingOptionId}`).then(
       response => { commit('deleteBillingOption', billingOptionId) }
     )
       .catch(error => {
+        console.log(error)
         commit('failingRequest', error.response.data.errors.name[0])
       })
   }
 }
 
 const mutations = {
-  getBillingOptions(state, billingOptions) {
+  getBillingOptions (state, billingOptions) {
     state.billingOptions = billingOptions
   },
 
-  storeBillingOptions(state, billingOptions) {
-    state.billingOptions.push(billingOptions)
+  storeBillingOption (state, billingOption) {
+    state.billingOptions.push(billingOption)
   },
 
-  updatebBillingOption(state, [billingOptionId, billingOption]) {
-    var billingOptionIndex = state.billingOption.findIndex((bil) => bil.id == billingOptionId)
-    state.billingOption.splice(billingOptionIndex, 1, billingOption)
+  updateBillingOption (state, [billingOptionId, billingOption]) {
+    var billingOptionIndex = state.billingOptions.findIndex((bil) => bil.id === billingOptionId)
+    state.billingOptions.splice(billingOptionIndex, 1, billingOption)
   },
 
-  deleteBillingOption(state, billingOptionId) {
-    state.billingOption = state.billingOption.filter((fin) => fin.id != billingOptionId)
+  deleteBillingOption (state, billingOptionId) {
+    state.billingOptions = state.billingOptions.filter((fin) => fin.id !== billingOptionId)
   }
 }
 

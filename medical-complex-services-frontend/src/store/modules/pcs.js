@@ -9,8 +9,8 @@ const getters = {
 }
 
 const actions = {
-  indexPcs({ commit }) {
-    axios.get("http://127.0.0.1:8000/api/pcs").then(
+  indexPcs ({ commit }) {
+    axios.get('pcs').then(
       response => { commit('getPcs', response.data[0]) }
     )
       .catch(error => {
@@ -18,8 +18,8 @@ const actions = {
       })
   },
 
-  storePc({ commit }, pc) {
-    axios.post("pcs", pc).then(
+  storePc ({ commit }, pc) {
+    axios.post('pcs', pc).then(
       response => { commit('storePc', response.data[0]) }
     )
       .catch(error => {
@@ -27,8 +27,7 @@ const actions = {
       })
   },
 
-  updatePc({ commit }, [pcId, pc]) {
-
+  updatePc ({ commit }, [pcId, pc]) {
     axios.put(`pcs/${pcId}`, pc).then(
       response => { commit('updatePc', [pcId, response.data[0]]) }
     )
@@ -37,7 +36,7 @@ const actions = {
       })
   },
 
-  deletePc({ commit }, pcId) {
+  deletePc ({ commit }, pcId) {
     axios.delete(`pcs/${pcId}`).then(
       response => { commit('deletePc', pcId) }
     )
@@ -48,21 +47,21 @@ const actions = {
 }
 
 const mutations = {
-  getPcs(state, pcs) {
+  getPcs (state, pcs) {
     state.pcs = pcs
   },
 
-  storePc(state, pc) {
+  storePc (state, pc) {
     state.pcs.push(pc)
   },
 
-  updatePc(state, [pcId, pc]) {
-    var pcIndex = state.pcs.findIndex((pcc) => pcc.id == pcId)
+  updatePc (state, [pcId, pc]) {
+    var pcIndex = state.pcs.findIndex((pcc) => pcc.id === pcId)
     state.pcs.splice(pcIndex, 1, pc)
   },
 
-  deletePc(state, pcId) {
-    state.pcs = state.pcs.filter((pcc) => pcc.id != pcId)
+  deletePc (state, pcId) {
+    state.pcs = state.pcs.filter((pcc) => pcc.id !== pcId)
   }
 }
 

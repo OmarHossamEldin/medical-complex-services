@@ -1,16 +1,16 @@
 import axios from 'axios'
 
 const state = {
-  modules: [],
+  modules: []
 }
 
 const getters = {
-  allModules: state => state.modules,
+  allModules: state => state.modules
 }
 
 const actions = {
-  indexModules({ commit }) {
-    axios.get("http://127.0.0.1:8000/api/modules").then(
+  indexModules ({ commit }) {
+    axios.get('modules').then(
       response => { commit('getModules', response.data[0]) }
     )
       .catch(error => {
@@ -18,8 +18,8 @@ const actions = {
       })
   },
 
-  storeModule({ commit }, module) {
-    axios.post("modules", module).then(
+  storeModule ({ commit }, module) {
+    axios.post('modules', module).then(
       response => { commit('storeModule', response.data[0]) }
     )
       .catch(error => {
@@ -27,8 +27,7 @@ const actions = {
       })
   },
 
-  updateModule({ commit }, [moduleId, module]) {
-
+  updateModule ({ commit }, [moduleId, module]) {
     axios.put(`modules/${moduleId}`, module).then(
       response => { commit('updateModule', [moduleId, response.data[0]]) }
     )
@@ -37,7 +36,7 @@ const actions = {
       })
   },
 
-  deleteModule({ commit }, moduleId) {
+  deleteModule ({ commit }, moduleId) {
     axios.delete(`modules/${moduleId}`).then(
       response => { commit('deleteModule', moduleId) }
     )
@@ -48,21 +47,21 @@ const actions = {
 }
 
 const mutations = {
-  getModules(state, modules) {
+  getModules (state, modules) {
     state.modules = modules
   },
 
-  storeModule(state, module) {
+  storeModule (state, module) {
     state.modules.push(module)
   },
 
-  updateModule(state, [moduleId, module]) {
-    var moduleIndex = state.modules.findIndex((mod) => mod.id == moduleId)
+  updateModule (state, [moduleId, module]) {
+    var moduleIndex = state.modules.findIndex((mod) => mod.id === moduleId)
     state.modules.splice(moduleIndex, 1, module)
   },
 
-  deleteModule(state, moduleId) {
-    state.modules = state.modules.filter((mod) => mod.id != moduleId)
+  deleteModule (state, moduleId) {
+    state.modules = state.modules.filter((mod) => mod.id !== moduleId)
   }
 }
 

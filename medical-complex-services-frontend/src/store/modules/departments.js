@@ -1,16 +1,16 @@
 import axios from 'axios'
 
 const state = {
-  departments: [],
+  departments: []
 }
 
 const getters = {
-  allDepartments: state => state.departments,
+  allDepartments: state => state.departments
 }
 
 const actions = {
-  indexDepartments({ commit }) {
-    axios.get("http://127.0.0.1:8000/api/departments").then(
+  indexDepartments ({ commit }) {
+    axios.get('departments').then(
       response => { commit('getDepartments', response.data[0]) }
     )
       .catch(error => {
@@ -18,8 +18,8 @@ const actions = {
       })
   },
 
-  storeDepartment({ commit }, department) {
-    axios.post("departments", department).then(
+  storeDepartment ({ commit }, department) {
+    axios.post('departments', department).then(
       response => { commit('storeDepartment', response.data[0]) }
     )
       .catch(error => {
@@ -27,8 +27,7 @@ const actions = {
       })
   },
 
-  updateDepartment({ commit }, [departmentId, department]) {
-
+  updateDepartment ({ commit }, [departmentId, department]) {
     axios.put(`departments/${departmentId}`, department).then(
       response => { commit('updateDepartment', [departmentId, response.data[0]]) }
     )
@@ -37,7 +36,7 @@ const actions = {
       })
   },
 
-  deleteDepartment({ commit }, departmentId) {
+  deleteDepartment ({ commit }, departmentId) {
     axios.delete(`departments/${departmentId}`).then(
       response => { commit('deleteDepartment', departmentId) }
     )
@@ -48,21 +47,21 @@ const actions = {
 }
 
 const mutations = {
-  getDepartments(state, departments) {
+  getDepartments (state, departments) {
     state.departments = departments
   },
 
-  storeDepartment(state, department) {
+  storeDepartment (state, department) {
     state.departments.push(department)
   },
 
-  updateDepartment(state, [departmentId, department]) {
-    var departmentIndex = state.departments.findIndex((dep) => dep.id == departmentId)
+  updateDepartment (state, [departmentId, department]) {
+    var departmentIndex = state.departments.findIndex((dep) => dep.id === departmentId)
     state.departments.splice(departmentIndex, 1, department)
   },
 
-  deleteDepartment(state, departmentId) {
-    state.departments = state.departments.filter((dep) => dep.id != departmentId)
+  deleteDepartment (state, departmentId) {
+    state.departments = state.departments.filter((dep) => dep.id !== departmentId)
   }
 }
 

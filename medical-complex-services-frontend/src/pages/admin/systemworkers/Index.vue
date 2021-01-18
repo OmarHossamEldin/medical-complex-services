@@ -1,7 +1,7 @@
 <template>
   <div id="q-app">
     <div>
-      <h5 class="text-weight-bold">المستخدمين</h5>
+      <table-title :title="modelNamePlural"/>
       <q-table
         :data="data"
         :columns="columns"
@@ -12,63 +12,17 @@
         :rows-per-page-options="[20, 30, 50, 0]"
       >
         <template v-slot:top-right>
-          <q-input
-            borderless
-            dense
-            debounce="300"
-            v-model="filter"
-            placeholder="بحث"
-            outlined
-          >
-            <template v-slot:append>
-              <q-icon name="search" />
-            </template>
-          </q-input>
+          <table-search v-model="filter"></table-search>
         </template>
         <template v-slot:top-left>
-          <q-btn
+           <q-btn
             outline
             class="text-weight-bold"
             color="blue-grey-6"
-            label="اضافة مستخدم"
-            @click="show_add_dialog = true"
+            :label="'اضافة ' + modelName"
+            @click="filling_data_status = 'add'; filling_data_dialog = true"
             no-caps
           />
-
-          <div class="q-pa-sm q-gutter-sm">
-            <q-dialog v-model="show_add_dialog">
-              <q-card style="font-family: 'JF Flat';">
-                <q-card-section dir="rtl">
-                  <div>
-                    <p class="text-weight-bold">اضافة مستخدم جديد</p>
-
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>اسم المستخدم</label>
-                      <q-input
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.username"
-                        placeholder="ادخل اسم المستخدم"
-                      ></q-input>
-                    </div>
-
-                  </div>
-                </q-card-section>
-
-                <q-card-actions align="left">
-                  <q-btn
-                    rounded
-                    flat
-                    label="موافق"
-                    color="primary"
-                    v-close-popup
-                    @click="addItem"
-                  ></q-btn>
-                </q-card-actions>
-              </q-card>
-            </q-dialog>
-          </div>
         </template>
 
         <template v-slot:header="props">
@@ -85,9 +39,9 @@
         </template>
 
         <template v-slot:body="props">
-          <q-tr :props="props" class="table-body">
-            <q-td key="name" :props="props">
-              {{ props.row.username }}
+         <q-tr :props="props" class="table-body">
+            <q-td v-for="column in columns.slice(0, -1)" :key="column.name" :props="props">
+              {{ props.row[column.name] }}
             </q-td>
             <q-td key="actions" :props="props">
               <q-icon
@@ -95,9 +49,7 @@
                 name="edit"
                 color="blue-grey-7"
                 @click="
-                  editedItem.username = props.row.username;
-                  editId = props.row.id;
-                  show_edit_dialog = true;
+                  preEditItem(props.row)
                 "
               >
               <q-tooltip anchor="top middle" self="bottom middle" content-class="bg-blue-grey-7" :offset="[3, 3]">
@@ -118,20 +70,21 @@
 
             </q-td>
             <div class="q-pa-sm q-gutter-sm">
-              <q-dialog v-model="show_edit_dialog">
+              <q-dialog v-model="filling_data_dialog" @escape-key="close()" @hide="close()">
                 <q-card style="font-family: 'JF Flat';">
                   <q-card-section dir="rtl">
                     <div>
-                      <p class="text-weight-bold">تعديل المستخدم</p>
+                      <p v-if="filling_data_status == 'add' " class="text-weight-bold"> اضافة {{modelName}}</p>
+                      <p v-if="filling_data_status == 'edit' " class="text-weight-bold">تعديل {{modelName}}</p>
 
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>اسم المستخدم</label>
+                      <div v-for="column in columns.slice(0, -1)" :key="column.name" class="q-pa-sm q-gutter-sm">
+                        <label>{{column.label}}</label>
                         <q-input
-                          v-model="editedItem.username"
+                          v-model="editedItem[column.name]"
                           outlined
                           borderless
                           dense
-                          placeholder="ادخل اسم المستخدم"
+                          :placeholder="'ادخل ' + column.label"
                         ></q-input>
                       </div>
 
@@ -144,14 +97,14 @@
                       label="موافق"
                       color="primary"
                       v-close-popup
-                      @click="editItem()"
+                      @click="addOrEditItem()"
                     ></q-btn>
                     <q-btn
                       flat
                       label="إلغاء"
                       color="error"
                       v-close-popup
-                      @click="editedItem.username = defaultItem.username"
+                      @click="close()"
                     ></q-btn>
                   </q-card-actions>
                 </q-card>
@@ -196,82 +149,105 @@
 </style>
 
 <script>
-import { mapGetters, mapActions , mapMutations} from "vuex";
+import TableTitle from 'src/components/TableTitle.vue'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
+import TableSearch from 'src/components/TableSearch.vue'
 
 export default {
-  data() {
+  components: { TableTitle, TableSearch },
+  data () {
     return {
       editId: -1,
-      filter: "",
-      show_add_dialog: false,
-      show_edit_dialog: false,
+      filter: '',
+      filling_data_dialog: false,
+      filling_data_status: '',
+
+      modelName: 'مستخدم',
+      modelNamePlural: 'مستخدمين',
+      modelNameEnglish: 'SystemWorker',
+      modelNameEnglishPlural: 'SystemWorkers',
 
       editedItem: {
-        username: "",
+        username: ''
       },
 
       defaultItem: {
-        username: "",
+        username: ''
       },
 
       columns: [
         {
-          name: "username",
+          name: 'username',
           required: true,
-          label: "اسم المستخدم",
-          align: "left",
+          label: 'اسم المستخدم',
+          align: 'left',
           field: (row) => row.username,
           format: (val) => `${val}`,
-          sortable: true,
+          sortable: true
         },
         {
-          name: "actions",
-          label: "",
-          field: "actions",
-        },
-      ],
-    };
+          name: 'actions',
+          label: '',
+          field: 'actions'
+        }
+      ]
+    }
   },
-  created() {
-    this.index();
+  created () {
+    this.index()
   },
   computed: {
     ...mapGetters({
-      data: "allSystemWorkers",
-      errorMessage: "getErrorMessage",
-      requestFailed: "getRequestFailed",
-    }),
+      data: 'allSystemWorkers',
+      errorMessage: 'getErrorMessage',
+      requestFailed: 'getRequestFailed'
+    })
   },
   methods: {
-    ...mapMutations(["setFailingRequest"]),
+    ...mapMutations(['setFailingRequest']),
     ...mapActions({
-      index: "indexSystemWorkers",
-      store: "storeSystemWorker",
-      update: "updateSystemWorker",
-      delete: "deleteSystemWorker",
+      index: 'indexSystemWorkers',
+      store: 'storeSystemWorker',
+      update: 'updateSystemWorker',
+      delete: 'deleteSystemWorker'
     }),
-    resetFailingRequest() {
+    resetFailingRequest () {
       this.setFailingRequest(false)
     },
-    addItem() {
-      this.store(this.editedItem);
-      this.close();
+    preEditItem (row) {
+      var columnName = ''
+      for (var i = 0; i < this.columns.length - 1; i++) {
+        columnName = this.columns[i].name
+        this.editedItem[columnName] = row[columnName]
+      }
+      this.editId = row.id
+      this.filling_data_status = 'edit'
+      this.filling_data_dialog = true
     },
-    editItem() {
-      this.update([this.editId, this.editedItem]);
-      this.close();
+    addOrEditItem () {
+      if (this.filling_data_status === 'add') {
+        this.addItem()
+      } else if (this.filling_data_status === 'edit') {
+        this.editItem()
+      }
     },
-    deleteItem(item) {
-      confirm("هل تريد حذف هذا المستخدم بالتأكيد؟") &&
-        this.delete(item.id);
+    addItem () {
+      this.store(this.editedItem)
+      this.close()
     },
-    close() {
-      this.show_add_dialog = false;
-      this.show_edit_dialog = false;
-      setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-      }, 300);
+    editItem () {
+      this.update([this.editId, this.editedItem])
+      this.close()
     },
-  },
-};
+    deleteItem (item) {
+      confirm('هل تريد حذف هذا المستخدم بالتأكيد؟') &&
+        this.delete(item.id)
+    },
+    close () {
+      this.editedItem = Object.assign({}, this.defaultItem)
+      this.filling_data_status = ''
+      this.filling_data_dialog = false
+    }
+  }
+}
 </script>

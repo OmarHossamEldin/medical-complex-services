@@ -1,5 +1,5 @@
 const state = {
-  errorMessage: "",
+  errorMessage: '',
   requestFailed: false
 }
 
@@ -9,12 +9,12 @@ const getters = {
 }
 
 const mutations = {
-  failingRequest(state, errorMessage) {
+  failingRequest (state, errorMessage) {
     state.errorMessage = errorMessage
     state.requestFailed = true
   },
 
-  setFailingRequest(state, value) {
+  setFailingRequest (state, value) {
     state.requestFailed = value
   }
 }
@@ -24,4 +24,3 @@ export default {
   getters,
   mutations
 }
-

@@ -9,8 +9,8 @@ const getters = {
 }
 
 const actions = {
-  indexTransactions({ commit }) {
-    axios.get("http://127.0.0.1:8000/api/transactions").then(
+  indexTransactions ({ commit }) {
+    axios.get('transactions').then(
       response => { commit('getTransactions', response.data[0]) }
     )
       .catch(error => {
@@ -18,8 +18,8 @@ const actions = {
       })
   },
 
-  storeTransaction({ commit }, transaction) {
-    axios.post("transactions", transaction).then(
+  storeTransaction ({ commit }, transaction) {
+    axios.post('transactions', transaction).then(
       response => { commit('storeTransaction', response.data[0]) }
     )
       .catch(error => {
@@ -27,8 +27,7 @@ const actions = {
       })
   },
 
-  updateTransaction({ commit }, [transactionId, transaction]) {
-
+  updateTransaction ({ commit }, [transactionId, transaction]) {
     axios.put(`transactions/${transactionId}`, transaction).then(
       response => { commit('updateTransaction', [transactionId, response.data[0]]) }
     )
@@ -37,7 +36,7 @@ const actions = {
       })
   },
 
-  deleteTransaction({ commit }, transactionId) {
+  deleteTransaction ({ commit }, transactionId) {
     axios.delete(`transactions/${transactionId}`).then(
       response => { commit('deleteTransaction', transactionId) }
     )
@@ -48,21 +47,21 @@ const actions = {
 }
 
 const mutations = {
-  getTransactions(state, transactions) {
+  getTransactions (state, transactions) {
     state.transactions = transactions
   },
 
-  storeTransaction(state, transaction) {
+  storeTransaction (state, transaction) {
     state.transactions.push(transaction)
   },
 
-  updateTransaction(state, [transactionId, transaction]) {
-    var transactionIndex = state.transactions.findIndex((tran) => tran.transaction_id == transactionId)
+  updateTransaction (state, [transactionId, transaction]) {
+    var transactionIndex = state.transactions.findIndex((tran) => tran.transaction_id === transactionId)
     state.transactions.splice(transactionIndex, 1, transaction)
   },
 
-  deleteTransaction(state, transactionId) {
-    state.transactions = state.transactions.filter((tran) => tran.transaction_id != transactionId)
+  deleteTransaction (state, transactionId) {
+    state.transactions = state.transactions.filter((tran) => tran.transaction_id !== transactionId)
   }
 }
 

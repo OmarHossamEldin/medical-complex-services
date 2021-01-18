@@ -1,7 +1,7 @@
 <template>
   <div id="q-app">
     <div>
-      <h5 class="text-weight-bold">الخدمات</h5>
+      <table-title :title="modelNamePlural"/>
       <q-table
         :data="data"
         :columns="columns"
@@ -12,184 +12,17 @@
         :rows-per-page-options="[20, 30, 50, 0]"
       >
         <template v-slot:top-right>
-          <q-input
-            borderless
-            dense
-            debounce="300"
-            v-model="filter"
-            placeholder="بحث"
-            outlined
-          >
-            <template v-slot:append>
-              <q-icon name="search" />
-            </template>
-          </q-input>
+          <table-search v-model="filter"></table-search>
         </template>
         <template v-slot:top-left>
           <q-btn
             outline
             class="text-weight-bold"
             color="blue-grey-6"
-            label="اضافة خدمة"
-            @click="show_add_dialog = true"
+            :label="'اضافة ' + modelName"
+            @click="filling_data_status = 'add'; filling_data_dialog = true"
             no-caps
           />
-
-          <div class="q-pa-sm q-gutter-sm">
-            <q-dialog v-model="show_add_dialog">
-              <q-card style="font-family: 'JF Flat';">
-                <q-card-section dir="rtl">
-                  <div>
-                    <p class="text-weight-bold">اضافة خدمة جديدة</p>
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>اسم الخدمة</label>
-                      <q-input
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.name"
-                        placeholder="ادخل اسم الخدمة"
-                      ></q-input>
-                    </div>
-
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>السعر</label>
-                      <q-input
-                        style="margin: 10px 0;"
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.fixed_price"
-                        placeholder="ادخل السعر الثابت"
-                      ></q-input>
-                    </div>
-
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>غير متاحة في أيام</label>
-                      <q-input
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.timed"
-                        placeholder="ادخل الايام الغير متاحة"
-                      ></q-input>
-                    </div>
-
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>تتطلب طبيب</label>
-                      <q-input
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.requires_doctor"
-                        placeholder=""
-                      ></q-input>
-                    </div>
-
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>عدد المستهلكين الأساسيين</label>
-                      <q-input
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.main_consumer_number"
-                        placeholder="ادخل عدد المستهلكين الأساسيين"
-                      ></q-input>
-                    </div>
-
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>عدد المستهلكين الغير أساسيين</label>
-                      <q-input
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.associate_consumer_number"
-                        placeholder="ادخل عدد المستهلكين الغير أساسيين"
-                      ></q-input>
-                    </div>
-
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>معادلة السعر المتغير</label>
-                      <q-input
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.variable_price_equation"
-                        placeholder="ادخل معادلة السعر المتغير"
-                      ></q-input>
-                    </div>
-
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>نوع التسعيرة</label>
-                      <q-input
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.price_type_id"
-                        placeholder="ادخل نوع التسعيرة"
-                      ></q-input>
-                    </div>
-
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>نوع الخدمة</label>
-                      <q-input
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.service_type_id"
-                        placeholder="ادخل نوع الخدمة"
-                      ></q-input>
-                    </div>
-
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>القسم</label>
-                      <q-input
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.department_id"
-                        placeholder="ادخل اسم القسم"
-                      ></q-input>
-                    </div>
-
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>الخدمة</label>
-                      <q-input
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.service_id"
-                        placeholder="ادخل اسم الخدمة"
-                      ></q-input>
-                    </div>
-
-                    <div class="q-pa-sm q-gutter-sm">
-                      <label>الأجهزة المعتمدة</label>
-                      <q-input
-                        outlined
-                        borderless
-                        dense
-                        v-model="editedItem.pc_dependent"
-                        placeholder="ادخل اسم الجهاز"
-                      ></q-input>
-                    </div>
-
-                  </div>
-                </q-card-section>
-
-                <q-card-actions align="left">
-                  <q-btn
-                    rounded
-                    flat
-                    label="موافق"
-                    color="primary"
-                    v-close-popup
-                    @click="addItem"
-                  ></q-btn>
-                </q-card-actions>
-              </q-card>
-            </q-dialog>
-          </div>
         </template>
 
         <template v-slot:header="props">
@@ -207,56 +40,8 @@
 
         <template v-slot:body="props">
           <q-tr :props="props" class="table-body">
-            <q-td key="name" :props="props">
-              {{ props.row.name }}
-            </q-td>
-
-            <q-td key="fixed_price" :props="props">
-              {{ props.row.fixed_price }}
-            </q-td>
-
-            <q-td key="timed" :props="props">
-              {{ props.row.timed }}
-            </q-td>
-
-            <q-td key="requires_doctor" :props="props">
-              {{ props.row.requires_doctor }}
-            </q-td>
-
-            <q-td key="main_consumer_number" :props="props">
-              {{ props.row.main_consumer_number }}
-            </q-td>
-
-            <q-td key="associate_consumer_number" :props="props">
-              {{ props.row.associate_consumer_number }}
-            </q-td>
-
-            <q-td key="variable_price_equation" :props="props">
-              {{ props.row.variable_price_equation }}
-            </q-td>
-
-            <q-td v-if="props.row.price_type != null" key="price_type_id" :props="props">
-              {{ props.row.price_type.name }}
-            </q-td>
-
-            <q-td v-else key="price_type_id" :props="props">
-              فاضية
-            </q-td>
-
-            <q-td key="service_type_id" :props="props">
-              {{ props.row.service_type.name }}
-            </q-td>
-
-            <q-td v-if="props.row.department != null" key="department_id" :props="props">
-              {{ props.row.department.name }}
-            </q-td>
-
-            <q-td v-if="props.row.service != null" key="service_id" :props="props">
-              {{ props.row.service.name }}
-            </q-td>
-
-            <q-td key="pc_dependent" :props="props">
-              {{ props.row.pc_dependent }}
+            <q-td v-for="column in columns.slice(0, -1)" :key="column.name" :props="props">
+              {{ props.row[column.name] }}
             </q-td>
 
             <q-td key="actions" :props="props">
@@ -265,20 +50,7 @@
                 name="edit"
                 color="blue-grey-7"
                 @click="
-                  editedItem.name = props.row.name;
-                  editedItem.fixed_price = props.row.fixed_price;
-                  editedItem.timed = props.row.timed;
-                  editedItem.requires_doctor = props.row.requires_doctor;
-                  editedItem.main_consumer_number = props.row.main_consumer_number;
-                  editedItem.associate_consumer_number = props.row.associate_consumer_number;
-                  editedItem.variable_price_equation = props.row.variable_price_equation;
-                  editedItem.price_type_id = props.row.price_type_id;
-                  editedItem.service_type_id = props.row.service_type_id;
-                  editedItem.department_id = props.row.department_id;
-                  editedItem.service_id = props.row.service_id;
-                  editedItem.pc_dependent = props.row.pc_dependent;
-                  editId = props.row.id;
-                  show_edit_dialog = true;
+                  preEditItem(props.row)
                 "
               >
               <q-tooltip anchor="top middle" self="bottom middle" content-class="bg-blue-grey-7" :offset="[3, 3]">
@@ -299,140 +71,21 @@
 
             </q-td>
             <div class="q-pa-sm q-gutter-sm">
-              <q-dialog v-model="show_edit_dialog">
+              <q-dialog v-model="filling_data_dialog" @escape-key="close()" @hide="close()">
                 <q-card style="font-family: 'JF Flat';">
                   <q-card-section dir="rtl">
                     <div>
-                      <p class="text-weight-bold">تعديل الخدمة</p>
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>اسم الخدمة</label>
-                        <q-input
-                          v-model="editedItem.name"
-                          outlined
-                          borderless
-                          dense
-                          placeholder="ادخل اسم الخدمة"
-                        ></q-input>
-                      </div>
+                      <p v-if="filling_data_status == 'add' " class="text-weight-bold"> اضافة {{modelName}}</p>
+                      <p v-if="filling_data_status == 'edit' " class="text-weight-bold">تعديل {{modelName}}</p>
 
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>السعر</label>
+                      <div v-for="column in columns.slice(0, -1)" :key="column.name" class="q-pa-sm q-gutter-sm">
+                        <label>{{column.label}}</label>
                         <q-input
-                          v-model="editedItem.fixed_price"
+                          v-model="editedItem[column.name]"
                           outlined
                           borderless
                           dense
-                          placeholder="ادخل السعر الثابت"
-                        ></q-input>
-                      </div>
-
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>غير متاحة في أيام</label>
-                        <q-input
-                          v-model="editedItem.timed"
-                          outlined
-                          borderless
-                          dense
-                          placeholder="ادخل الايام الغير متاحة"
-                        ></q-input>
-                      </div>
-
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>تتطلب طبيب</label>
-                        <q-input
-                          v-model="editedItem.requires_doctor"
-                          outlined
-                          borderless
-                          dense
-                          placeholder=""
-                        ></q-input>
-                      </div>
-
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>عدد المستهلكين الأساسيين</label>
-                        <q-input
-                          v-model="editedItem.main_consumer_number"
-                          outlined
-                          borderless
-                          dense
-                          placeholder="ادخل عدد المستهلكين الأساسيين"
-                        ></q-input>
-                      </div>
-
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>عدد المستهلكين الغير الأساسيين</label>
-                        <q-input
-                          v-model="editedItem.associate_consumer_number"
-                          outlined
-                          borderless
-                          dense
-                          placeholder="ادخل عدد المستهلكين الغير الأساسيين"
-                        ></q-input>
-                      </div>
-
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>معادلة السعر المتغير</label>
-                        <q-input
-                          v-model="editedItem.variable_price_equation"
-                          outlined
-                          borderless
-                          dense
-                          placeholder="ادخل معادلة السعر المتغير"
-                        ></q-input>
-                      </div>
-
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>نوع التسعيرة</label>
-                        <q-input
-                          v-model="editedItem.price_type_id"
-                          outlined
-                          borderless
-                          dense
-                          placeholder="ادخل نوع التسعيرة"
-                        ></q-input>
-                      </div>
-
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>نوع الخدمة</label>
-                        <q-input
-                          v-model="editedItem.service_type_id"
-                          outlined
-                          borderless
-                          dense
-                          placeholder="ادخل نوع الخدمة"
-                        ></q-input>
-                      </div>
-
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>القسم</label>
-                        <q-input
-                          v-model="editedItem.department_id"
-                          outlined
-                          borderless
-                          dense
-                          placeholder="ادخل اسم القسم"
-                        ></q-input>
-                      </div>
-
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>الخدمة</label>
-                        <q-input
-                          v-model="editedItem.service_id"
-                          outlined
-                          borderless
-                          dense
-                          placeholder="ادخل اسم الخدمة"
-                        ></q-input>
-                      </div>
-
-                      <div class="q-pa-sm q-gutter-sm">
-                        <label>تعتمد علي جهاز</label>
-                        <q-input
-                          v-model="editedItem.pc_dependent"
-                          outlined
-                          borderless
-                          dense
-                          placeholder="ادخل اسم الجهاز"
+                          :placeholder="'ادخل ' + column.label"
                         ></q-input>
                       </div>
 
@@ -445,14 +98,14 @@
                       label="موافق"
                       color="primary"
                       v-close-popup
-                      @click="editItem()"
+                      @click="addOrEditItem()"
                     ></q-btn>
                     <q-btn
                       flat
                       label="إلغاء"
                       color="error"
                       v-close-popup
-                      @click="editedItem.name = defaultItem.name"
+                      @click="close()"
                     ></q-btn>
                   </q-card-actions>
                 </q-card>
@@ -497,196 +150,219 @@
 </style>
 
 <script>
-import { mapGetters, mapActions , mapMutations} from "vuex";
+import TableTitle from 'src/components/TableTitle.vue'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
+import TableSearch from 'src/components/TableSearch.vue'
 
 export default {
-  data() {
+  components: { TableTitle, TableSearch },
+  data () {
     return {
       editId: -1,
-      filter: "",
-      show_add_dialog: false,
-      show_edit_dialog: false,
+      filter: '',
+      filling_data_dialog: false,
+      filling_data_status: '',
+
+      modelName: 'خدمة',
+      modelNamePlural: 'خدمات',
+      modelNameEnglish: 'Service',
+      modelNameEnglishPlural: 'Services',
 
       editedItem: {
-        name: "",
-        fixed_price: "",
-        timed: "",
-        requires_doctor: "",
-        main_consumer_number: "",
-        associate_consumer_number: "",
-        variable_price_equation: "",
-        price_type_id: "",
-        service_type_id: "",
-        department_id: "",
-        service_id: "",
-        pc_dependent: "",
-        price_type: "",
+        name: '',
+        fixed_price: '',
+        timed: '',
+        requires_doctor: '',
+        main_consumer_number: '',
+        associate_consumer_number: '',
+        variable_price_equation: '',
+        price_type_id: '',
+        service_type_id: '',
+        department_id: '',
+        service_id: '',
+        pc_dependent: '',
+        price_type: ''
       },
 
       defaultItem: {
-        name: "",
-        fixed_price: "",
-        timed: "",
-        requires_doctor: "",
-        main_consumer_number: "",
-        associate_consumer_number: "",
-        variable_price_equation: "",
-        price_type_id: "",
-        service_type_id: "",
-        department_id: "",
-        service_id: "",
-        pc_dependent: "",
-        price_type: "",
+        name: '',
+        fixed_price: '',
+        timed: '',
+        requires_doctor: '',
+        main_consumer_number: '',
+        associate_consumer_number: '',
+        variable_price_equation: '',
+        price_type_id: '',
+        service_type_id: '',
+        department_id: '',
+        service_id: '',
+        pc_dependent: '',
+        price_type: ''
       },
 
       columns: [
         {
-          name: "name",
+          name: 'name',
           required: true,
-          label: "اسم الخدمة",
-          align: "left",
+          label: 'اسم الخدمة',
+          align: 'left',
           field: (row) => row.name,
           format: (val) => `${val}`,
-          sortable: true,
+          sortable: true
         },
         {
-          name: "fixed_price",
+          name: 'fixed_price',
           required: true,
-          label: " السعر الثابت ",
-          align: "left",
+          label: ' السعر الثابت ',
+          align: 'left',
           field: (row) => row.fixed_price,
           format: (val) => `${val}`,
-          sortable: true,
+          sortable: true
         },
         {
-          name: "timed",
+          name: 'timed',
           required: true,
-          label: "غير متاحة في أيام",
-          align: "left",
+          label: 'غير متاحة في أيام',
+          align: 'left',
           field: (row) => row.timed,
           format: (val) => `${val}`,
-          sortable: true,
+          sortable: true
         },
         {
-          name: "requires_doctor",
+          name: 'requires_doctor',
           required: true,
-          label: "الايام متاحة",
-          align: "left",
+          label: 'الايام متاحة',
+          align: 'left',
           field: (row) => row.requires_doctor,
           format: (val) => `${val}`,
-          sortable: true,
+          sortable: true
         },
         {
-          name: "main_consumer_number",
+          name: 'main_consumer_number',
           required: true,
-          label: " المستهلكين الأساسيين",
-          align: "left",
+          label: ' المستهلكين الأساسيين',
+          align: 'left',
           field: (row) => row.main_consumer_number,
           format: (val) => `${val}`,
-          sortable: true,
+          sortable: true
         },
         {
-          name: "associate_consumer_number",
+          name: 'associate_consumer_number',
           required: true,
-          label: " المستهلكين الغير أساسيين",
-          align: "left",
+          label: ' المستهلكين الغير أساسيين',
+          align: 'left',
           field: (row) => row.associate_consumer_number,
           format: (val) => `${val}`,
-          sortable: true,
+          sortable: true
         },
         {
-          name: "variable_price_equation",
+          name: 'variable_price_equation',
           required: true,
-          label: "معادلة السعر المتغير",
-          align: "left",
+          label: 'معادلة السعر المتغير',
+          align: 'left',
           field: (row) => row.variable_price_equation,
           format: (val) => `${val}`,
-          sortable: true,
+          sortable: true
         },
         {
-          name: "price_type_id",
+          name: 'price_type_id',
           required: true,
-          label: "نوع التسعيرة ",
-          align: "left",
+          label: 'نوع التسعيرة ',
+          align: 'left',
           field: (row) => row.price_type_id,
           format: (val) => `${val}`,
-          sortable: true,
+          sortable: true
         },
         {
-          name: "service_type_id",
+          name: 'service_type_id',
           required: true,
-          label: "نوع الخدمة ",
-          align: "left",
+          label: 'نوع الخدمة ',
+          align: 'left',
           field: (row) => row.service_type_id,
           format: (val) => `${val}`,
-          sortable: true,
+          sortable: true
         },
         {
-          name: "department_id",
+          name: 'department_id',
           required: true,
-          label: "القسم ",
-          align: "left",
+          label: 'القسم ',
+          align: 'left',
           field: (row) => row.department_id,
           format: (val) => `${val}`,
-          sortable: true,
+          sortable: true
         },
         {
-          name: "pc_dependent",
+          name: 'pc_dependent',
           required: true,
-          label: "تعتمد على جهاز",
-          align: "left",
+          label: 'تعتمد على جهاز',
+          align: 'left',
           field: (row) => row.pc_dependent,
           format: (val) => `${val}`,
-          sortable: true,
+          sortable: true
         },
         {
-          name: "actions",
-          label: "",
-          field: "actions",
-        },
-      ],
-    };
+          name: 'actions',
+          label: '',
+          field: 'actions'
+        }
+      ]
+    }
   },
-  created() {
-    this.index();
+  created () {
+    this.index()
   },
   computed: {
     ...mapGetters({
-      data: "allServices",
-      errorMessage: "getErrorMessage",
-      requestFailed: "getRequestFailed",
-    }),
+      data: 'allServices',
+      errorMessage: 'getErrorMessage',
+      requestFailed: 'getRequestFailed'
+    })
   },
   methods: {
-    ...mapMutations(["setFailingRequest"]),
+    ...mapMutations(['setFailingRequest']),
     ...mapActions({
-      index: "indexServices",
-      store: "storeService",
-      update: "updateService",
-      delete: "deleteService",
+      index: 'indexServices',
+      store: 'storeService',
+      update: 'updateService',
+      delete: 'deleteService'
     }),
-    resetFailingRequest() {
+    resetFailingRequest () {
       this.setFailingRequest(false)
     },
-    addItem() {
-      this.store(this.editedItem);
-      this.close();
+    addItem () {
+      this.store(this.editedItem)
+      this.close()
     },
-    editItem() {
-      this.update([this.editId, this.editedItem]);
-      this.close();
+    preEditItem (row) {
+      var columnName = ''
+      for (var i = 0; i < this.columns.length - 1; i++) {
+        columnName = this.columns[i].name
+        this.editedItem[columnName] = row[columnName]
+      }
+      this.editId = row.id
+      this.filling_data_status = 'edit'
+      this.filling_data_dialog = true
     },
-    deleteItem(item) {
-      confirm("هل تريد حذف هذه الخدمة بالتأكيد؟") &&
-        this.delete(item.id);
+    addOrEditItem () {
+      if (this.filling_data_status === 'add') {
+        this.addItem()
+      } else if (this.filling_data_status === 'edit') {
+        this.editItem()
+      }
     },
-    close() {
-      this.show_add_dialog = false;
-      this.show_edit_dialog = false;
-      setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-      }, 300);
+    editItem () {
+      this.update([this.editId, this.editedItem])
+      this.close()
     },
-  },
-};
+    deleteItem (item) {
+      confirm('هل تريد حذف هذه الخدمة بالتأكيد؟') &&
+        this.delete(item.id)
+    },
+    close () {
+      this.editedItem = Object.assign({}, this.defaultItem)
+      this.filling_data_status = ''
+      this.filling_data_dialog = false
+    }
+  }
+}
 </script>

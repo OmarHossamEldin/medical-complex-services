@@ -9,8 +9,8 @@ const getters = {
 }
 
 const actions = {
-  indexClosedIntervals({ commit }) {
-    axios.get("http://127.0.0.1:8000/api/closed-intervals").then(
+  indexClosedIntervals ({ commit }) {
+    axios.get('closed-intervals').then(
       response => { commit('getClosedIntervals', response.data[0]) }
     )
       .catch(error => {
@@ -18,8 +18,8 @@ const actions = {
       })
   },
 
-    storeClosedInterval({ commit }, closedInterval) {
-    axios.post("closed-intervals", closedInterval).then(
+  storeClosedInterval ({ commit }, closedInterval) {
+    axios.post('closed-intervals', closedInterval).then(
       response => { commit('storeClosedInterval', response.data[0]) }
     )
       .catch(error => {
@@ -27,8 +27,7 @@ const actions = {
       })
   },
 
-  updateClosedInterval({ commit }, [closedIntervalId, closedInterval]) {
-
+  updateClosedInterval ({ commit }, [closedIntervalId, closedInterval]) {
     axios.put(`closed-intervals/${closedIntervalId}`, closedInterval).then(
       response => { commit('updateClosedInterval', [closedIntervalId, response.data[0]]) }
     )
@@ -37,9 +36,9 @@ const actions = {
       })
   },
 
-  deleteBillingOption({ commit }, billingOptionId) {
-    axios.delete(`billing-options/${billingOptionId}`).then(
-      response => { commit('deleteBillingOption', billingOptionId) }
+  deleteClosedInterval ({ commit }, closedIntervalId) {
+    axios.delete(`closed-intervals/${closedIntervalId}`).then(
+      response => { commit('deleteClosedInterval', closedIntervalId) }
     )
       .catch(error => {
         commit('failingRequest', error.response.data.errors.name[0])
@@ -48,21 +47,21 @@ const actions = {
 }
 
 const mutations = {
-  getClosedIntervals(state, closedIntervals) {
+  getClosedIntervals (state, closedIntervals) {
     state.closedIntervals = closedIntervals
   },
 
-  storeClosedInterval(state, closedInterval) {
-    state.closedInterval.push(closedInterval)
+  storeClosedInterval (state, closedInterval) {
+    state.closedIntervals.push(closedInterval)
   },
 
-  updatebClosedInterval(state, [closedIntervalId, closedInterval]) {
-    var billingOptionIndex = state.billingOption.findIndex((bil) => bil.id == billingOptionId)
-    state.closedInterval.splice(closedIntervalIndex, 1, closedInterval)
+  updatebClosedInterval (state, [closedIntervalId, closedInterval]) {
+    var closedIntervalIndex = state.closedIntervals.findIndex((closedInterval) => closedInterval.id === closedIntervalId)
+    state.closedIntervals.splice(closedIntervalIndex, 1, closedInterval)
   },
 
-  deleteBillingOption(state, billingOptionId) {
-    state.billingOption = state.billingOption.filter((fin) => fin.id != billingOptionId)
+  deleteClosedInterval (state, closedIntervalId) {
+    state.closedIntervals = state.closedIntervals.filter((closedInterval) => closedInterval.id !== closedIntervalId)
   }
 }
 
