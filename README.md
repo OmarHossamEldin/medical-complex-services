@@ -779,5 +779,13 @@ end
 ## Components
 
 
+# Future Work
+
+- Upgrade to PHP 8.0 and install these extensions:
+1. Postgres
+1. WebSockets
+1. Oracle (oci8)
+
+
 
 
