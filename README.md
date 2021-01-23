@@ -427,6 +427,7 @@ Not all stakeholders can have login credentials.
         - barcode: a barcode number will be associated with any stakeholder.
         - wallet: the amount of money that the system worker should pay, and the amount of money that the consumer has, it may be positive or negative.
         - patient_code: it may be optional in some cases (رقم الحاسب).
+        - blocked: to allow admins to block some stakeholders.
     - Relations:
         - Rank (m - 1): each stakeholder **must** have a rank.
         - Service (m - n): any stakeholder may be blocked to any service. This relation is intended to block very specific stakeholders to any service.
@@ -453,7 +454,7 @@ Not all stakeholders can have login credentials.
         
     - Relations:
         - SystemWorker (inheritance): Doctor inherits from SystemWorker as it **may** have login username and password.
-        - Department (1 - m): each doctor should be in a department, e.g.(باطنة، رمد).
+        - Department (m - 1): each doctor should be in a department, e.g.(باطنة، رمد).
         - Transaction (m - n): each doctor can make many transactions, a transaction can be made with many doctors, the first doctor **must** be in the same department of the service, the optional other doctors **may** be from other departments. Example: A heart internal department can have a main doctor for a surgery, and another doctor for (التخدير).
         - Degree (m - 1): each doctor should have a degree(استشارى، اخصائى، استاذ).
 
@@ -519,12 +520,12 @@ Not all stakeholders can have login credentials.
         - Role (m - n): each service has the roles of **system workers** that are allowed to register the service.
         - Department (m - 1): each service **may** have a specific department of **doctors** to be completed, like in (الكشوفات).
         - ServiceType (m - 1): each service **must** have a type (main, continous, follower).
-        - ClosedInterval (1 - m): each service **may** have time intervals in which they are not accessible.
+        - ClosedInterval (m - n): each service **may** have time intervals in which they are not accessible.
         - PriceType (m - 1): eah service **must** have a pricing type (fixed, variable).
         - VariableLabel (1 - m): each service **may** have many variables each with a label (only in variable price).
         - BillingOption (m - n): each service **may** have another options for billing to allow the system worker to choose from them (cash, use from wallet). A code like (رقم الفاتورة - رقم التسجيل) **may** be saved.
         - FinancialCategory (m - n): each service **may** have options for financial categories to allow the system worker to choose from them (اجنبى، والدين).
-        - LinkedNodes (1 - m): each **continous** service may have many linked nodes (جلسات).
+        
         - FollowerConstraint (m - n): each **follower** service should have constraints on its consumption, these constraints are between the follower service and the main service intended to be followed , each constraint may be active or not. Constraints are like: date difference between follower and main service (15 days), and if the same doctor should be in the two services or not.
         - Transaction (1 - m): each transaction must made on one service.
         - Rank (m - n) (constrained relation): to control the differences inside the service according to the ranks.
@@ -573,6 +574,7 @@ Not all stakeholders can have login credentials.
         - printing_count: the number of times the receipt was printed.
     - Relations:
         - Transaction (recursive, following): each follower-type service transaction **may** be linked to a main-type service transaction (sibling node in the service tree) on satisfying the following constraints.
+        - LinkedNodes (1 - m): each **continous** service transaction may have many linked nodes (جلسات).
 
 1. **FinancialCategory**: (الفئات المحاسبية: والدين، اجنبى، شركات) Financial categories can be automatically detected if it's linked with ranks.
     - Attributes:
@@ -775,6 +777,14 @@ end
 ## Layouts
 
 ## Components
+
+
+# Future Work
+
+- Upgrade to PHP 8.0 and install these extensions:
+1. Postgres
+1. WebSockets
+1. Oracle (oci8)
 
 
 
