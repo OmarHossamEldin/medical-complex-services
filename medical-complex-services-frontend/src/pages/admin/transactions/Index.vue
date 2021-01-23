@@ -31,7 +31,7 @@
               v-for="col in props.cols"
               :key="col.name"
               :props="props"
-              class="table-header"
+              class="table-he er"
             >
               {{ col.label }}
             </q-th>

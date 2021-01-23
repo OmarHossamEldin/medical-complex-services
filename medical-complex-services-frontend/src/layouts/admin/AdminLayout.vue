@@ -11,7 +11,7 @@
       <q-drawer
         v-model="drawer"
         show-if-above
-        :width="250"
+        :width="300"
         :breakpoint="500"
         bordered
         content-class="bg-blue-grey-2 text-subtitle1 text-weight-bold"
