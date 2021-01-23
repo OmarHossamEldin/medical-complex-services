@@ -41,6 +41,20 @@ const routes = [
   },
 
   {
+    path: '/',
+    component: () => import('layouts/frontend/MainLayout.vue'),
+    children: [
+      { path: 'login', component: () => import('pages/frontend/authentication/Login.vue') },
+      { path: 'home', component: () => import('pages/frontend/home/Home.vue') },
+      { path: 'edit-profile', component: () => import('pages/frontend/profile/Editprofile.vue') },
+      { path: 'not-found', component: () => import('pages/frontend/errors/Notfound.vue') },
+      { path: 'not-have-permission', component: () => import('pages/frontend/errors/Permission.vue') },
+      { path: 'service', component: () => import('pages/frontend/services/Service.vue') }
+
+    ]
+  },
+
+  {
     path: '/admin-panel',
     component: () => import('layouts/admin/AdminLayout.vue')
   }
