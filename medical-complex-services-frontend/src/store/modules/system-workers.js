@@ -5,7 +5,14 @@ const state = {
 }
 
 const getters = {
-  allSystemWorkers: state => state.systemWorkers
+  allSystemWorkers: state => state.systemWorkers,
+  systemWorkersOptions: state =>
+    state.systemWorkers.map(obj => {
+      var optionsObj = {}
+      optionsObj.label = obj.username
+      optionsObj.value = obj.id
+      return optionsObj
+    })
 }
 
 const actions = {
@@ -14,7 +21,7 @@ const actions = {
       response => { commit('getSystemWorkers', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -23,7 +30,7 @@ const actions = {
       response => { commit('storeSystemWorkers', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -32,7 +39,7 @@ const actions = {
       response => { commit('updateSystemWorker', [systemWorkerId, response.data[0]]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -41,7 +48,7 @@ const actions = {
       response => { commit('deleteSystemWorker', systemWorkerId) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   }
 }

@@ -44,7 +44,10 @@
         <template v-slot:body="props">
           <q-tr :props="props" class="table-body">
             <q-td v-for="column in columns.slice(0, -1)" :key="column.name" :props="props">
-              {{ props.row[column.name] }}
+              <p v-if="column.field(props.row) === null"> لا يوجد </p>
+              <p v-else-if="column.field(props.row) === true"> نعم </p>
+              <p v-else-if="column.field(props.row) === false"> لا </p>
+              <p v-else> {{ column.field(props.row) }} </p>
             </q-td>
             <q-td key="actions" :props="props">
               <q-icon
@@ -75,24 +78,55 @@
         </template>
 
       </q-table>
-
-      <div class="q-pa-sm q-gutter-sm">
               <q-dialog v-model="filling_data_dialog" @escape-key="close()" @hide="close()">
                 <q-card style="font-family: 'JF Flat';">
                   <q-card-section dir="rtl">
-                    <div>
-                      <p v-if="filling_data_status == 'add' " class="text-weight-bold"> اضافة {{modelName}}</p>
-                      <p v-if="filling_data_status == 'edit' " class="text-weight-bold">تعديل {{modelName}}</p>
-
-                      <div v-for="column in columns.slice(0, -1)" :key="column.name" class="q-pa-sm q-gutter-sm">
+                    <p v-if="filling_data_status == 'add' " class="text-weight-bold"> اضافة {{modelName}}</p>
+                    <p v-if="filling_data_status == 'edit' " class="text-weight-bold">تعديل {{modelName}}</p>
+                    <div class="row wrap">
+                      <div v-for="column in columns.slice(0, -1)" :key="column.name" class="col-grow q-pa-lg q-gutter-sm">
                         <label>{{column.label}}</label>
                         <q-input
+                          v-if="column.type=='input'"
                           v-model="editedItem[column.name]"
                           outlined
                           borderless
                           dense
                           :placeholder="'ادخل ' + column.label"
                         ></q-input>
+                        <q-select
+                          v-if="column.type=='select'"
+                          v-model="editedItem[column.name]"
+                          :options="options[column.name]"
+                          outlined
+                          borderless
+                          dense
+                          emit-value
+                          map-options
+                        ></q-select>
+                        <q-checkbox v-if="column.type=='checkbox'" v-model="editedItem[column.name]"/>
+                        <q-input v-if="column.type=='time'" filled v-model="editedItem[column.name]" mask="time" :rules="['time']">
+                          <template v-slot:append>
+                            <q-icon name="access_time" class="cursor-pointer">
+                              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                                <q-time v-model="editedItem[column.name]">
+                                  <div class="row items-center justify-end">
+                                    <q-btn v-close-popup label="Close" color="primary" flat />
+                                  </div>
+                                </q-time>
+                              </q-popup-proxy>
+                            </q-icon>
+                          </template>
+                        </q-input>
+                        <div v-if="column.type=='checkbox_selection'" class="q-gutter-sm">
+                          <q-checkbox v-model="editedItem[column.name]" :val="column.selection_array[0]" :label="column.selection_array[0]"/>
+                          <q-checkbox v-model="editedItem[column.name]" :val="column.selection_array[1]" :label="column.selection_array[1]"/>
+                          <q-checkbox v-model="editedItem[column.name]" :val="column.selection_array[2]" :label="column.selection_array[2]"/>
+                          <q-checkbox v-model="editedItem[column.name]" :val="column.selection_array[3]" :label="column.selection_array[3]"/>
+                          <q-checkbox v-model="editedItem[column.name]" :val="column.selection_array[4]" :label="column.selection_array[4]"/>
+                          <q-checkbox v-model="editedItem[column.name]" :val="column.selection_array[5]" :label="column.selection_array[5]"/>
+                          <q-checkbox v-model="editedItem[column.name]" :val="column.selection_array[6]" :label="column.selection_array[6]"/>
+                        </div>
                       </div>
 
                     </div>
@@ -116,8 +150,6 @@
                   </q-card-actions>
                 </q-card>
               </q-dialog>
-      </div>
-
     </div>
 
     <q-dialog v-model="requestFailed">
@@ -154,7 +186,7 @@ export default {
   components: { TableTitle, TableSearch },
 
   props: ['modelName', 'modelNamePlural', 'modelNameEnglish', 'modelNameEnglishPlural', 'columns', 'item', 'defaultItem',
-    'data', 'index', 'store', 'update', 'delete'],
+    'data', 'index', 'store', 'update', 'delete', 'options'],
 
   data () {
     return {
@@ -218,7 +250,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .table-header {
   font-size: 20px;
   font-weight: bold;

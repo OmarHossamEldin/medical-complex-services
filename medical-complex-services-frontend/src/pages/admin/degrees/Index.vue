@@ -1,13 +1,13 @@
 <template>
   <index-table
-    modelName='خدمة رئيسية'
-    modelNamePlural='خدمات رئيسية'
-    modelNameEnglish='Module'
-    modelNameEnglishPlural='Modules'
+    modelName="درجة"
+    modelNamePlural="الدرجات"
+    modelNameEnglish="Degree"
+    modelNameEnglishPlural="Degrees"
     :columns="columns"
     :item="editedItem"
     :defaultItem="defaultItem"
-    :data="modules"
+    :data="degrees"
     :index="index"
     :store="store"
     :update="update"
@@ -27,7 +27,6 @@ export default {
       editedItem: {
         name: ''
       },
-
       defaultItem: {
         name: ''
       },
@@ -36,7 +35,7 @@ export default {
         {
           name: 'name',
           required: true,
-          label: 'اسم الخدمة',
+          label: 'اسم الدرجة',
           align: 'left',
           field: (row) => row.name,
           format: (val) => `${val}`,
@@ -53,15 +52,15 @@ export default {
   },
   computed: {
     ...mapGetters({
-      modules: 'allModules'
+      degrees: 'allDegrees'
     })
   },
   methods: {
     ...mapActions({
-      index: 'indexModules',
-      store: 'storeModule',
-      update: 'updateModule',
-      del: 'deleteModule'
+      index: 'indexDegrees',
+      store: 'storeDegree',
+      update: 'updateDegree',
+      del: 'deleteDegree'
     })
   }
 }

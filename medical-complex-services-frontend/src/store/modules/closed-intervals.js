@@ -14,7 +14,7 @@ const actions = {
       response => { commit('getClosedIntervals', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -23,7 +23,7 @@ const actions = {
       response => { commit('storeClosedInterval', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -32,7 +32,7 @@ const actions = {
       response => { commit('updateClosedInterval', [closedIntervalId, response.data[0]]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -41,7 +41,7 @@ const actions = {
       response => { commit('deleteClosedInterval', closedIntervalId) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   }
 }

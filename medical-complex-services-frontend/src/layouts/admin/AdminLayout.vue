@@ -71,6 +71,12 @@ const menuList = [
   },
   {
     icon: 'group',
+    label: 'الاشخاص',
+    route: 'stakeholders',
+    separator: true
+  },
+  {
+    icon: 'group',
     label: 'المستخدمين',
     route: 'systemworkers',
     separator: true
@@ -120,6 +126,41 @@ const menuList = [
     iconColor: 'primary',
     label: 'فترات العمل الغير متاحة ',
     route: 'closed-interval',
+    separator: false
+  },
+  {
+    icon: '',
+    iconColor: 'primary',
+    label: 'الرتب ',
+    route: 'ranks',
+    separator: false
+  },
+  {
+    icon: '',
+    iconColor: 'primary',
+    label: 'أنواع التسعير ',
+    route: 'price-types',
+    separator: false
+  },
+  {
+    icon: '',
+    iconColor: 'primary',
+    label: 'أنواع الخدمات ',
+    route: 'service-types',
+    separator: false
+  },
+  {
+    icon: 'rule',
+    iconColor: 'primary',
+    label: 'المهمام الوظيفية ',
+    route: 'roles',
+    separator: false
+  },
+  {
+    icon: '',
+    iconColor: 'primary',
+    label: 'الدرجات ',
+    route: 'degrees',
     separator: false
   }
 ]

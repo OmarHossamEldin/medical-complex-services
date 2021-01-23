@@ -5,7 +5,14 @@ const state = {
 }
 
 const getters = {
-  allDepartments: state => state.departments
+  allDepartments: state => state.departments,
+  departmentsOptions: state =>
+    state.departments.map(obj => {
+      var optionsObj = {}
+      optionsObj.label = obj.name
+      optionsObj.value = obj.id
+      return optionsObj
+    })
 }
 
 const actions = {
@@ -14,7 +21,7 @@ const actions = {
       response => { commit('getDepartments', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -23,7 +30,7 @@ const actions = {
       response => { commit('storeDepartment', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -32,7 +39,7 @@ const actions = {
       response => { commit('updateDepartment', [departmentId, response.data[0]]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -41,7 +48,7 @@ const actions = {
       response => { commit('deleteDepartment', departmentId) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   }
 }

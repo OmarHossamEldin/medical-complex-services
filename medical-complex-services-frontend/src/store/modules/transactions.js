@@ -14,7 +14,7 @@ const actions = {
       response => { commit('getTransactions', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -23,7 +23,7 @@ const actions = {
       response => { commit('storeTransaction', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -32,7 +32,7 @@ const actions = {
       response => { commit('updateTransaction', [transactionId, response.data[0]]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -41,7 +41,7 @@ const actions = {
       response => { commit('deleteTransaction', transactionId) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   }
 }
@@ -56,12 +56,12 @@ const mutations = {
   },
 
   updateTransaction (state, [transactionId, transaction]) {
-    var transactionIndex = state.transactions.findIndex((tran) => tran.transaction_id === transactionId)
+    var transactionIndex = state.transactions.findIndex((tran) => tran.id === transactionId)
     state.transactions.splice(transactionIndex, 1, transaction)
   },
 
   deleteTransaction (state, transactionId) {
-    state.transactions = state.transactions.filter((tran) => tran.transaction_id !== transactionId)
+    state.transactions = state.transactions.filter((tran) => tran.id !== transactionId)
   }
 }
 

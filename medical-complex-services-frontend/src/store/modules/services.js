@@ -5,7 +5,14 @@ const state = {
 }
 
 const getters = {
-  allServices: state => state.services
+  allServices: state => state.services,
+  servicesOptions: state =>
+    state.services.map(obj => {
+      var optionsObj = {}
+      optionsObj.label = obj.name
+      optionsObj.value = obj.id
+      return optionsObj
+    })
 }
 
 const actions = {
@@ -14,7 +21,7 @@ const actions = {
       response => { commit('getServices', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -23,7 +30,7 @@ const actions = {
       response => { commit('storeService', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.ip[0] + error.response.data.errors.mac_address[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -32,7 +39,7 @@ const actions = {
       response => { commit('updateService', [serviceId, response.data[0]]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.ip[0] + error.response.data.errors.mac_address[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -41,7 +48,7 @@ const actions = {
       response => { commit('deleteService', serviceId) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   }
 }

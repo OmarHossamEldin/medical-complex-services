@@ -5,7 +5,14 @@ const state = {
 }
 
 const getters = {
-  allFinancialCategories: state => state.financialCategories
+  allFinancialCategories: state => state.financialCategories,
+  financialCategoriesOptions: state =>
+    state.financialCategories.map(obj => {
+      var optionsObj = {}
+      optionsObj.label = obj.name
+      optionsObj.value = obj.id
+      return optionsObj
+    })
 }
 
 const actions = {
@@ -14,34 +21,34 @@ const actions = {
       response => { commit('getFinancialCategories', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
-  storeFinancialCategories ({ commit }, financialCategories) {
+  storeFinancialCategory ({ commit }, financialCategories) {
     axios.post('financial-categories', financialCategories).then(
-      response => { commit('storeFinancialCategories', response.data[0]) }
+      response => { commit('storeFinancialCategory', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
-  updateFinancialCategories ({ commit }, [financialCategoriesId, financialCategories]) {
-    axios.put(`financial-categories/${financialCategoriesId}`, financialCategories).then(
-      response => { commit('updateFinancialCategories', [financialCategoriesId, response.data[0]]) }
+  updateFinancialCategory ({ commit }, [financialCategoryId, financialCategories]) {
+    axios.put(`financial-categories/${financialCategoryId}`, financialCategories).then(
+      response => { commit('updateFinancialCategory', [financialCategoryId, response.data[0]]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
-  deleteFinancialCategories ({ commit }, financialCategoriesId) {
-    axios.delete(`financial-categories/${financialCategoriesId}`).then(
-      response => { commit('deleteFinancialCategories', financialCategoriesId) }
+  deleteFinancialCategory ({ commit }, financialCategoryId) {
+    axios.delete(`financial-categories/${financialCategoryId}`).then(
+      response => { commit('deleteFinancialCategory', financialCategoryId) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   }
 }
@@ -51,17 +58,17 @@ const mutations = {
     state.financialCategories = financialCategories
   },
 
-  storeFinancialCategories (state, financialCategories) {
+  storeFinancialCategory (state, financialCategories) {
     state.financialCategories.push(financialCategories)
   },
 
-  updateFinancialCategories (state, [financialCategoriesId, financialCategories]) {
-    var financialCategoriesIndex = state.financialCategories.findIndex((fin) => fin.id === financialCategoriesId)
+  updateFinancialCategory (state, [financialCategoryId, financialCategories]) {
+    var financialCategoriesIndex = state.financialCategories.findIndex((fin) => fin.id === financialCategoryId)
     state.financialCategories.splice(financialCategoriesIndex, 1, financialCategories)
   },
 
-  deleteFinancialCategories (state, financialCategoriesId) {
-    state.financialCategories = state.financialCategories.filter((fin) => fin.id !== financialCategoriesId)
+  deleteFinancialCategory (state, financialCategoryId) {
+    state.financialCategories = state.financialCategories.filter((fin) => fin.id !== financialCategoryId)
   }
 }
 

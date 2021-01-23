@@ -39,7 +39,8 @@ export default {
           align: 'left',
           field: (row) => row.name,
           format: (val) => `${val}`,
-          sortable: true
+          sortable: true,
+          type: 'input'
         },
         {
           name: 'actions',

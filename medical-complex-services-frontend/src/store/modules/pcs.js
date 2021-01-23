@@ -5,7 +5,14 @@ const state = {
 }
 
 const getters = {
-  allPcs: state => state.pcs
+  allPcs: state => state.pcs,
+  pcsOptions: state =>
+    state.pcs.map(obj => {
+      var optionsObj = {}
+      optionsObj.label = obj.name
+      optionsObj.value = obj.id
+      return optionsObj
+    })
 }
 
 const actions = {
@@ -14,7 +21,7 @@ const actions = {
       response => { commit('getPcs', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -23,7 +30,7 @@ const actions = {
       response => { commit('storePc', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.ip[0] + error.response.data.errors.mac_address[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -32,7 +39,7 @@ const actions = {
       response => { commit('updatePc', [pcId, response.data[0]]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.ip[0] + error.response.data.errors.mac_address[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -41,7 +48,7 @@ const actions = {
       response => { commit('deletePc', pcId) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   }
 }

@@ -11,6 +11,12 @@ import modules from './modules/modules'
 import services from './modules/services'
 import closedIntervals from './modules/closed-intervals'
 import systemWorkers from './modules/system-workers'
+import stakeholders from './modules/stakeholders'
+import ranks from './modules/ranks'
+import priceTypes from './modules/price-types'
+import serviceTypes from './modules/service-types'
+import roles from './modules/roles'
+import degrees from './modules/degrees'
 
 Vue.use(Vuex)
 
@@ -36,7 +42,13 @@ export default function (/* { ssrContext } */) {
       modules,
       services,
       closedIntervals,
-      systemWorkers
+      systemWorkers,
+      stakeholders,
+      ranks,
+      priceTypes,
+      serviceTypes,
+      roles,
+      degrees
     },
 
     // enable strict mode (adds overhead!)

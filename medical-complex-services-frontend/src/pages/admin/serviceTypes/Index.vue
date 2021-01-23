@@ -1,13 +1,13 @@
 <template>
   <index-table
-    modelName='خدمة رئيسية'
-    modelNamePlural='خدمات رئيسية'
-    modelNameEnglish='Module'
-    modelNameEnglishPlural='Modules'
+    modelName='نوع خدمة'
+    modelNamePlural='أنواع الخدمات'
+    modelNameEnglish='ServiceType'
+    modelNameEnglishPlural='ServiceTypes'
     :columns="columns"
     :item="editedItem"
     :defaultItem="defaultItem"
-    :data="modules"
+    :data="serviceTypes"
     :index="index"
     :store="store"
     :update="update"
@@ -36,7 +36,7 @@ export default {
         {
           name: 'name',
           required: true,
-          label: 'اسم الخدمة',
+          label: 'نوع الخدمة',
           align: 'left',
           field: (row) => row.name,
           format: (val) => `${val}`,
@@ -53,15 +53,15 @@ export default {
   },
   computed: {
     ...mapGetters({
-      modules: 'allModules'
+      serviceTypes: 'allServiceTypes'
     })
   },
   methods: {
     ...mapActions({
-      index: 'indexModules',
-      store: 'storeModule',
-      update: 'updateModule',
-      del: 'deleteModule'
+      index: 'indexServiceTypes',
+      store: 'storeServiceType',
+      update: 'updateServiceType',
+      del: 'deleteServiceType'
     })
   }
 }

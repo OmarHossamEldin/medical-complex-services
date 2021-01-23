@@ -25,15 +25,15 @@ export default {
   data () {
     return {
       editedItem: {
-        day: '',
-        from: '',
-        to: ''
+        day: [],
+        from: '00:00',
+        to: '00:00'
       },
 
       defaultItem: {
-        day: '',
-        from: '',
-        to: ''
+        day: [],
+        from: '00:00',
+        to: '00:00'
       },
 
       columns: [
@@ -44,7 +44,9 @@ export default {
           align: 'left',
           field: (row) => row.day,
           format: (val) => `${val}`,
-          sortable: true
+          sortable: true,
+          type: 'checkbox_selection',
+          selection_array: ['السبت', 'الاحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعة']
         },
         {
           name: 'from',
@@ -53,7 +55,8 @@ export default {
           align: 'left',
           field: (row) => row.from,
           format: (val) => `${val}`,
-          sortable: true
+          sortable: true,
+          type: 'time'
         },
         {
           name: 'to',
@@ -62,7 +65,8 @@ export default {
           align: 'left',
           field: (row) => row.to,
           format: (val) => `${val}`,
-          sortable: true
+          sortable: true,
+          type: 'time'
         },
         {
           name: 'actions',

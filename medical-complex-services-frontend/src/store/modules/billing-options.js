@@ -14,7 +14,7 @@ const actions = {
       response => { commit('getBillingOptions', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -23,7 +23,7 @@ const actions = {
       response => { commit('storeBillingOption', response.data[0]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -32,7 +32,7 @@ const actions = {
       response => { commit('updateBillingOption', [billingOptionId, response.data[0]]) }
     )
       .catch(error => {
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   },
 
@@ -42,7 +42,7 @@ const actions = {
     )
       .catch(error => {
         console.log(error)
-        commit('failingRequest', error.response.data.errors.name[0])
+        commit('failingRequest', error.response.data.errors)
       })
   }
 }
