@@ -24,12 +24,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'v8.5.5',
-    'version' => '8.5.5.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '97814e2aee5df9178135ebdafc758ab30c03fbc9',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -463,12 +463,12 @@ private static $installed = array (
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => 'v8.5.5',
-      'version' => '8.5.5.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '97814e2aee5df9178135ebdafc758ab30c03fbc9',
     ),
     'laravel/sail' => 
     array (
@@ -783,8 +783,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -1293,6 +1293,24 @@ private static $installed = array (
       array (
       ),
       'reference' => 'bafc69caeb4d49c39fd0779086c03a3738cbb389',
+    ),
+    'yajra/laravel-oci8' => 
+    array (
+      'pretty_version' => 'dev-php8',
+      'version' => 'dev-php8',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5a05a3ff407486662c88bb6bc5102e34532ab66f',
+    ),
+    'yajra/laravel-pdo-via-oci8' => 
+    array (
+      'pretty_version' => 'v3.0.0',
+      'version' => '3.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd9ece35f62fe059c7637b778c1bdc8894dedeecb',
     ),
   ),
 );
