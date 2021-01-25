@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 class VariableLabelController extends Controller
 {
     /**
-     * authorization systemWorker actions to check if he have permission to do action or not 
+     * authorization systemWorker actions to check if he have permission to do action or not
      */
-    public function __construct(){
-        $this->authorizeResource(VariableLabel::class,'VariableLabel');
-    }
+    // public function __construct(){
+    //     $this->authorizeResource(VariableLabel::class,'VariableLabel');
+    // }
     private $validationRules = [
         "key"=>"required|string|max:255|",
         "label"=>"required|string|max:255|",

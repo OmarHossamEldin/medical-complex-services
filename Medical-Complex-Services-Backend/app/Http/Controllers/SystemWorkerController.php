@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 
 class SystemWorkerController extends Controller
 {
-    public function __construct(){
-        $this->authorizeResource(SystemWorker::class,'SystemWorker');
-    }
+    // public function __construct(){
+    //     $this->authorizeResource(SystemWorker::class,'SystemWorker');
+    // }
     private $validationRules = [
             "stakeholder_id"=>"exists:stakeholders,id",
             "username"=>"required|string|max:255|unique:system_workers",
-            "password"=>"required|string|max:255",
-            "barcode"=>"required|string|max:255",
+            "role_id"=>"exists:roles,id",
+            "password"=>"max:255",
             "api_token"=>"nullable|string|max:255",
     ];
 
@@ -40,10 +40,9 @@ class SystemWorkerController extends Controller
     {
         $validatedRequest = $request->validate($this->validationRules);
 
-
-
-        $systemworker = SystemWorker::create($validatedRequest);
-        return response()->json([$systemworker], 201);
+        $systemWorker = SystemWorker::create($validatedRequest);
+        $systemWorker = $systemWorker->with(['role:id,name', 'stakeholder:id,name'])->where('stakeholder_id', $systemWorker->stakeholder_id)->take(1)->get();
+        return response()->json($systemWorker, 201);
     }
 
     /**
@@ -66,10 +65,13 @@ class SystemWorkerController extends Controller
      */
     public function update(Request $request, SystemWorker $systemWorker)
     {
+        $this->validationRules['username'] = "required|string|max:255|unique:system_workers,username,{$systemWorker->stakeholder_id},stakeholder_id";
+
         $validatedRequest = $request->validate($this->validationRules);
 
         $systemWorker->update($validatedRequest);
-        return response()->json([$systemWorker], 206);
+        $systemWorker = $systemWorker->with(['role:id,name', 'stakeholder:id,name'])->where('stakeholder_id', $systemWorker->stakeholder_id)->take(1)->get();
+        return response()->json($systemWorker, 206);
     }
 
     /**

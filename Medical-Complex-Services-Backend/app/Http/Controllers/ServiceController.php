@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 class ServiceController extends Controller
 {
     /**
-     * authorization systemWorker actions to check if he have permission to do action or not 
+     * authorization systemWorker actions to check if he have permission to do action or not
      */
-    public function __construct(){
-        $this->authorizeResource(Service::class,'Service');
-    }
+    // public function __construct(){
+    //     $this->authorizeResource(Service::class,'Service');
+    // }
     private $validationRules = [
         "name"=>"required|string|max:255|",
         "fixed_price"=>"numeric",
@@ -51,7 +51,8 @@ class ServiceController extends Controller
         $validatedRequest = $request->validate($this->validationRules);
 
         $service = Service::create($validatedRequest);
-        return response()->json([$service], 201);
+        $service = $service->with(['price_type', 'service_type', 'department'])->where('id', $service->id)->take(1)->get();
+        return response()->json($service, 201);
     }
 
     /**
@@ -77,7 +78,8 @@ class ServiceController extends Controller
         $validatedRequest = $request->validate($this->validationRules);
 
         $service->update($validatedRequest);
-        return response()->json([$service], 206);
+        $service = $service->with(['price_type', 'service_type', 'department'])->where('id', $service->id)->take(1)->get();
+        return response()->json($service, 206);
     }
 
     /**

@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 class ServiceTypeController extends Controller
 {
     /**
-     * authorization systemWorker actions to check if he have permission to do action or not 
+     * authorization systemWorker actions to check if he have permission to do action or not
      */
-    public function __construct(){
-        $this->authorizeResource(ServiceType::class,'ServiceType');
-    }
+    // public function __construct(){
+    //     $this->authorizeResource(ServiceType::class,'ServiceType');
+    // }
     private $validationRules = [
         "name"=>"required|string|max:255"
     ];

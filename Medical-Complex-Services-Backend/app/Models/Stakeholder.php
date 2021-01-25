@@ -16,6 +16,11 @@ class Stakeholder extends Model
         return $this->belongsTo('App\Models\Rank');
     }
 
+    public function parent()
+    {
+        return $this->hasOne('App\Models\Stakeholder', 'stakeholder_id', 'id');
+    }
+
     public function services()
     {
         return $this->belongsToMany('App\Models\Service', 'service_stakeholder');

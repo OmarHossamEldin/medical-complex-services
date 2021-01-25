@@ -28,5 +28,5 @@ return [
     //     'prefix_schema'  => env('DB_SCHEMA_PREFIX2', ''),
     //     'edition'        => env('DB_EDITION2', 'ora$base'),
     //     'server_version' => env('DB_SERVER_VERSION2', '11g'),
-    // ], 
+    // ],
 ];

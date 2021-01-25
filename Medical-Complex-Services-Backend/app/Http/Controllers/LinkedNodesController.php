@@ -9,17 +9,17 @@ use Illuminate\Http\Request;
 class LinkedNodesController extends Controller
 {
     /**
-     * authorization systemWorker actions to check if he have permission to do action or not 
+     * authorization systemWorker actions to check if he have permission to do action or not
      */
-    public function __construct(){
-        $this->authorizeResource(LinkedNodes::class,'LinkedNodes');
-    }
+    // public function __construct(){
+    //     $this->authorizeResource(LinkedNodes::class,'LinkedNodes');
+    // }
     private $validationRules = [
             "name"=>"required|string|max:255|",
             "price"=>"required|numeric",
             "transaction_id"=>"required|numeric|exists:transactions,id",
     ];
-    
+
     /**
      * Display a listing of the resource.
      *

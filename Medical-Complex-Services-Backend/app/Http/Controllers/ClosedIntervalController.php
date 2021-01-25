@@ -9,17 +9,17 @@ use Illuminate\Http\Request;
 class ClosedIntervalController extends Controller
 {
     /**
-     * authorization systemWorker actions to check if he have permission to do action or not 
+     * authorization systemWorker actions to check if he have permission to do action or not
      */
-    public function __construct(){
-        $this->authorizeResource(ClosedInterval::class,'ClosedInterval');
-    }
+    // public function __construct(){
+    //     $this->authorizeResource(ClosedInterval::class,'ClosedInterval');
+    // }
     private $validationRules = [
-            "day" => "required|string|max:255",
-            "from" => "required|date_format:H:i",
-            "to" => "required|date_format:H:i",
+            "day" => "required",
+            "from" => "required|date_format:H:i:s",
+            "to" => "required|date_format:H:i:s",
     ];
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -40,8 +40,6 @@ class ClosedIntervalController extends Controller
     public function store(Request $request)
     {
         $validatedRequest = $request->validate($this->validationRules);
-
-
 
         $closedInterval = ClosedInterval::create($validatedRequest);
         return response()->json([$closedInterval], 201);

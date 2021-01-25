@@ -15,7 +15,7 @@ class CreateClosedIntervalsTable extends Migration
     {
         Schema::create('closed_intervals', function (Blueprint $table) {
             $table->id();
-            $table->string('day');
+            $table->json('day');
             $table->time('from');
             $table->time('to');
             $table->timestamps();

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6aa2228672ba366ef2c396e32e9c6d0",
+    "content-hash": "08acb9c000733564d6ead0df7b15e105",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4857,16 +4857,16 @@
         },
         {
             "name": "yajra/laravel-oci8",
-            "version": "dev-php8",
+            "version": "v8.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-oci8.git",
-                "reference": "5a05a3ff407486662c88bb6bc5102e34532ab66f"
+                "reference": "466a1604c808d4ad80376ba51e9259ee20b2b9b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-oci8/zipball/5a05a3ff407486662c88bb6bc5102e34532ab66f",
-                "reference": "5a05a3ff407486662c88bb6bc5102e34532ab66f",
+                "url": "https://api.github.com/repos/yajra/laravel-oci8/zipball/466a1604c808d4ad80376ba51e9259ee20b2b9b5",
+                "reference": "466a1604c808d4ad80376ba51e9259ee20b2b9b5",
                 "shasum": ""
             },
             "require": {
@@ -4923,7 +4923,7 @@
             ],
             "support": {
                 "issues": "https://github.com/yajra/laravel-oci8/issues",
-                "source": "https://github.com/yajra/laravel-oci8/tree/php8"
+                "source": "https://github.com/yajra/laravel-oci8/tree/v8.3.0"
             },
             "funding": [
                 {
@@ -4935,7 +4935,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-12-08T12:38:50+00:00"
+            "time": "2021-01-22T01:03:18+00:00"
         },
         {
             "name": "yajra/laravel-pdo-via-oci8",
@@ -7471,9 +7471,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "yajra/laravel-oci8": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

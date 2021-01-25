@@ -9,17 +9,17 @@ use Illuminate\Http\Request;
 class DoctorController extends Controller
 {
     /**
-     * authorization systemWorker actions to check if he have permission to do action or not 
+     * authorization systemWorker actions to check if he have permission to do action or not
      */
-    public function __construct(){
-        $this->authorizeResource(Doctor::class,'Doctor');
-    }
+    // public function __construct(){
+    //     $this->authorizeResource(Doctor::class,'Doctor');
+    // }
     private $validationRules = [
             "system_worker_id"=>"numeric|exists:system_workers,stakeholder_id",
             "degree_id"=>"numeric|exists:degrees,id",
             "department_id"=>"numeric|exists:departments,id",
     ];
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +42,8 @@ class DoctorController extends Controller
         $validatedRequest = $request->validate($this->validationRules);
 
         $doctor = Doctor::create($validatedRequest);
-        return response()->json([$doctor], 201);
+        $doctor = $doctor->with(['system_worker', 'degree', 'department'])->where('system_worker_id', $doctor->system_worker_id)->take(1)->get();
+        return response()->json($doctor, 201);
     }
 
     /**
@@ -68,7 +69,9 @@ class DoctorController extends Controller
         $validatedRequest = $request->validate($this->validationRules);
 
         $doctor->update($validatedRequest);
-        return response()->json([$doctor], 206);
+
+        $doctor = $doctor->with(['system_worker', 'degree', 'department'])->where('system_worker_id', $doctor->system_worker_id)->take(1)->get();
+        return response()->json($doctor, 206);
     }
 
     /**

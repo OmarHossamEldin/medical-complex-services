@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '97814e2aee5df9178135ebdafc758ab30c03fbc9',
+    'reference' => '589c021a1a7e9440e0540a38228859f1173303e9',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -468,7 +468,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '97814e2aee5df9178135ebdafc758ab30c03fbc9',
+      'reference' => '589c021a1a7e9440e0540a38228859f1173303e9',
     ),
     'laravel/sail' => 
     array (
@@ -1296,12 +1296,12 @@ private static $installed = array (
     ),
     'yajra/laravel-oci8' => 
     array (
-      'pretty_version' => 'dev-php8',
-      'version' => 'dev-php8',
+      'pretty_version' => 'v8.3.0',
+      'version' => '8.3.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '5a05a3ff407486662c88bb6bc5102e34532ab66f',
+      'reference' => '466a1604c808d4ad80376ba51e9259ee20b2b9b5',
     ),
     'yajra/laravel-pdo-via-oci8' => 
     array (

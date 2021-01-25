@@ -11,6 +11,10 @@ class ClosedInterval extends Model
     use HasFactory, SoftDeletes;
     public $fillable = ['day', 'from', 'to'];
 
+    protected $casts = [
+        'day' => 'array'
+    ];
+
     public function services()
     {
         return $this->belongsToMany('App\Models\Service', 'closed_interval_service');

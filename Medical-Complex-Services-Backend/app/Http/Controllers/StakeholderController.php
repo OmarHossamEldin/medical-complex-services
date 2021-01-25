@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 class StakeholderController extends Controller
 {
     /**
-     * authorization systemWorker actions to check if he have permission to do action or not 
+     * authorization systemWorker actions to check if he have permission to do action or not
      */
-    public function __construct(){
-        $this->authorizeResource(Stakeholder::class,'Stakeholder');
-    }
+    // public function __construct(){
+    //     $this->authorizeResource(Stakeholder::class,'Stakeholder');
+    // }
     private $validationRules = [
         "name"=>"required|string|max:255|",
         "wallet"=>"numeric",
@@ -30,7 +30,7 @@ class StakeholderController extends Controller
      */
     public function index()
     {
-        $stakeholder = Stakeholder::with(['rank:id,name'])->get();
+        $stakeholder = Stakeholder::with(['rank:id,name', 'parent:id,name'])->get();
         return response()->json([$stakeholder], 202);
     }
 
@@ -45,7 +45,8 @@ class StakeholderController extends Controller
         $validatedRequest = $request->validate($this->validationRules);
 
         $stakeholder = Stakeholder::create($validatedRequest);
-        return response()->json([$stakeholder], 201);
+        $stakeholder = $stakeholder->with(['rank:id,name', 'parent:id,name'])->where('id', $stakeholder->id)->take(1)->get();
+        return response()->json($stakeholder, 201);
     }
     /**
      * Display the specified resource.
@@ -67,10 +68,13 @@ class StakeholderController extends Controller
      */
     public function update(Request $request, Stakeholder $stakeholder)
     {
+        $this->validationRules['barcode'] = "required|string|max:255|unique:stakeholders,barcode,{$stakeholder->id}";
+        $this->validationRules['patient_code'] = "numeric|unique:stakeholders,patient_code,{$stakeholder->id}";
         $validatedRequest = $request->validate($this->validationRules);
 
         $stakeholder->update($validatedRequest);
-        return response()->json([$stakeholder], 206);
+        $stakeholder = $stakeholder->with(['rank:id,name', 'parent:id,name'])->where('id', $stakeholder->id)->take(1)->get();
+        return response()->json($stakeholder, 206);
     }
 
     /**
