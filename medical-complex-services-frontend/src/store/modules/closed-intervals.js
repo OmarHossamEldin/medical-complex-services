@@ -55,7 +55,7 @@ const mutations = {
     state.closedIntervals.push(closedInterval)
   },
 
-  updatebClosedInterval (state, [closedIntervalId, closedInterval]) {
+  updateClosedInterval (state, [closedIntervalId, closedInterval]) {
     var closedIntervalIndex = state.closedIntervals.findIndex((closedInterval) => closedInterval.id === closedIntervalId)
     state.closedIntervals.splice(closedIntervalIndex, 1, closedInterval)
   },

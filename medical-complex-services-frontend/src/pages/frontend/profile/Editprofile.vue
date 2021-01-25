@@ -20,19 +20,19 @@
             <div class="q-pa-md">
               <div class="q-gutter-md" style="max-width: 400px">
                 <label>الإسم الأول</label>
-                <q-input rounded outlined v-model="text" placeholder="الإسم الأول" />
+                <q-input rounded outlined placeholder="الإسم الأول" />
               </div>
             </div>
             <div class="q-pa-md">
               <div class="q-gutter-md" style="max-width: 400px">
                 <label>العنوان</label>
-                <q-input rounded outlined v-model="text" placeholder="العنوان" />
+                <q-input rounded outlined placeholder="العنوان" />
               </div>
             </div>
             <div class="q-pa-md">
               <div class="q-gutter-md" style="max-width: 400px">
                 <label>الرقم القومي</label>
-                <q-input rounded outlined v-model="text" placeholder="الرقم القومي" />
+                <q-input rounded outlined placeholder="الرقم القومي" />
               </div>
             </div>
             <div class="q-pa-md">
@@ -58,13 +58,13 @@
             <div class="q-pa-md">
               <div class="q-gutter-md" style="max-width: 400px">
                 <label>الإسم الأخير</label>
-                <q-input rounded outlined v-model="text" placeholder="الإسم الأخير" />
+                <q-input rounded outlined placeholder="الإسم الأخير" />
               </div>
             </div>
             <div class="q-pa-md">
               <div class="q-gutter-md" style="max-width: 400px">
                 <label>رقم الموبايل</label>
-                <q-input rounded outlined v-model="text" placeholder="رقم الموبايل" />
+                <q-input rounded outlined placeholder="رقم الموبايل" />
               </div>
             </div>
             <div class="q-pa-md">

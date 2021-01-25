@@ -27,7 +27,10 @@ const actions = {
 
   storeService ({ commit }, service) {
     axios.post('services', service).then(
-      response => { commit('storeService', response.data[0]) }
+      response => {
+        commit('storeService', response.data[0])
+        console.log(response.data[0])
+      }
     )
       .catch(error => {
         commit('failingRequest', error.response.data.errors)

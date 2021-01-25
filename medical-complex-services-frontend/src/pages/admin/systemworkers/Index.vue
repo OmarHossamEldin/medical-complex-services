@@ -13,6 +13,7 @@
     :update="update"
     :delete="del"
     :options="options"
+    :getId="getId"
   >
   </index-table>
 </template>
@@ -26,11 +27,15 @@ export default {
   data () {
     return {
       editedItem: {
-        username: ''
+        username: '',
+        role_id: null,
+        stakeholder_id: null
       },
 
       defaultItem: {
-        username: ''
+        username: '',
+        role_id: null,
+        stakeholder_id: null
       },
 
       columns: [
@@ -82,7 +87,6 @@ export default {
       var optionsDict = {}
       optionsDict.role_id = this.rolesOptions
       optionsDict.stakeholder_id = this.stakeholdersOptions
-      optionsDict.stakeholder_id.push({ label: 'لا يوجد', value: null })
       return optionsDict
     }
   },
@@ -94,7 +98,10 @@ export default {
       del: 'deleteSystemWorker',
       indexRoles: 'indexRoles',
       indexStakeholders: 'indexStakeholders'
-    })
+    }),
+    getId (item) {
+      return item.stakeholder_id
+    }
   },
   created () {
     this.indexRoles()

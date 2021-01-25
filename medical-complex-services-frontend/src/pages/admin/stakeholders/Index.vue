@@ -13,6 +13,7 @@
     :update="update"
     :delete="del"
     :options="options"
+    :getId="getId"
   >
   </index-table>
 </template>
@@ -98,7 +99,9 @@ export default {
         required: true,
         label: 'العائل',
         align: 'left',
-        field: (row) => row.stakeholder_id,
+        field: (row) => {
+          if (row.parent === null) { return '' } else { return row.parent.name }
+        },
         format: (val) => `${val}`,
         sortable: true,
         type: 'select'
@@ -132,7 +135,10 @@ export default {
       update: 'updateStakeholder',
       del: 'deleteStakeholder',
       indexRanks: 'indexRanks'
-    })
+    }),
+    getId (item) {
+      return item.id
+    }
   },
   created () {
     this.indexRanks()

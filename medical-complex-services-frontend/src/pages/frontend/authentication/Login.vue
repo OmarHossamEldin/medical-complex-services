@@ -27,10 +27,14 @@
             <p style="margin: 10px;">لإنشاء حساب يرجى التواصل بفرع نظم المعلومات</p>
         </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 self-center  leftSide window-height" align="center" >
-        <p class="systemName">المنظومة الشاملة للمجمع الطبي</p>
-        <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.</p>
-      </div>
+      <q-img src="../../../assets/3.jpg" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 self-center window-height">
+        <div class="absolute-bottom bg-teal-5 window-height text-subtit text-center leftSide" >
+          <div>
+            <p class="systemName">المنظومة الشاملة للمجمع الطبي</p>
+            <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.</p>
+          </div>
+        </div>
+      </q-img>
     </div>
   </div>
 </template>
@@ -58,8 +62,7 @@ export default {
 }
 
 .leftSide{
-  padding: 20% 5%;
-  background-image: url("../../../assets/1.jpg");
-  opacity: 50%;
+  padding: 40% 5% !important;
+  opacity: 0.8;
 }
 </style>

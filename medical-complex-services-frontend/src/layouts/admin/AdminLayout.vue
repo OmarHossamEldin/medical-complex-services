@@ -55,7 +55,7 @@ const menuList = [
     icon: 'text_snippet',
     label: 'التقارير',
     route: 'reports',
-    separator: true
+    separator: false
   },
   {
     icon: 'list_alt',
@@ -79,7 +79,7 @@ const menuList = [
     icon: 'group',
     label: 'المستخدمين',
     route: 'systemworkers',
-    separator: true
+    separator: false
   },
   {
     icon: 'dns',
@@ -98,7 +98,7 @@ const menuList = [
     iconColor: 'primary',
     label: 'الأقسام',
     route: 'departments',
-    separator: false
+    separator: true
   },
   {
     icon: 'health_and_safety',
@@ -126,7 +126,7 @@ const menuList = [
     iconColor: 'primary',
     label: 'فترات العمل الغير متاحة ',
     route: 'closed-interval',
-    separator: false
+    separator: true
   },
   {
     icon: '',
@@ -152,9 +152,9 @@ const menuList = [
   {
     icon: 'rule',
     iconColor: 'primary',
-    label: 'المهمام الوظيفية ',
+    label: 'المهام الوظيفية ',
     route: 'roles',
-    separator: false
+    separator: true
   },
   {
     icon: '',

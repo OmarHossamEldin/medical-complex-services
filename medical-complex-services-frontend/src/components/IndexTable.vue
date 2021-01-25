@@ -83,9 +83,9 @@
                   <q-card-section dir="rtl">
                     <p v-if="filling_data_status == 'add' " class="text-weight-bold"> اضافة {{modelName}}</p>
                     <p v-if="filling_data_status == 'edit' " class="text-weight-bold">تعديل {{modelName}}</p>
-                    <div class="row wrap">
-                      <div v-for="column in columns.slice(0, -1)" :key="column.name" class="col-grow q-pa-lg q-gutter-sm">
-                        <label>{{column.label}}</label>
+                    <div class="row">
+                      <div v-for="column in columns.slice(0, -1)" :key="column.name" class="col-12 q-pa-lg q-gutter-sm">
+                        <label v-if="column.type != 'checkbox'">{{column.label}}</label>
                         <q-input
                           v-if="column.type=='input'"
                           v-model="editedItem[column.name]"
@@ -104,7 +104,7 @@
                           emit-value
                           map-options
                         ></q-select>
-                        <q-checkbox v-if="column.type=='checkbox'" v-model="editedItem[column.name]"/>
+                        <q-checkbox v-if="column.type=='checkbox'" v-model="editedItem[column.name]" :label="column.label"/>
                         <q-input v-if="column.type=='time'" filled v-model="editedItem[column.name]" mask="time" :rules="['time']">
                           <template v-slot:append>
                             <q-icon name="access_time" class="cursor-pointer">
@@ -128,7 +128,6 @@
                           <q-checkbox v-model="editedItem[column.name]" :val="column.selection_array[6]" :label="column.selection_array[6]"/>
                         </div>
                       </div>
-
                     </div>
                   </q-card-section>
 
@@ -186,7 +185,7 @@ export default {
   components: { TableTitle, TableSearch },
 
   props: ['modelName', 'modelNamePlural', 'modelNameEnglish', 'modelNameEnglishPlural', 'columns', 'item', 'defaultItem',
-    'data', 'index', 'store', 'update', 'delete', 'options'],
+    'data', 'index', 'store', 'update', 'delete', 'options', 'getId'],
 
   data () {
     return {
@@ -229,7 +228,7 @@ export default {
         columnName = this.columns[i].name
         this.editedItem[columnName] = row[columnName]
       }
-      this.editId = row.id
+      this.editId = this.getId(row)
       this.filling_data_status = 'edit'
       this.filling_data_dialog = true
     },
@@ -239,7 +238,7 @@ export default {
     },
     deleteItem (item) {
       confirm('هل تريد حذف هذا القسم بالتأكيد؟') &&
-        this.delete(item.id)
+        this.delete(this.getId(item))
     },
     close () {
       this.editedItem = Object.assign({}, this.defaultItem)
@@ -255,7 +254,12 @@ export default {
   font-size: 20px;
   font-weight: bold;
 }
+
 .table-body td {
   font-size: 18px;
+}
+
+.addDialog{
+  width: 100%;
 }
 </style>

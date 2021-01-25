@@ -12,6 +12,7 @@
     :store="store"
     :update="update"
     :delete="del"
+    :getId="getId"
   >
   </index-table>
 </template>
@@ -38,17 +39,6 @@ export default {
 
       columns: [
         {
-          name: 'day',
-          required: true,
-          label: 'اليوم',
-          align: 'left',
-          field: (row) => row.day,
-          format: (val) => `${val}`,
-          sortable: true,
-          type: 'checkbox_selection',
-          selection_array: ['السبت', 'الاحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعة']
-        },
-        {
           name: 'from',
           required: true,
           label: 'من',
@@ -69,6 +59,17 @@ export default {
           type: 'time'
         },
         {
+          name: 'day',
+          required: true,
+          label: 'اليوم',
+          align: 'left',
+          field: (row) => row.day,
+          format: (val) => `${val}`,
+          sortable: true,
+          type: 'checkbox_selection',
+          selection_array: ['السبت', 'الاحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعة']
+        },
+        {
           name: 'actions',
           label: '',
           field: 'actions'
@@ -87,7 +88,10 @@ export default {
       store: 'storeClosedInterval',
       update: 'updateClosedInterval',
       del: 'deleteClosedInterval'
-    })
+    }),
+    getId (item) {
+      return item.id
+    }
   }
 }
 </script>

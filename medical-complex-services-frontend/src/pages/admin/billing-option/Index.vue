@@ -12,6 +12,7 @@
     :store="store"
     :update="update"
     :delete="del"
+    :getId="getId"
   >
   </index-table>
 </template>
@@ -61,7 +62,10 @@ export default {
       store: 'storeBillingOption',
       update: 'updateBillingOption',
       del: 'deleteBillingOption'
-    })
+    }),
+    getId (item) {
+      return item.id
+    }
   }
 }
 </script>

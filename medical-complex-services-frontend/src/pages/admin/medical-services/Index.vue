@@ -13,6 +13,7 @@
     :update="update"
     :delete="del"
     :options="options"
+    :getId="getId"
   >
   </index-table>
 </template>
@@ -79,26 +80,6 @@ export default {
           type: 'input'
         },
         {
-          name: 'timed',
-          required: true,
-          label: 'مرتبطة بوقت محدد؟',
-          align: 'left',
-          field: (row) => row.timed,
-          format: (val) => `${val}`,
-          sortable: true,
-          type: 'checkbox'
-        },
-        {
-          name: 'requires_doctor',
-          required: true,
-          label: 'تتطلب طبيب؟',
-          align: 'left',
-          field: (row) => row.requires_doctor,
-          format: (val) => `${val}`,
-          sortable: true,
-          type: 'checkbox'
-        },
-        {
           name: 'main_consumer_number',
           required: true,
           label: ' المستهلكين الأساسيين',
@@ -159,6 +140,16 @@ export default {
           type: 'select'
         },
         {
+          name: 'service_id',
+          required: true,
+          label: 'الخدمة الأعلى',
+          align: 'left',
+          field: (row) => row.service_id,
+          format: (val) => `${val}`,
+          sortable: true,
+          type: 'select'
+        },
+        {
           name: 'pc_dependent',
           required: true,
           label: 'تعتمد على جهاز',
@@ -169,14 +160,24 @@ export default {
           type: 'checkbox'
         },
         {
-          name: 'service_id',
+          name: 'timed',
           required: true,
-          label: 'الخدمة الأعلى',
+          label: 'مرتبطة بوقت محدد؟',
           align: 'left',
-          field: (row) => row.service_id,
+          field: (row) => row.timed,
           format: (val) => `${val}`,
           sortable: true,
-          type: 'select'
+          type: 'checkbox'
+        },
+        {
+          name: 'requires_doctor',
+          required: true,
+          label: 'تتطلب طبيب؟',
+          align: 'left',
+          field: (row) => row.requires_doctor,
+          format: (val) => `${val}`,
+          sortable: true,
+          type: 'checkbox'
         },
         {
           name: 'actions',
@@ -213,7 +214,10 @@ export default {
       indexPriceTypes: 'indexPriceTypes',
       indexServiceTypes: 'indexServiceTypes',
       indexDepartments: 'indexDepartments'
-    })
+    }),
+    getId (item) {
+      return item.id
+    }
   },
   created () {
     this.indexPriceTypes()

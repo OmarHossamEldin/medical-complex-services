@@ -13,6 +13,7 @@
     :update="update"
     :delete="del"
     :options="options"
+    :getId="getId"
   >
   </index-table>
 </template>
@@ -26,20 +27,24 @@ export default {
   data () {
     return {
       editedItem: {
-        name: ''
+        sytem_worker_id: null,
+        degree_id: null,
+        department_id: null
       },
 
       defaultItem: {
-        name: ''
+        sytem_worker_id: null,
+        degree_id: null,
+        department_id: null
       },
 
       columns: [
         {
-          name: 'sytem_worker_id',
+          name: 'system_worker_id',
           required: true,
           label: 'اسم المستخدم',
           align: 'left',
-          field: (row) => row.system_worker_id.name,
+          field: (row) => row.system_worker.username,
           format: (val) => `${val}`,
           sortable: true,
           type: 'select'
@@ -49,7 +54,7 @@ export default {
           required: true,
           label: 'الدرجة العلمية  ',
           align: 'left',
-          field: (row) => row.system_worker_id.degree.name,
+          field: (row) => row.degree.name,
           format: (val) => `${val}`,
           sortable: true,
           type: 'select'
@@ -59,7 +64,7 @@ export default {
           required: true,
           label: 'القسم   ',
           align: 'left',
-          field: (row) => row.system_worker_id.department.name,
+          field: (row) => row.department.name,
           format: (val) => `${val}`,
           sortable: true,
           type: 'select'
@@ -83,7 +88,7 @@ export default {
       var optionsDict = {}
       optionsDict.department_id = this.departmentsOptions
       optionsDict.degree_id = this.degreesOptions
-      optionsDict.sytem_worker_id = this.systemWorkersOptions
+      optionsDict.system_worker_id = this.systemWorkersOptions
       return optionsDict
     }
   },
@@ -96,7 +101,10 @@ export default {
       indexDegrees: 'indexDegrees',
       indexDepartments: 'indexDepartments',
       indexSystemWorkers: 'indexSystemWorkers'
-    })
+    }),
+    getId (item) {
+      return item.system_worker_id
+    }
   },
   created () {
     this.indexDegrees()

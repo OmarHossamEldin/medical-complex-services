@@ -12,6 +12,7 @@
     :store="store"
     :update="update"
     :delete="del"
+    :getId="getId"
   >
   </index-table>
 </template>
@@ -62,7 +63,10 @@ export default {
       store: 'storeServiceType',
       update: 'updateServiceType',
       del: 'deleteServiceType'
-    })
+    }),
+    getId (item) {
+      return item.id
+    }
   }
 }
 </script>

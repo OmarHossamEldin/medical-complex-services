@@ -10,7 +10,7 @@ const getters = {
     state.systemWorkers.map(obj => {
       var optionsObj = {}
       optionsObj.label = obj.username
-      optionsObj.value = obj.id
+      optionsObj.value = obj.stakeholder_id
       return optionsObj
     })
 }
@@ -35,6 +35,7 @@ const actions = {
   },
 
   updateSystemWorker ({ commit }, [systemWorkerId, systemWorker]) {
+    console.log(systemWorker)
     axios.put(`system-workers/${systemWorkerId}`, systemWorker).then(
       response => { commit('updateSystemWorker', [systemWorkerId, response.data[0]]) }
     )
@@ -62,7 +63,7 @@ const mutations = {
     state.systemWorkers.push(systemWorkers)
   },
 
-  updatebSystemWorker (state, [systemWorkerId, systemWorker]) {
+  updateSystemWorker (state, [systemWorkerId, systemWorker]) {
     var systemWorkerIndex = state.systemWorkers.findIndex((sys) => sys.stakeholder_id === systemWorkerId)
     state.systemWorkers.splice(systemWorkerIndex, 1, systemWorker)
   },

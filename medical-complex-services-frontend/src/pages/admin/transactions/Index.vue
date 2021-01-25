@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <index-table
     modelName='عملية'
     modelNamePlural='عمليات'
@@ -14,148 +13,9 @@
     :update="update"
     :delete="del"
     :options="options"
+    :getId="getId"
   >
   </index-table>
-=======
-  <div id="q-app">
-    <div>
-      <table-title :title="modelNamePlural"/>
-      <q-table
-        :data="data"
-        :columns="columns"
-        row-key="name"
-        :filter="filter"
-        binary-state-sort
-        bordered
-        :rows-per-page-options="[20, 30, 50, 0]"
-      >
-        <template v-slot:top-right>
-          <table-search v-model="filter"></table-search>
-        </template>
-        <template v-slot:top-left>
-           <q-btn
-            outline
-            class="text-weight-bold"
-            color="blue-grey-6"
-            :label="'اضافة ' + modelName"
-            @click="filling_data_status = 'add'; filling_data_dialog = true"
-            no-caps
-          />
-        </template>
-
-        <template v-slot:header="props">
-          <q-tr :props="props">
-            <q-th
-              v-for="col in props.cols"
-              :key="col.name"
-              :props="props"
-              class="table-he er"
-            >
-              {{ col.label }}
-            </q-th>
-          </q-tr>
-        </template>
-
-        <template v-slot:body="props">
-          <q-tr :props="props" class="table-body">
-            <q-td v-for="column in columns.slice(0, -1)" :key="column.name" :props="props">
-              {{ props.row[column.name] }}
-            </q-td>
-
-            <q-td key="actions" :props="props">
-              <q-icon
-                size="sm"
-                name="edit"
-                color="blue-grey-7"
-                @click="
-                  preEditItem(props.row)
-                "
-              >
-              <q-tooltip anchor="top middle" self="bottom middle" content-class="bg-blue-grey-7" :offset="[3, 3]">
-                  <strong>تعديل</strong>
-                </q-tooltip>
-              </q-icon>
-
-              <q-icon
-                size="sm"
-                name="delete"
-                color="red-10"
-                @click="deleteItem(props.row)"
-              >
-              <q-tooltip anchor="top middle" self="bottom middle" content-class="bg-red-10" :offset="[3, 3]">
-                  <strong>حذف</strong>
-                </q-tooltip>
-              </q-icon>
-
-            </q-td>
-            <div class="q-pa-sm q-gutter-sm">
-              <q-dialog v-model="filling_data_dialog" @escape-key="close()" @hide="close()">
-                <q-card style="font-family: 'JF Flat';">
-                  <q-card-section dir="rtl">
-                    <div>
-                      <p v-if="filling_data_status == 'add' " class="text-weight-bold"> اضافة {{modelName}}</p>
-                      <p v-if="filling_data_status == 'edit' " class="text-weight-bold">تعديل {{modelName}}</p>
-
-                      <div v-for="column in columns.slice(0, -1)" :key="column.name" class="q-pa-sm q-gutter-sm">
-                        <label>{{column.label}}</label>
-                        <q-input
-                          v-model="editedItem[column.name]"
-                          outlined
-                          borderless
-                          dense
-                          :placeholder="'ادخل ' + column.label"
-                        ></q-input>
-                      </div>
-
-                    </div>
-                  </q-card-section>
-
-                  <q-card-actions align="left">
-                    <q-btn
-                      flat
-                      label="موافق"
-                      color="primary"
-                      v-close-popup
-                      @click="addOrEditItem()"
-                    ></q-btn>
-                    <q-btn
-                      flat
-                      label="إلغاء"
-                      color="error"
-                      v-close-popup
-                      @click="close()"
-                    ></q-btn>
-                  </q-card-actions>
-                </q-card>
-              </q-dialog>
-            </div>
-          </q-tr>
-        </template>
-      </q-table>
-    </div>
-    <q-dialog v-model="requestFailed">
-      <q-card  style="font-family: 'JF Flat';" dir="rtl">
-        <q-card-section>
-          <div class="text-h6">تنبيه</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ errorMessage }}
-        </q-card-section>
-
-        <q-card-actions align="right">
-          <q-btn
-            @click="resetFailingRequest()"
-            flat
-            label="موافق"
-            color="primary"
-            v-close-popup
-          />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
-  </div>
->>>>>>> b9a136eb883e1675cf1c79a83c416b3567b1d49b
 </template>
 
 <script>
@@ -263,12 +123,17 @@ export default {
       update: 'updateTransaction',
       del: 'deleteTransaction',
       indexPcs: 'indexPcs',
-      indexFinancialCategories: 'indexFinancialCategories'
-    })
+      indexFinancialCategories: 'indexFinancialCategories',
+      indexSystemWorkers: 'indexSystemWorkers'
+    }),
+    getId (item) {
+      return item.id
+    }
   },
   created () {
     this.indexPcs()
     this.indexFinancialCategories()
+    this.indexSystemWorkers()
   }
 }
 </script>
