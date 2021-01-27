@@ -36,21 +36,26 @@ class makeHelper extends Command
      * create helper class with passed name argument in Helpers directory.
      * write init code for the class
      * @param string $name of the class
-     * @return 
+     * @return boolean
      */
     public function handle()
     {
        if (is_dir('app/Helpers')){
-          if(is_dir("app/Helpers/{$this->argument('className')}.php")==false){
+
+          if(file_exists("app/Helpers/{$this->argument('className')}.php")==false){
 
             $helperClass = fopen("app/Helpers/{$this->argument('className')}.php", "w");
             $code = "<?php \n\nnamespace App\Helpers; \n\nclass {$this->argument('className')}{\n\n}";
             fwrite($helperClass, $code);
-            exec('composer dump-autoload');     //command to register helper class
+
+            //command to register helper class
+            exec('composer dump-autoload');
             echo 'Helper Class Has Been Created';
+            return 1;
           }
           else{
-            echo 'Helper Class is exist';
+            echo 'Helper Class Is Exist';
+            return 0;
           }
        }
        else{
