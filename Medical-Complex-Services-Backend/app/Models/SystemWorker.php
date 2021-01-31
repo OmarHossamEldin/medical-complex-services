@@ -46,7 +46,7 @@ class SystemWorker extends Authenticatable
      */
     public function ApiTokenGenerater()
     {
-        $this->api_token=Str::random(60);
+        $this->api_token = Str::random(60);
         $this->save();
         return $this->api_token;
     }
