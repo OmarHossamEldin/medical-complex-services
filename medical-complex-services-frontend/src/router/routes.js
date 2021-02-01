@@ -36,7 +36,8 @@ const routes = [
       { path: 'price-types', component: () => import('pages/admin/priceTypes/Index.vue') },
       { path: 'service-types', component: () => import('pages/admin/serviceTypes/Index.vue') },
       { path: 'roles', component: () => import('pages/admin/roles/Index.vue') },
-      { path: 'degrees', component: () => import('pages/admin/degrees/Index.vue') }
+      { path: 'degrees', component: () => import('pages/admin/degrees/Index.vue') },
+      { path: 'execute-reports', component: () => import('pages/admin/reports/Execute.vue') }
     ]
   },
 
@@ -50,7 +51,14 @@ const routes = [
       { path: 'not-found', component: () => import('pages/frontend/errors/Notfound.vue') },
       { path: 'not-have-permission', component: () => import('pages/frontend/errors/Permission.vue') },
       { path: 'service', component: () => import('pages/frontend/services/Service.vue') }
+    ]
+  },
 
+  {
+    path: '/report-results',
+    component: () => import('layouts/PrintLayout.vue'),
+    children: [
+      { path: '', name: 'report-results', component: () => import('pages/admin/reports/Results.vue'), props: true }
     ]
   },
 

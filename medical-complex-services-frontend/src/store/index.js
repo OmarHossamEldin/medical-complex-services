@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Print from 'vue-print-nb'
 import alerts from './modules/alerts'
 import departments from './modules/departments'
 import pcs from './modules/pcs'
@@ -17,8 +18,10 @@ import priceTypes from './modules/price-types'
 import serviceTypes from './modules/service-types'
 import roles from './modules/roles'
 import degrees from './modules/degrees'
+import reports from './modules/reports'
 
 Vue.use(Vuex)
+Vue.use(Print)
 
 /*
  * If not building with SSR mode, you can
@@ -48,7 +51,8 @@ export default function (/* { ssrContext } */) {
       priceTypes,
       serviceTypes,
       roles,
-      degrees
+      degrees,
+      reports
     },
 
     // enable strict mode (adds overhead!)

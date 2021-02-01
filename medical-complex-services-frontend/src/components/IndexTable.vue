@@ -11,6 +11,7 @@
         binary-state-sort
         bordered
         :rows-per-page-options="[20, 30, 50, 0]"
+        rows-per-page-label="عدد الصفوف في الصفحة"
       >
 
         <template v-slot:top-right>
@@ -43,7 +44,7 @@
 
         <template v-slot:body="props">
           <q-tr :props="props" class="table-body">
-            <q-td v-for="column in columns.slice(0, -1)" :key="column.name" :props="props">
+            <q-td dir="ltr" v-for="column in columns.slice(0, -1)" :key="column.name" :props="props">
               <p v-if="column.field(props.row) === null"> لا يوجد </p>
               <p v-else-if="column.field(props.row) === true"> نعم </p>
               <p v-else-if="column.field(props.row) === false"> لا </p>
@@ -87,12 +88,15 @@
                       <div v-for="column in columns.slice(0, -1)" :key="column.name" class="col-12 q-pa-lg q-gutter-sm">
                         <label v-if="column.type != 'checkbox'">{{column.label}}</label>
                         <q-input
-                          v-if="column.type=='input'"
+                          dir="auto"
+                          v-if="column.type=='input' || column.type=='textarea'"
+                          :type="column.type"
                           v-model="editedItem[column.name]"
                           outlined
                           borderless
                           dense
                           :placeholder="'ادخل ' + column.label"
+                          :hint = "column.hint"
                         ></q-input>
                         <q-select
                           v-if="column.type=='select'"

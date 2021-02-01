@@ -58,28 +58,17 @@ const menuList = [
     separator: false
   },
   {
+    icon: 'print',
+    iconColor: 'primary',
+    label: 'تنفيذ التقارير ',
+    route: 'execute-reports',
+    separator: false
+  },
+  {
     icon: 'list_alt',
     label: 'سجل العمليات',
     route: 'transactions',
-    separator: false
-  },
-  {
-    icon: 'medical_services',
-    label: 'الخدمات',
-    route: 'medical-services',
-    separator: false
-  },
-  {
-    icon: 'group',
-    label: 'الاشخاص',
-    route: 'stakeholders',
     separator: true
-  },
-  {
-    icon: 'group',
-    label: 'المستخدمين',
-    route: 'systemworkers',
-    separator: false
   },
   {
     icon: 'dns',
@@ -88,24 +77,84 @@ const menuList = [
     separator: false
   },
   {
+    icon: 'miscellaneous_services',
+    iconColor: 'primary',
+    label: 'أنواع الخدمات ',
+    route: 'service-types',
+    separator: false
+  },
+  {
+    icon: 'medical_services',
+    label: 'الخدمات',
+    route: 'medical-services',
+    separator: true
+  },
+  {
+    icon: 'group',
+    label: 'الاشخاص',
+    route: 'stakeholders',
+    separator: false
+  },
+  {
+    icon: 'military_tech',
+    iconColor: 'primary',
+    label: 'الرتب ',
+    route: 'ranks',
+    separator: false
+  },
+  {
+    icon: 'rule',
+    iconColor: 'primary',
+    label: 'المهام الوظيفية ',
+    route: 'roles',
+    separator: false
+  },
+  {
+    icon: 'group',
+    label: 'المستخدمين',
+    route: 'systemworkers',
+    separator: true
+  },
+  {
     icon: 'money',
     label: 'الفئات المحاسبية',
     route: 'financial-categories',
     separator: false
   },
   {
+    icon: 'attach_money',
+    iconColor: 'primary',
+    label: 'أنواع التسعير ',
+    route: 'price-types',
+    separator: false
+  },
+  {
+    icon: 'payment',
+    iconColor: 'primary',
+    label: 'طرق الدفع',
+    route: 'billing-option',
+    separator: true
+  },
+  {
     icon: 'category',
     iconColor: 'primary',
     label: 'الأقسام',
     route: 'departments',
-    separator: true
+    separator: false
   },
   {
-    icon: 'health_and_safety',
+    icon: 'masks',
     iconColor: 'primary',
     label: 'الأطباء',
     route: 'doctors',
     separator: false
+  },
+  {
+    icon: 'gavel',
+    iconColor: 'primary',
+    label: 'الدرجات ',
+    route: 'degrees',
+    separator: true
   },
   {
     icon: 'computer',
@@ -115,53 +164,11 @@ const menuList = [
     separator: false
   },
   {
-    icon: 'payment',
-    iconColor: 'primary',
-    label: 'طرق الدفع',
-    route: 'billing-option',
-    separator: false
-  },
-  {
-    icon: '',
+    icon: 'timer_off',
     iconColor: 'primary',
     label: 'فترات العمل الغير متاحة ',
     route: 'closed-interval',
     separator: true
-  },
-  {
-    icon: '',
-    iconColor: 'primary',
-    label: 'الرتب ',
-    route: 'ranks',
-    separator: false
-  },
-  {
-    icon: '',
-    iconColor: 'primary',
-    label: 'أنواع التسعير ',
-    route: 'price-types',
-    separator: false
-  },
-  {
-    icon: '',
-    iconColor: 'primary',
-    label: 'أنواع الخدمات ',
-    route: 'service-types',
-    separator: false
-  },
-  {
-    icon: 'rule',
-    iconColor: 'primary',
-    label: 'المهام الوظيفية ',
-    route: 'roles',
-    separator: true
-  },
-  {
-    icon: '',
-    iconColor: 'primary',
-    label: 'الدرجات ',
-    route: 'degrees',
-    separator: false
   }
 ]
 

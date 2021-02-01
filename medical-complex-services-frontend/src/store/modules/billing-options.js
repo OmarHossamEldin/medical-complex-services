@@ -5,7 +5,14 @@ const state = {
 }
 
 const getters = {
-  allBillingOptions: state => state.billingOptions
+  allBillingOptions: state => state.billingOptions,
+  billingOptionsOptions: state =>
+    state.billingOptions.map(obj => {
+      var optionsObj = {}
+      optionsObj.label = obj.name
+      optionsObj.value = obj.id
+      return optionsObj
+    })
 }
 
 const actions = {
