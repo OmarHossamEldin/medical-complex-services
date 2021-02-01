@@ -6,8 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\makeHelper' => $baseDir . '/app/Console/Commands/makeHelper.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Helpers\\Network' => $baseDir . '/app/Helpers/Network.php',
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
     'App\\Http\\Controllers\\BillingOptionController' => $baseDir . '/app/Http/Controllers/BillingOptionController.php',
     'App\\Http\\Controllers\\ClosedIntervalController' => $baseDir . '/app/Http/Controllers/ClosedIntervalController.php',
@@ -39,6 +41,7 @@ return array(
     'App\\Http\\Middleware\\ForceJsonResponse' => $baseDir . '/app/Http/Middleware/ForceJsonResponse.php',
     'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => $baseDir . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
+    'App\\Http\\Middleware\\RegisterPcs' => $baseDir . '/app/Http/Middleware/RegisterPcs.php',
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustHosts' => $baseDir . '/app/Http/Middleware/TrustHosts.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
@@ -53,6 +56,7 @@ return array(
     'App\\Models\\FollowerConstraint' => $baseDir . '/app/Models/FollowerConstraint.php',
     'App\\Models\\LinkedNodes' => $baseDir . '/app/Models/LinkedNodes.php',
     'App\\Models\\Module' => $baseDir . '/app/Models/Module.php',
+    'App\\Models\\OraclePatient' => $baseDir . '/app/Models/OraclePatient.php',
     'App\\Models\\Patient' => $baseDir . '/app/Models/Patient.php',
     'App\\Models\\Pc' => $baseDir . '/app/Models/Pc.php',
     'App\\Models\\Permission' => $baseDir . '/app/Models/Permission.php',

@@ -15,7 +15,7 @@ class CreatePcsTable extends Migration
     {
         Schema::create('pcs', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable();
+            $table->string("name")->default('unregistered-pc');
             $table->ipAddress("ip")->unique();
             $table->macAddress("mac_address")->unique();
             $table->timestamps();
