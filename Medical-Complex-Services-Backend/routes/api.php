@@ -42,7 +42,9 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
             'service-types' => 'ServiceTypeController',
             'transactions' => 'TransactionController',
             'variable-labels' => 'VariableLabelController',
+            'reports' => 'ReportController',
         ]);
+        Route::get('reports/execute/{report}', 'ReportController@execute');
     });
 
     //Authenticated
