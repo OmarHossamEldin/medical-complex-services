@@ -10,6 +10,7 @@ const getters = {
 
 const mutations = {
   failingRequest (state, errorMessage) {
+    console.log(errorMessage)
     state.errorMessage = errorMessage
     state.requestFailed = true
   },

@@ -19,6 +19,7 @@ import serviceTypes from './modules/service-types'
 import roles from './modules/roles'
 import degrees from './modules/degrees'
 import reports from './modules/reports'
+import auth from './modules/auth'
 
 Vue.use(Vuex)
 Vue.use(Print)
@@ -52,7 +53,8 @@ export default function (/* { ssrContext } */) {
       serviceTypes,
       roles,
       degrees,
-      reports
+      reports,
+      auth
     },
 
     // enable strict mode (adds overhead!)

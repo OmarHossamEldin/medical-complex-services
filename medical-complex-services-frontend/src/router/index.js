@@ -25,6 +25,11 @@ export default function (/* { store, ssrContext } */) {
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
   })
+  Router.beforeEach((to, from, next) => {
+    const isLoggedIn = !!localStorage.getItem('token')
+    if (to.name !== 'login' && !isLoggedIn) next({ name: 'login' })
+    else next()
+  })
 
   return Router
 }

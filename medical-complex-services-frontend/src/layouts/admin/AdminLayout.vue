@@ -1,14 +1,44 @@
 <template>
   <div>
     <q-layout class="shadow-2 rounded-borders">
-      <q-header elevated class="bg-blue-grey-6" dir="rtl">
+      <q-header elevated class="bg-blue-grey-6" dir="rtl" v-if="isLoggedIn">
         <q-toolbar>
           <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
           <q-toolbar-title>المنظومة الشاملة</q-toolbar-title>
+          <div class="q-pa-md">
+            <q-btn-dropdown
+              push
+              outline
+              no-caps
+              icon="person"
+              :label= "user.username"
+            >
+              <q-list style="font-family: JF Flat; font-size: 13px">
+                <q-item clickable v-close-popup>
+                  <q-item-section avatar>
+                    <q-avatar icon="assignment" color="primary" text-color="white" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>الصفحة الشخصية</q-item-label>
+                  </q-item-section>
+                </q-item>
+
+                <q-item clickable v-close-popup @click="logout()">
+                  <q-item-section avatar>
+                    <q-avatar icon="logout" color="secondary" text-color="white" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>تسجيل الخروج</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
+          </div>
         </q-toolbar>
       </q-header>
 
       <q-drawer
+        v-if="isLoggedIn"
         v-model="drawer"
         show-if-above
         :width="300"
@@ -50,6 +80,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 const menuList = [
   {
     icon: 'text_snippet',
@@ -177,6 +209,23 @@ export default {
     return {
       drawer: false,
       menuList
+    }
+  },
+  computed: {
+    ...mapGetters({
+      isLoggedIn: 'isLoggedIn',
+      authStatus: 'authStatus',
+      user: 'user'
+    })
+  },
+  methods: {
+    ...mapActions({
+      logoutAction: 'logout'
+    }),
+    logout: function () {
+      this.logoutAction()
+        .then(() => this.$router.push('/admin/login'))
+        .catch(err => console.log(err))
     }
   }
 }

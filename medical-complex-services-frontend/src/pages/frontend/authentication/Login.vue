@@ -6,7 +6,7 @@
           <p class="complexName">المجمع الطبي ق.م بكوبري القبة</p>
           <p>المنظومة الشاملة</p>
         <div class="loginForm">
-            <q-input v-model="userName" item-aligned rounded outlined placeholder="اسم المستخدم" style="padding: 0;">
+            <q-input v-model="username" item-aligned rounded outlined placeholder="اسم المستخدم" style="padding: 0;">
               <template v-slot:prepend>
                 <q-icon name="person" />
               </template>
@@ -44,7 +44,7 @@ export default {
   name: 'Login',
   data () {
     return {
-      userName: '',
+      username: '',
       password: '',
       isPwd: true
     }
