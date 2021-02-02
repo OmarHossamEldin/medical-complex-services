@@ -25,7 +25,10 @@ class AuthController extends Controller
         $validatedRequest = $request->validate($this->validationRules);
         if(Auth::attempt($validatedRequest))
         {
-            return response()->json(['user'=>auth()->user(),'api_token' =>auth()->user()->ApiTokenGenerater()], 201);
+            return response()->json([
+                'user' => auth()->user(),
+                'api_token' => auth()->user()->ApiTokenGenerater(),
+                'permissions' => auth()->user()->role->permissions], 201);
         }
         else
         {
