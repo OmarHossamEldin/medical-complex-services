@@ -12,9 +12,9 @@ class ReportController extends Controller
     /**
      * authorization systemWorker actions to check if he have permission to do action or not
      */
-    // public function __construct(){
-    //     $this->authorizeResource(Report::class,'Report');
-    // }
+    public function __construct(){
+        $this->authorizeResource(Report::class,'Report');
+    }
     private $validationRules = [
         "name"=>"required|string",
         "sql_query"=>"required|string",

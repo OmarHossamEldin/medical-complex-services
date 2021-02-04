@@ -11,9 +11,9 @@ class FinancialCategoryController extends Controller
     /**
      * authorization systemWorker actions to check if he have permission to do action or not
      */
-    // public function __construct(){
-    //     $this->authorizeResource(FinancialCategory::class,'FinancialCategory');
-    // }
+    public function __construct(){
+        $this->authorizeResource(FinancialCategory::class,'FinancialCategory');
+    }
     private $validationRules = [
             "name"=>"required|string|max:255|unique:financial_categories",
             "operator"=>"required|string|max:3",

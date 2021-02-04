@@ -11,9 +11,9 @@ class ConsumerController extends Controller
     /**
      * authorization systemWorker actions to check if he have permission to do action or not
      */
-    // public function __construct(){
-    //     $this->authorizeResource(Consumer::class,'Consumer');
-    // }
+    public function __construct(){
+        $this->authorizeResource(Consumer::class,'Consumer');
+    }
     private $validationRules = [
         "stakeholder_id"=>"exists:stakeholders,id",
     ];
