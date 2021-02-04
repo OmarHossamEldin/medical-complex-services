@@ -4,7 +4,6 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Auth\Access\AuthorizationException;
 class Handler extends ExceptionHandler
@@ -16,11 +15,7 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         \Illuminate\Auth\AuthenticationException::class,
-        \Illuminate\Auth\Access\AuthorizationException::class,
-        \Symfony\Component\HttpKernel\Exception\HttpException::class,
-        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
-        \Illuminate\Validation\ValidationException::class,
-        Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException::class,
+        \Illuminate\Auth\Access\AuthorizationException::class,   
         Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class
     ];
 
@@ -41,25 +36,26 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function ($request, Throwable $e) {
-            if ($e instanceof NotFoundHttpException) {
-                return response()->json([
-                    'message' => 'Resource not found'
-                ], 404);
-            }
-            return parent::render($request, $e);
+        $this->reportable(function (Throwable $e) {
+            //
         });
     }
 
     public function render($request, Throwable $exception)
     {
-       
         if ($exception instanceof AuthorizationException) {
             return response()->json([
-                'message' => 'Resource not fsssound'
+                'message' => 'Forbidden'
+            ], 403);
+        }
+
+        if ($exception instanceof NotFoundHttpException) {
+            return response()->json([
+                'message' => 'Not Found'
             ], 404);
         }
 
+        return parent::render($request, $exception);
         
     }
 }
