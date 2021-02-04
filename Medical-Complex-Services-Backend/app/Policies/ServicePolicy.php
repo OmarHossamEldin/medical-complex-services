@@ -18,7 +18,7 @@ class ServicePolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-service');
+        return $systemWorker->hasAccess('index-service') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -30,7 +30,7 @@ class ServicePolicy
      */
     public function view(SystemWorker $systemWorker, Service $service)
     {
-        return $systemWorker->hasAccess('show-service');
+        return $systemWorker->hasAccess('show-service') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -41,7 +41,7 @@ class ServicePolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-service');
+        return $systemWorker->hasAccess('create-service') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -53,7 +53,7 @@ class ServicePolicy
      */
     public function update(SystemWorker $systemWorker, Service $service)
     {
-        return $systemWorker->hasAccess('update-service');
+        return $systemWorker->hasAccess('update-service') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -65,7 +65,7 @@ class ServicePolicy
      */
     public function delete(SystemWorker $systemWorker, Service $service)
     {
-        return $systemWorker->hasAccess('delete-service');
+        return $systemWorker->hasAccess('delete-service') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -77,7 +77,7 @@ class ServicePolicy
      */
     public function restore(SystemWorker $systemWorker, Service $service)
     {
-        return $systemWorker->hasAccess('restore-service');
+        return $systemWorker->hasAccess('restore-service') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -89,6 +89,6 @@ class ServicePolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Service $service)
     {
-        return $systemWorker->hasAccess('Force-delete-service');
+        return $systemWorker->hasAccess('Force-delete-service') || $systemWorker->hasAccess('control');
     }
 }

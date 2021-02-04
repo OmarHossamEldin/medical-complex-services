@@ -24,6 +24,7 @@ class SystemWorkerFactory extends Factory
         return [
             'stakeholder_id'=>1,
             'username'=>'admin',
+            'role_id'=>1,
             'password'=>bcrypt('P@ssw0rd@admin')
         ];
     }

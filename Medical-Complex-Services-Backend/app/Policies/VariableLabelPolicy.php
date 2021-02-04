@@ -16,7 +16,9 @@ class VariableLabelPolicy
      * @param  \App\Models\SystemWorker  $systemWorker
      * @return mixed
      */
-    public function viewAny(SystemWorker $systemW        return $systemWorker->hasAccess('index-variableLabel');
+    public function viewAny(SystemWorker $systemWorker, VariableLabel $variableLabel)  
+    {
+        return $systemWorker->hasAccess('index-variableLabel') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -28,7 +30,7 @@ class VariableLabelPolicy
      */
     public function view(SystemWorker $systemWorker, VariableLabel $variableLabel)
     {
-        return $systemWorker->hasAccess('show-variableLabel');
+        return $systemWorker->hasAccess('show-variableLabel') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -39,7 +41,7 @@ class VariableLabelPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-variableLabel');
+        return $systemWorker->hasAccess('create-variableLabel') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -51,7 +53,7 @@ class VariableLabelPolicy
      */
     public function update(SystemWorker $systemWorker, VariableLabel $variableLabel)
     {
-        return $systemWorker->hasAccess('update-variableLabel');
+        return $systemWorker->hasAccess('update-variableLabel') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -63,7 +65,7 @@ class VariableLabelPolicy
      */
     public function delete(SystemWorker $systemWorker, VariableLabel $variableLabel)
     {
-        return $systemWorker->hasAccess('delete-variableLabel');
+        return $systemWorker->hasAccess('delete-variableLabel') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -75,7 +77,7 @@ class VariableLabelPolicy
      */
     public function restore(SystemWorker $systemWorker, VariableLabel $variableLabel)
     {
-        return $systemWorker->hasAccess('restore-variableLabel');
+        return $systemWorker->hasAccess('restore-variableLabel') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -87,6 +89,6 @@ class VariableLabelPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, VariableLabel $variableLabel)
     {
-        return $systemWorker->hasAccess('Force-delete-variableLabel');
+        return $systemWorker->hasAccess('Force-delete-variableLabel') || $systemWorker->hasAccess('control');
     }
 }

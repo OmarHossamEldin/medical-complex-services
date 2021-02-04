@@ -18,7 +18,7 @@ class StakeholderPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-stakeholder');
+        return $systemWorker->hasAccess('index-stakeholder') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -30,7 +30,7 @@ class StakeholderPolicy
      */
     public function view(SystemWorker $systemWorker, Stakeholder $stakeholder)
     {
-        return $systemWorker->hasAccess('show-stakeholder');
+        return $systemWorker->hasAccess('show-stakeholder') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -41,7 +41,7 @@ class StakeholderPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-stakeholder');
+        return $systemWorker->hasAccess('create-stakeholder') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -53,7 +53,7 @@ class StakeholderPolicy
      */
     public function update(SystemWorker $systemWorker, Stakeholder $stakeholder)
     {
-        return $systemWorker->hasAccess('update-stakeholder');
+        return $systemWorker->hasAccess('update-stakeholder') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -65,7 +65,7 @@ class StakeholderPolicy
      */
     public function delete(SystemWorker $systemWorker, Stakeholder $stakeholder)
     {
-        return $systemWorker->hasAccess('delete-stakeholder');
+        return $systemWorker->hasAccess('delete-stakeholder') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -77,7 +77,7 @@ class StakeholderPolicy
      */
     public function restore(SystemWorker $systemWorker, Stakeholder $stakeholder)
     {
-        return $systemWorker->hasAccess('restore-stakeholder');
+        return $systemWorker->hasAccess('restore-stakeholder') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -89,6 +89,6 @@ class StakeholderPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Stakeholder $stakeholder)
     {
-        return $systemWorker->hasAccess('Force-delete-stakeholder');
+        return $systemWorker->hasAccess('Force-delete-stakeholder') || $systemWorker->hasAccess('control');
     }
 }

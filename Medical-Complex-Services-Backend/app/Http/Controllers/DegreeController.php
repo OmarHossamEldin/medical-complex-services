@@ -11,9 +11,9 @@ class DegreeController extends Controller
     /**
      * authorization systemWorker actions to check if he have permission to do action or not
      */
-    // public function __construct(){
-    //     $this->authorizeResource(Degree::class,'Degree');
-    // }
+    public function __construct(){
+        $this->authorizeResource(Degree::class,'Degree');
+    }
     private $validationRules = [
         "name"=>"required|string|max:255|unique:degrees"
     ];

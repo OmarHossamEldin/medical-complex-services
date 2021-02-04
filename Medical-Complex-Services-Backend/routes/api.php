@@ -19,13 +19,10 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
     //UnAuthenticated
     Route::group(['prefix'=>'/'],function(){
         Route::post('login', 'AuthController@login')->name('systemWorker.login');
-
-        Route::get('reports/execute/{report}', 'ReportController@execute');
     });
 
     //Authenticated
     Route::group(['middleware'=>['auth:api']],function(){
-
         Route::apiResources([
             'billing-options' => 'BillingOptionController',
             'consumers' => 'ConsumerController',
@@ -52,5 +49,8 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
             'reports' => 'ReportController',
         ]);
         Route::get('tree-of-services', 'ServiceController@treeOfServices');
+
+        Route::get('reports/execute/{report}', 'ReportController@execute')->name('Reports.excute');
+
     });
 });

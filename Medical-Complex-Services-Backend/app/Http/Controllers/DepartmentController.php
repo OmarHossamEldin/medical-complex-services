@@ -11,9 +11,9 @@ class DepartmentController extends Controller
     /**
      * authorization systemWorker actions to check if he have permission to do action or not
      */
-    // public function __construct(){
-    //     $this->authorizeResource(Department::class,'Department');
-    // }
+    public function __construct(){
+        $this->authorizeResource(Department::class,'Department');
+    }
     private $validationRules = [
         "name"=>"required|string|max:255|unique:departments"
     ];

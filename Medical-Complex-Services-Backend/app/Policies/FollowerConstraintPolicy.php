@@ -18,7 +18,7 @@ class FollowerConstraintPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-FollowerConstraint');
+        return $systemWorker->hasAccess('index-FollowerConstraint') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -30,7 +30,7 @@ class FollowerConstraintPolicy
      */
     public function view(SystemWorker $systemWorker, FollowerConstraint $followerConstraint)
     {
-        return $systemWorker->hasAccess('show-FollowerConstraint');
+        return $systemWorker->hasAccess('show-FollowerConstraint') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -41,7 +41,7 @@ class FollowerConstraintPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-FollowerConstraint');
+        return $systemWorker->hasAccess('create-FollowerConstraint') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -53,7 +53,7 @@ class FollowerConstraintPolicy
      */
     public function update(SystemWorker $systemWorker, FollowerConstraint $followerConstraint)
     {
-        return $systemWorker->hasAccess('update-FollowerConstraint');
+        return $systemWorker->hasAccess('update-FollowerConstraint') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -65,7 +65,7 @@ class FollowerConstraintPolicy
      */
     public function delete(SystemWorker $systemWorker, FollowerConstraint $followerConstraint)
     {
-        return $systemWorker->hasAccess('delete-FollowerConstraint');
+        return $systemWorker->hasAccess('delete-FollowerConstraint') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -77,7 +77,7 @@ class FollowerConstraintPolicy
      */
     public function restore(SystemWorker $systemWorker, FollowerConstraint $followerConstraint)
     {
-        return $systemWorker->hasAccess('restore-FollowerConstraint');
+        return $systemWorker->hasAccess('restore-FollowerConstraint') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -89,6 +89,6 @@ class FollowerConstraintPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, FollowerConstraint $followerConstraint)
     {
-        return $systemWorker->hasAccess('Force-delete-FollowerConstraint');
+        return $systemWorker->hasAccess('Force-delete-FollowerConstraint') || $systemWorker->hasAccess('control');
     }
 }

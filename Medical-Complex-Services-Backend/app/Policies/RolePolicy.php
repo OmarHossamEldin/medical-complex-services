@@ -18,7 +18,7 @@ class RolePolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-role');
+        return $systemWorker->hasAccess('index-role') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -30,7 +30,7 @@ class RolePolicy
      */
     public function view(SystemWorker $systemWorker, Role $role)
     {
-        return $systemWorker->hasAccess('show-role');
+        return $systemWorker->hasAccess('show-role') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -41,7 +41,7 @@ class RolePolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-role');
+        return $systemWorker->hasAccess('create-role') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -53,7 +53,7 @@ class RolePolicy
      */
     public function update(SystemWorker $systemWorker, Role $role)
     {
-        return $systemWorker->hasAccess('update-role');
+        return $systemWorker->hasAccess('update-role') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -65,7 +65,7 @@ class RolePolicy
      */
     public function delete(SystemWorker $systemWorker, Role $role)
     {
-        return $systemWorker->hasAccess('delete-role');
+        return $systemWorker->hasAccess('delete-role') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -77,7 +77,7 @@ class RolePolicy
      */
     public function restore(SystemWorker $systemWorker, Role $role)
     {
-        return $systemWorker->hasAccess('restore-role');
+        return $systemWorker->hasAccess('restore-role') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -89,6 +89,6 @@ class RolePolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Role $role)
     {
-        return $systemWorker->hasAccess('Force-delete-role');
+        return $systemWorker->hasAccess('Force-delete-role') || $systemWorker->hasAccess('control');
     }
 }

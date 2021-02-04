@@ -12,9 +12,9 @@ class PcController extends Controller
     /**
      * authorization systemWorker actions to check if he have permission to do action or not
      */
-    // public function __construct(){
-    //     $this->authorizeResource(Pc::class,'Pc');
-    // }
+    public function __construct(){
+        $this->authorizeResource(Pc::class,'Pc');
+    }
     /**
      * Display a listing of the resource.
      *

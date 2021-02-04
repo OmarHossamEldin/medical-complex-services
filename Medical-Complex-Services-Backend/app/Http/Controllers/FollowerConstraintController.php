@@ -11,9 +11,9 @@ class FollowerConstraintController extends Controller
     /**
      * authorization systemWorker actions to check if he have permission to do action or not
      */
-    // public function __construct(){
-    //     $this->authorizeResource(FollowerConstraint::class,'FollowerConstraint');
-    // }
+    public function __construct(){
+        $this->authorizeResource(FollowerConstraint::class,'FollowerConstraint');
+    }
     private $validationRules = [
         "name"=>"required|string|max:255|unique:follower_constraints",
         "active"=>"required|boolean"

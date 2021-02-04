@@ -18,7 +18,7 @@ class TransactionPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-transaction');
+        return $systemWorker->hasAccess('index-transaction') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -30,7 +30,7 @@ class TransactionPolicy
      */
     public function view(SystemWorker $systemWorker, Transaction $transaction)
     {
-        return $systemWorker->hasAccess('show-transaction');
+        return $systemWorker->hasAccess('show-transaction') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -41,7 +41,7 @@ class TransactionPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-transaction');
+        return $systemWorker->hasAccess('create-transaction') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -53,7 +53,7 @@ class TransactionPolicy
      */
     public function update(SystemWorker $systemWorker, Transaction $transaction)
     {
-        return $systemWorker->hasAccess('update-transaction');
+        return $systemWorker->hasAccess('update-transaction') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -65,7 +65,7 @@ class TransactionPolicy
      */
     public function delete(SystemWorker $systemWorker, Transaction $transaction)
     {
-        return $systemWorker->hasAccess('delete-transaction');
+        return $systemWorker->hasAccess('delete-transaction') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -77,7 +77,7 @@ class TransactionPolicy
      */
     public function restore(SystemWorker $systemWorker, Transaction $transaction)
     {
-        return $systemWorker->hasAccess('restore-transaction');
+        return $systemWorker->hasAccess('restore-transaction') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -89,6 +89,6 @@ class TransactionPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Transaction $transaction)
     {
-        return $systemWorker->hasAccess('Force-delete-transaction');
+        return $systemWorker->hasAccess('Force-delete-transaction') || $systemWorker->hasAccess('control');
     }
 }

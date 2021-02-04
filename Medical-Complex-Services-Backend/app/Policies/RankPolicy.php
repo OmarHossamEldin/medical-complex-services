@@ -18,7 +18,7 @@ class RankPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-rank');
+        return $systemWorker->hasAccess('index-rank') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -30,7 +30,7 @@ class RankPolicy
      */
     public function view(SystemWorker $systemWorker, Rank $rank)
     {
-        return $systemWorker->hasAccess('show-rank');
+        return $systemWorker->hasAccess('show-rank') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -41,7 +41,7 @@ class RankPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-rank'); 
+        return $systemWorker->hasAccess('create-rank') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -53,7 +53,7 @@ class RankPolicy
      */
     public function update(SystemWorker $systemWorker, Rank $rank)
     {
-        return $systemWorker->hasAccess('update-rank'); 
+        return $systemWorker->hasAccess('update-rank') || $systemWorker->hasAccess('control'); 
     }
 
     /**
@@ -65,7 +65,7 @@ class RankPolicy
      */
     public function delete(SystemWorker $systemWorker, Rank $rank)
     {
-        return $systemWorker->hasAccess('delete-rank');
+        return $systemWorker->hasAccess('delete-rank') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -77,7 +77,7 @@ class RankPolicy
      */
     public function restore(SystemWorker $systemWorker, Rank $rank)
     {
-        return $systemWorker->hasAccess('restore-rank');
+        return $systemWorker->hasAccess('restore-rank') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -89,6 +89,6 @@ class RankPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Rank $rank)
     {
-        return $systemWorker->hasAccess('Force-delete-rank');
+        return $systemWorker->hasAccess('Force-delete-rank') || $systemWorker->hasAccess('control');
     }
 }
