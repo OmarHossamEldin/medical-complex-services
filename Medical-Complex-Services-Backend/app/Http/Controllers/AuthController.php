@@ -28,11 +28,13 @@ class AuthController extends Controller
             return response()->json([
                 'user' => auth()->user(),
                 'api_token' => auth()->user()->ApiTokenGenerater(),
-                'permissions' => auth()->user()->role->permissions], 201);
+                'role' => auth()->user()->role,
+                'permissions' => auth()->user()->role->permissions,
+            ], 201);
         }
         else
         {
-            return response()->json(['type'=>'error','message' => 'Your Credentials Are Wrong'], 400);
+            return response()->json(['type'=>'error','message' => 'برجاء اتاكد من اسم المستخدم وكلمة المرور'], 400);
         }
     }
 }
