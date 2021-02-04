@@ -77,4 +77,23 @@ class Service extends Model
     {
         return $this->belongsToMany('App\Models\Stakeholder', 'service_stakeholder');
     }
+
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Service', 'service_id');
+    }
+
+    public function children() {
+        return $this->hasMany('App\Models\Service', 'service_id');
+    }
+
+    public static function allLevelChildren($services) {
+        foreach ($services as $service) {
+            if (!$service->children->isEmpty()) {
+                $service->children = self::allLevelChildren($service->children);
+             }
+         }
+
+         return $services;
+     }
 }
