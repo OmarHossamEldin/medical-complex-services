@@ -37,7 +37,7 @@ class ServiceController extends Controller
     public function index()
     {
         $service = Service::with(['price_type', 'service_type', 'department', 'parent', 'children'])->get();
-        return response()->json($service, 202);
+        return response()->json([$service], 202);
     }
 
     public function treeOfServices()
@@ -45,7 +45,7 @@ class ServiceController extends Controller
         // Get all parent top level category (roots)
         $roots = Service::where('service_id', null)->get();
         $tree = Service::allLevelChildren($roots);
-        return response()->json($tree, 202);
+        return response()->json([$tree], 202);
     }
 
     /**
@@ -71,7 +71,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        return response()->json($service, 200);
+        return response()->json([$service], 200);
     }
 
     /**

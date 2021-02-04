@@ -42,9 +42,9 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $validatedRequest = $request->validate($this->validationRules);
-
         $transaction = Transaction::create($validatedRequest);
-        return response()->json([$transaction], 201);
+        $transaction = $transaction->with(['system_worker', 'pc', 'financial_category', 'service'])->where('id', $transaction->id)->take(1)->get();
+        return response()->json($transaction, 201);
     }
 
     /**
@@ -70,7 +70,8 @@ class TransactionController extends Controller
         $validatedRequest = $request->validate($this->validationRules);
 
         $transaction->update($validatedRequest);
-        return response()->json([$transaction], 206);
+        $transaction = $transaction->with(['system_worker', 'pc', 'financial_category', 'service'])->where('id', $transaction->id)->take(1)->get();
+        return response()->json($transaction, 206);
     }
 
     /**

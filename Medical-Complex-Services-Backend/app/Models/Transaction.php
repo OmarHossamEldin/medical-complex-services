@@ -12,7 +12,7 @@ class Transaction extends Model
 
     public function system_worker()
     {
-        return $this->belongsTo('App\Models\SystemWorker');
+        return $this->belongsTo('App\Models\SystemWorker', 'system_worker_id');
     }
 
     public function pc()

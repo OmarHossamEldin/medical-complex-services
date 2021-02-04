@@ -90,6 +90,7 @@ class Service extends Model
     public static function allLevelChildren($services) {
         foreach ($services as $service) {
             if (!$service->children->isEmpty()) {
+                $service->selectable = false;
                 $service->children = self::allLevelChildren($service->children);
              }
          }
