@@ -18,7 +18,7 @@ class PriceTypePolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-priceType');
+        return $systemWorker->hasAccess('index-priceType') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -30,7 +30,7 @@ class PriceTypePolicy
      */
     public function view(SystemWorker $systemWorker, PriceType $priceType)
     {
-        return $systemWorker->hasAccess('show-priceType');
+        return $systemWorker->hasAccess('show-priceType') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -41,7 +41,7 @@ class PriceTypePolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-priceType');
+        return $systemWorker->hasAccess('create-priceType') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -53,7 +53,7 @@ class PriceTypePolicy
      */
     public function update(SystemWorker $systemWorker, PriceType $priceType)
     {
-        return $systemWorker->hasAccess('update-priceType');
+        return $systemWorker->hasAccess('update-priceType') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -65,7 +65,7 @@ class PriceTypePolicy
      */
     public function delete(SystemWorker $systemWorker, PriceType $priceType)
     {
-        return $systemWorker->hasAccess('delete-priceType');
+        return $systemWorker->hasAccess('delete-priceType') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -77,7 +77,7 @@ class PriceTypePolicy
      */
     public function restore(SystemWorker $systemWorker, PriceType $priceType)
     {
-        return $systemWorker->hasAccess('restore-priceType');
+        return $systemWorker->hasAccess('restore-priceType') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -89,6 +89,6 @@ class PriceTypePolicy
      */
     public function forceDelete(SystemWorker $systemWorker, PriceType $priceType)
     {
-        return $systemWorker->hasAccess('Force-delete-priceType');
+        return $systemWorker->hasAccess('Force-delete-priceType') || $systemWorker->hasAccess('control');
     }
 }

@@ -18,7 +18,7 @@ class ConsumerPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-consumer');
+        return $systemWorker->hasAccess('index-consumer') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -30,7 +30,7 @@ class ConsumerPolicy
      */
     public function view(SystemWorker $systemWorker, Consumer $consumer)
     {
-        return $systemWorker->hasAccess('index-consumer');
+        return $systemWorker->hasAccess('index-consumer') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -41,7 +41,7 @@ class ConsumerPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('show-consumer');
+        return $systemWorker->hasAccess('show-consumer') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -65,7 +65,7 @@ class ConsumerPolicy
      */
     public function delete(SystemWorker $systemWorker, Consumer $consumer)
     {
-        return $systemWorker->hasAccess('delete-consumer');
+        return $systemWorker->hasAccess('delete-consumer') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -77,7 +77,7 @@ class ConsumerPolicy
      */
     public function restore(SystemWorker $systemWorker, Consumer $consumer)
     {
-        return $systemWorker->hasAccess('restore-consumer');
+        return $systemWorker->hasAccess('restore-consumer') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -89,6 +89,6 @@ class ConsumerPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Consumer $consumer)
     {
-        return $systemWorker->hasAccess('Force-delete-consumer');
+        return $systemWorker->hasAccess('Force-delete-consumer') || $systemWorker->hasAccess('control');
     }
 }

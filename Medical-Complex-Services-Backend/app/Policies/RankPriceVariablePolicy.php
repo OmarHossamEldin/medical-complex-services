@@ -18,7 +18,7 @@ class RankPriceVariablePolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-rankPriceVariable');
+        return $systemWorker->hasAccess('index-rankPriceVariable') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -30,7 +30,7 @@ class RankPriceVariablePolicy
      */
     public function view(SystemWorker $systemWorker, RankPriceVariable $rankPriceVariable)
     {
-        return $systemWorker->hasAccess('show-rankPriceVariable');
+        return $systemWorker->hasAccess('show-rankPriceVariable') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -41,7 +41,7 @@ class RankPriceVariablePolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-rankPriceVariable');
+        return $systemWorker->hasAccess('create-rankPriceVariable') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -53,7 +53,7 @@ class RankPriceVariablePolicy
      */
     public function update(SystemWorker $systemWorker, RankPriceVariable $rankPriceVariable)
     {
-        return $systemWorker->hasAccess('update-rankPriceVariable');
+        return $systemWorker->hasAccess('update-rankPriceVariable') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -65,7 +65,7 @@ class RankPriceVariablePolicy
      */
     public function delete(SystemWorker $systemWorker, RankPriceVariable $rankPriceVariable)
     {
-        return $systemWorker->hasAccess('delete-rankPriceVariable');
+        return $systemWorker->hasAccess('delete-rankPriceVariable') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -77,7 +77,7 @@ class RankPriceVariablePolicy
      */
     public function restore(SystemWorker $systemWorker, RankPriceVariable $rankPriceVariable)
     {
-        return $systemWorker->hasAccess('restore-rankPriceVariable');
+        return $systemWorker->hasAccess('restore-rankPriceVariable') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -89,6 +89,6 @@ class RankPriceVariablePolicy
      */
     public function forceDelete(SystemWorker $systemWorker, RankPriceVariable $rankPriceVariable)
     {
-        return $systemWorker->hasAccess('Force-delete-rankPriceVariable');
+        return $systemWorker->hasAccess('Force-delete-rankPriceVariable') || $systemWorker->hasAccess('control');
     }
 }

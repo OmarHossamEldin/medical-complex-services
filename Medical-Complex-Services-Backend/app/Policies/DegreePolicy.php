@@ -18,7 +18,7 @@ class DegreePolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-degree');
+        return $systemWorker->hasAccess('index-degree') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -30,7 +30,7 @@ class DegreePolicy
      */
     public function view(SystemWorker $systemWorker, Degree $degree)
     {
-        return $systemWorker->hasAccess('show-degree');
+        return $systemWorker->hasAccess('show-degree') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -41,7 +41,7 @@ class DegreePolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-degree');
+        return $systemWorker->hasAccess('create-degree') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -53,7 +53,7 @@ class DegreePolicy
      */
     public function update(SystemWorker $systemWorker, Degree $degree)
     {
-        return $systemWorker->hasAccess('update-degree');
+        return $systemWorker->hasAccess('update-degree') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -65,7 +65,7 @@ class DegreePolicy
      */
     public function delete(SystemWorker $systemWorker, Degree $degree)
     {
-        return $systemWorker->hasAccess('delete-degree');
+        return $systemWorker->hasAccess('delete-degree') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -77,7 +77,7 @@ class DegreePolicy
      */
     public function restore(SystemWorker $systemWorker, Degree $degree)
     {
-        return $systemWorker->hasAccess('restore-degree');
+        return $systemWorker->hasAccess('restore-degree') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -89,6 +89,6 @@ class DegreePolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Degree $degree)
     {
-        return $systemWorker->hasAccess('Force-delete-degree');
+        return $systemWorker->hasAccess('Force-delete-degree') || $systemWorker->hasAccess('control');
     }
 }

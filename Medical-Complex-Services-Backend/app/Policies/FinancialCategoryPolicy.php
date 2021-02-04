@@ -18,7 +18,7 @@ class FinancialCategoryPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-financialCategory');
+        return $systemWorker->hasAccess('index-financialCategory') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -30,7 +30,7 @@ class FinancialCategoryPolicy
      */
     public function view(SystemWorker $systemWorker, FinancialCategory $financialCategory)
     {
-        return $systemWorker->hasAccess('show-financialCategory');
+        return $systemWorker->hasAccess('show-financialCategory') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -41,7 +41,7 @@ class FinancialCategoryPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-financialCategory');
+        return $systemWorker->hasAccess('create-financialCategory') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -53,7 +53,7 @@ class FinancialCategoryPolicy
      */
     public function update(SystemWorker $systemWorker, FinancialCategory $financialCategory)
     {
-        return $systemWorker->hasAccess('update-financialCategory');
+        return $systemWorker->hasAccess('update-financialCategory') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -65,7 +65,7 @@ class FinancialCategoryPolicy
      */
     public function delete(SystemWorker $systemWorker, FinancialCategory $financialCategory)
     {
-        return $systemWorker->hasAccess('delete-financialCategory');
+        return $systemWorker->hasAccess('delete-financialCategory') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -77,7 +77,7 @@ class FinancialCategoryPolicy
      */
     public function restore(SystemWorker $systemWorker, FinancialCategory $financialCategory)
     {
-        return $systemWorker->hasAccess('restore-financialCategory');
+        return $systemWorker->hasAccess('restore-financialCategory') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -89,6 +89,6 @@ class FinancialCategoryPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, FinancialCategory $financialCategory)
     {
-        return $systemWorker->hasAccess('Force-delete-financialCategory');
+        return $systemWorker->hasAccess('Force-delete-financialCategory') || $systemWorker->hasAccess('control');
     }
 }

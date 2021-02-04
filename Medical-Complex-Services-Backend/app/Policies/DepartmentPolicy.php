@@ -18,7 +18,7 @@ class DepartmentPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-department');
+        return $systemWorker->hasAccess('index-department') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -30,7 +30,7 @@ class DepartmentPolicy
      */
     public function view(SystemWorker $systemWorker, Department $department)
     {
-        return $systemWorker->hasAccess('show-department');
+        return $systemWorker->hasAccess('show-department') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -41,7 +41,7 @@ class DepartmentPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-department');
+        return $systemWorker->hasAccess('create-department') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -53,7 +53,7 @@ class DepartmentPolicy
      */
     public function update(SystemWorker $systemWorker, Department $department)
     {
-        return $systemWorker->hasAccess('update-department');
+        return $systemWorker->hasAccess('update-department') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -65,7 +65,7 @@ class DepartmentPolicy
      */
     public function delete(SystemWorker $systemWorker, Department $department)
     {
-        return $systemWorker->hasAccess('delete-department');
+        return $systemWorker->hasAccess('delete-department') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -77,7 +77,7 @@ class DepartmentPolicy
      */
     public function restore(SystemWorker $systemWorker, Department $department)
     {
-        return $systemWorker->hasAccess('restore-department');
+        return $systemWorker->hasAccess('restore-department') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -89,6 +89,6 @@ class DepartmentPolicy
      */
     public function forceDelete(SystemWorker $systemWorker, Department $department)
     {
-        return $systemWorker->hasAccess('Force-delete-department');
+        return $systemWorker->hasAccess('Force-delete-department') || $systemWorker->hasAccess('control');
     }
 }

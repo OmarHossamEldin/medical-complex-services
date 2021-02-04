@@ -17,7 +17,7 @@ class SystemWorkerPolicy
      */
     public function viewAny(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('index-systemWorker');
+        return $systemWorker->hasAccess('index-systemWorker') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -29,7 +29,7 @@ class SystemWorkerPolicy
      */
     public function view( SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('show-systemWorker');
+        return $systemWorker->hasAccess('show-systemWorker') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -40,7 +40,7 @@ class SystemWorkerPolicy
      */
     public function create(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('create-systemWorker');
+        return $systemWorker->hasAccess('create-systemWorker') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -52,7 +52,7 @@ class SystemWorkerPolicy
      */
     public function update( SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('update-systemWorker');
+        return $systemWorker->hasAccess('update-systemWorker') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -64,7 +64,7 @@ class SystemWorkerPolicy
      */
     public function delete( SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('delete-systemWorker');
+        return $systemWorker->hasAccess('delete-systemWorker') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -76,7 +76,7 @@ class SystemWorkerPolicy
      */
     public function restore( SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('restore-systemWorker');
+        return $systemWorker->hasAccess('restore-systemWorker') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -88,6 +88,6 @@ class SystemWorkerPolicy
      */
     public function forceDelete(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('Force-delete-systemWorker');
+        return $systemWorker->hasAccess('Force-delete-systemWorker') || $systemWorker->hasAccess('control');
     }
 }
