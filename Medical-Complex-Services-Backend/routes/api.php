@@ -52,7 +52,7 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
             'reports' => 'ReportController',
         ]);
 
-        Route::get('reports/execute/{report}', 'ReportController@execute')->name('Reports.excute');
+        Route::get('reports/execute/{report}', 'ReportController@execute')->name('Reports.execute');
 
     });
 });
