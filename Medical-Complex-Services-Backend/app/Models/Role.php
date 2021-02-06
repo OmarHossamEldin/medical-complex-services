@@ -10,6 +10,8 @@ class Role extends Model
     use HasFactory, SoftDeletes;
     public $fillable = ['name'];
 
+    protected $appends = ['permissions']; 
+    
     public function permissions()
     {
         return $this->belongsToMany('App\Models\Permission');
@@ -18,5 +20,9 @@ class Role extends Model
     public function services()
     {
         return $this->belongsToMany('App\Models\Service', 'role_service');
+    }
+
+    public function getPermissionsAttribute(){
+        return $this->permissions()->get();
     }
 }

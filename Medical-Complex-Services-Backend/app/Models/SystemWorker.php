@@ -15,13 +15,20 @@ class SystemWorker extends Authenticatable
 
     protected $primaryKey = 'stakeholder_id';
 
-    protected $hidden = ['password','api_token'];
+    protected $hidden = ['stakeholder_id','role_id','password','api_token'];
+
+    /**
+     * appending all attributes from other models, 
+     * which will call function with every instance will be created,
+     * with systemworker model 
+     * @var array $appends
+     */
+    protected $appends = ['stakeholder','role'];   
 
     public function stakeholder()
     {
         return $this->hasOne('App\Models\Stakeholder', 'id');
     }
-
     public function role()
     {
         return $this->belongsTo('App\Models\Role');
@@ -40,6 +47,7 @@ class SystemWorker extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Pc', 'pc_system_worker');
     }
+
     /**
      * this function will generate random 60 unique character to used it as api_token 
      * @return string $this->api_token
@@ -68,5 +76,13 @@ class SystemWorker extends Authenticatable
         else{
             return false;
         }
+    }
+
+    public function getStakeholderAttribute(){
+        return $this->stakeholder()->first();
+    }
+
+    public function getRoleAttribute(){
+        return $this->role()->first();   
     }
 }
