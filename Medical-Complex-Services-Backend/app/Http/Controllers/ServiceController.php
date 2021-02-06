@@ -36,8 +36,16 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $service = Service::with(['price_type', 'service_type', 'department'])->get();
+        $service = Service::with(['price_type', 'service_type', 'department', 'parent', 'children'])->get();
         return response()->json([$service], 202);
+    }
+
+    public function treeOfServices()
+    {
+        // Get all parent top level category (roots)
+        $roots = Service::where('service_id', null)->get();
+        $tree = Service::allLevelChildren($roots);
+        return response()->json([$tree], 202);
     }
 
     /**
@@ -51,7 +59,7 @@ class ServiceController extends Controller
         $validatedRequest = $request->validate($this->validationRules);
 
         $service = Service::create($validatedRequest);
-        $service = $service->with(['price_type', 'service_type', 'department'])->where('id', $service->id)->take(1)->get();
+        $service = $service->with(['price_type', 'service_type', 'department', 'parent', 'children'])->where('id', $service->id)->take(1)->get();
         return response()->json($service, 201);
     }
 
@@ -78,7 +86,7 @@ class ServiceController extends Controller
         $validatedRequest = $request->validate($this->validationRules);
 
         $service->update($validatedRequest);
-        $service = $service->with(['price_type', 'service_type', 'department'])->where('id', $service->id)->take(1)->get();
+        $service = $service->with(['price_type', 'service_type', 'department', 'parent', 'children'])->where('id', $service->id)->take(1)->get();
         return response()->json($service, 206);
     }
 

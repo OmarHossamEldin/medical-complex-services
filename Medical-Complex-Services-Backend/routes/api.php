@@ -51,6 +51,7 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
             'variable-labels' => 'VariableLabelController',
             'reports' => 'ReportController',
         ]);
+        Route::get('tree-of-services', 'ServiceController@treeOfServices');
 
         Route::get('reports/execute/{report}', 'ReportController@execute')->name('Reports.execute');
 
