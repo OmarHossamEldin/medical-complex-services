@@ -26,15 +26,23 @@ class AuthController extends Controller
         if(Auth::attempt($validatedRequest))
         {
             return response()->json([
+                'message' => 'لقد تم تسجيل الدخول بنجاح',
                 'user' => auth()->user(),
                 'api_token' => auth()->user()->ApiTokenGenerater(),
-                'role' => auth()->user()->role,
-                'permissions' => auth()->user()->role->permissions,
-            ], 201);
+            ], 206);
         }
         else
         {
             return response()->json(['type'=>'error','message' => 'برجاء اتاكد من اسم المستخدم وكلمة المرور'], 400);
         }
+    }
+    /**
+     * this function will handel logout request.
+     * @return json response
+     */
+    public function logout()
+    {
+        auth()->user()->logout = null;
+        return response()->json(['message' => 'لقد تم تسجيل الخروج بنجاح'], 200);
     }
 }
