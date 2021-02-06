@@ -35,6 +35,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\SystemWorker' => 'App\Policies\SystemWorkerPolicy',
         'App\Models\Transaction' => 'App\Policies\TransactionPolicy',
         'App\Models\VariableLabel' => 'App\Policies\VariableLabelPolicy',
+        'App\Models\Report' => 'App\Policies\ReportPolicy',
     ];
 
     /**
@@ -89,6 +90,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::resource('transactions', ServicePolicy::class);
 
         Gate::resource('variable-labels', ServicePolicy::class);
+
+        Gate::resource('reports',ReportPolicy::class);
         
     }
 }
