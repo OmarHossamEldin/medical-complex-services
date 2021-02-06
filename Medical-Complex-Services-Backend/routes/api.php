@@ -24,6 +24,8 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
     //Authenticated
     Route::group(['middleware'=>['auth:api']],function(){
         
+        Route::get('logout', 'AuthController@logout')->name('systemWorker.logout');
+
         Route::apiResources([
             'billing-options' => 'BillingOptionController',
             'consumers' => 'ConsumerController',
