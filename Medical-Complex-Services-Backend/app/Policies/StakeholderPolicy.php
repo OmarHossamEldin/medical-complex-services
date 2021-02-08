@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Stakeholder;
 use App\Models\SystemWorker;
 
 class StakeholderPolicy
@@ -28,7 +27,7 @@ class StakeholderPolicy
      * @param  \App\Models\Stakeholder  $stakeholder
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Stakeholder $stakeholder)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-stakeholder') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class StakeholderPolicy
      * @param  \App\Models\Stakeholder  $stakeholder
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Stakeholder $stakeholder)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-stakeholder') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class StakeholderPolicy
      * @param  \App\Models\Stakeholder  $stakeholder
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Stakeholder $stakeholder)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-stakeholder') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class StakeholderPolicy
      * @param  \App\Models\Stakeholder  $stakeholder
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Stakeholder $stakeholder)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-stakeholder') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class StakeholderPolicy
      * @param  \App\Models\Stakeholder  $stakeholder
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Stakeholder $stakeholder)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-stakeholder') || $systemWorker->hasAccess('control');
     }

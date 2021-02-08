@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\VariableLabel;
 use App\Models\SystemWorker;
 
 class VariableLabelPolicy
@@ -16,7 +15,7 @@ class VariableLabelPolicy
      * @param  \App\Models\SystemWorker  $systemWorker
      * @return mixed
      */
-    public function viewAny(SystemWorker $systemWorker, VariableLabel $variableLabel)  
+    public function viewAny(SystemWorker $systemWorker)  
     {
         return $systemWorker->hasAccess('index-variableLabel') || $systemWorker->hasAccess('control');
     }
@@ -28,7 +27,7 @@ class VariableLabelPolicy
      * @param  \App\Models\VariableLabel  $variableLabel
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, VariableLabel $variableLabel)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-variableLabel') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class VariableLabelPolicy
      * @param  \App\Models\VariableLabel  $variableLabel
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, VariableLabel $variableLabel)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-variableLabel') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class VariableLabelPolicy
      * @param  \App\Models\VariableLabel  $variableLabel
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, VariableLabel $variableLabel)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-variableLabel') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class VariableLabelPolicy
      * @param  \App\Models\VariableLabel  $variableLabel
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, VariableLabel $variableLabel)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-variableLabel') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class VariableLabelPolicy
      * @param  \App\Models\VariableLabel  $variableLabel
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, VariableLabel $variableLabel)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-variableLabel') || $systemWorker->hasAccess('control');
     }

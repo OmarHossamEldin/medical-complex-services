@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\ClosedInterval;
 use App\Models\SystemWorker;
 
 class ClosedIntervalPolicy
@@ -28,7 +27,7 @@ class ClosedIntervalPolicy
      * @param  \App\Models\ClosedInterval  $closedInterval
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, ClosedInterval $closedInterval)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-closedInterval') || $systemWorker->hasAccess('control');
     }
@@ -51,9 +50,9 @@ class ClosedIntervalPolicy
      * @param  \App\Models\ClosedInterval  $closedInterval
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, ClosedInterval $closedInterval)
+    public function update(SystemWorker $systemWorker)
     {
-        return $systemWorker->hasAccess('update-closedInterval') || $systemWorker->hasAccess('control');
+        $systemWorker->hasAccess('update-closedInterval') || $systemWorker->hasAccess('control');
     }
 
     /**
@@ -63,7 +62,7 @@ class ClosedIntervalPolicy
      * @param  \App\Models\ClosedInterval  $closedInterval
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, ClosedInterval $closedInterval)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-closedInterval') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class ClosedIntervalPolicy
      * @param  \App\Models\ClosedInterval  $closedInterval
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, ClosedInterval $closedInterval)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-closedInterval') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class ClosedIntervalPolicy
      * @param  \App\Models\ClosedInterval  $closedInterval
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, ClosedInterval $closedInterval)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-closedInterval') || $systemWorker->hasAccess('control');
     }

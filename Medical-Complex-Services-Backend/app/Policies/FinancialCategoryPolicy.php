@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\FinancialCategory;
 use App\Models\SystemWorker;
 
 class FinancialCategoryPolicy
@@ -28,7 +27,7 @@ class FinancialCategoryPolicy
      * @param  \App\Models\FinancialCategory  $financialCategory
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, FinancialCategory $financialCategory)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-financialCategory') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class FinancialCategoryPolicy
      * @param  \App\Models\FinancialCategory  $financialCategory
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, FinancialCategory $financialCategory)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-financialCategory') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class FinancialCategoryPolicy
      * @param  \App\Models\FinancialCategory  $financialCategory
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, FinancialCategory $financialCategory)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-financialCategory') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class FinancialCategoryPolicy
      * @param  \App\Models\FinancialCategory  $financialCategory
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, FinancialCategory $financialCategory)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-financialCategory') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class FinancialCategoryPolicy
      * @param  \App\Models\FinancialCategory  $financialCategory
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, FinancialCategory $financialCategory)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-financialCategory') || $systemWorker->hasAccess('control');
     }

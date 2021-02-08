@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Pc;
 use App\Models\SystemWorker;
 
 class PcPolicy
@@ -28,7 +27,7 @@ class PcPolicy
      * @param  \App\Models\Pc  $pc
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Pc $pc)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-pc') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class PcPolicy
      * @param  \App\Models\Pc  $pc
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Pc $pc)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-pc') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class PcPolicy
      * @param  \App\Models\Pc  $pc
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Pc $pc)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-pc') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class PcPolicy
      * @param  \App\Models\Pc  $pc
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Pc $pc)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-pc') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class PcPolicy
      * @param  \App\Models\Pc  $pc
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Pc $pc)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-pc') || $systemWorker->hasAccess('control');
     }

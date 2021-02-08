@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Consumer;
 use App\Models\SystemWorker;
 
 class ConsumerPolicy
@@ -28,7 +27,7 @@ class ConsumerPolicy
      * @param  \App\Models\Consumer  $consumer
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Consumer $consumer)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('index-consumer') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class ConsumerPolicy
      * @param  \App\Models\Consumer  $consumer
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Consumer $consumer)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-consumer');
     }
@@ -63,7 +62,7 @@ class ConsumerPolicy
      * @param  \App\Models\Consumer  $consumer
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Consumer $consumer)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-consumer') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class ConsumerPolicy
      * @param  \App\Models\Consumer  $consumer
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Consumer $consumer)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-consumer') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class ConsumerPolicy
      * @param  \App\Models\Consumer  $consumer
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Consumer $consumer)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-consumer') || $systemWorker->hasAccess('control');
     }

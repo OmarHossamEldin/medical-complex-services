@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Permission;
 use App\Models\SystemWorker;
 
 class PermissionPolicy
@@ -28,7 +27,7 @@ class PermissionPolicy
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Permission $permission)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-permission') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class PermissionPolicy
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Permission $permission)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class PermissionPolicy
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Permission $permission)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class PermissionPolicy
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Permission $permission)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class PermissionPolicy
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Permission $permission)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('control');
     }

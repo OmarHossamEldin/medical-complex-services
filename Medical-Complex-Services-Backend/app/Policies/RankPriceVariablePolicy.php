@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\RankPriceVariable;
 use App\Models\SystemWorker;
 
 class RankPriceVariablePolicy
@@ -28,7 +27,7 @@ class RankPriceVariablePolicy
      * @param  \App\Models\RankPriceVariable  $rankPriceVariable
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, RankPriceVariable $rankPriceVariable)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-rankPriceVariable') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class RankPriceVariablePolicy
      * @param  \App\Models\RankPriceVariable  $rankPriceVariable
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, RankPriceVariable $rankPriceVariable)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-rankPriceVariable') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class RankPriceVariablePolicy
      * @param  \App\Models\RankPriceVariable  $rankPriceVariable
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, RankPriceVariable $rankPriceVariable)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-rankPriceVariable') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class RankPriceVariablePolicy
      * @param  \App\Models\RankPriceVariable  $rankPriceVariable
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, RankPriceVariable $rankPriceVariable)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-rankPriceVariable') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class RankPriceVariablePolicy
      * @param  \App\Models\RankPriceVariable  $rankPriceVariable
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, RankPriceVariable $rankPriceVariable)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-rankPriceVariable') || $systemWorker->hasAccess('control');
     }

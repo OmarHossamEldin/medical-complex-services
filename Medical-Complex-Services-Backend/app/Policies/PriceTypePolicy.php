@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\PriceType;
 use App\Models\SystemWorker;
 
 class PriceTypePolicy
@@ -28,7 +27,7 @@ class PriceTypePolicy
      * @param  \App\Models\PriceType  $priceType
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, PriceType $priceType)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-priceType') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class PriceTypePolicy
      * @param  \App\Models\PriceType  $priceType
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, PriceType $priceType)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-priceType') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class PriceTypePolicy
      * @param  \App\Models\PriceType  $priceType
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, PriceType $priceType)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-priceType') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class PriceTypePolicy
      * @param  \App\Models\PriceType  $priceType
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, PriceType $priceType)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-priceType') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class PriceTypePolicy
      * @param  \App\Models\PriceType  $priceType
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, PriceType $priceType)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-priceType') || $systemWorker->hasAccess('control');
     }
