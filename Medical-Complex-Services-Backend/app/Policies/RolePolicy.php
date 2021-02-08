@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Role;
 use App\Models\SystemWorker;
 
 class RolePolicy
@@ -28,7 +27,7 @@ class RolePolicy
      * @param  \App\Models\Role  $role
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Role $role)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-role') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class RolePolicy
      * @param  \App\Models\Role  $role
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Role $role)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-role') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class RolePolicy
      * @param  \App\Models\Role  $role
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Role $role)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-role') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class RolePolicy
      * @param  \App\Models\Role  $role
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Role $role)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-role') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class RolePolicy
      * @param  \App\Models\Role  $role
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Role $role)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-role') || $systemWorker->hasAccess('control');
     }

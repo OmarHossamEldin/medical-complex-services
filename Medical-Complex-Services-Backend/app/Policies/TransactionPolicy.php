@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Transaction;
 use App\Models\SystemWorker;
 
 class TransactionPolicy
@@ -28,7 +27,7 @@ class TransactionPolicy
      * @param  \App\Models\Transaction  $transaction
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Transaction $transaction)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-transaction') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class TransactionPolicy
      * @param  \App\Models\Transaction  $transaction
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Transaction $transaction)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-transaction') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class TransactionPolicy
      * @param  \App\Models\Transaction  $transaction
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Transaction $transaction)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-transaction') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class TransactionPolicy
      * @param  \App\Models\Transaction  $transaction
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Transaction $transaction)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-transaction') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class TransactionPolicy
      * @param  \App\Models\Transaction  $transaction
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Transaction $transaction)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-transaction') || $systemWorker->hasAccess('control');
     }

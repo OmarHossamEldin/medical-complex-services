@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Report;
 use App\Models\SystemWorker;
 
 class ReportPolicy
@@ -28,7 +27,7 @@ class ReportPolicy
      * @param  \App\Models\Report  $report
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Report $report)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-report') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class ReportPolicy
      * @param  \App\Models\Report  $report
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Report $report)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-report') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class ReportPolicy
      * @param  \App\Models\Report  $report
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Report $report)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-report') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class ReportPolicy
      * @param  \App\Models\Report  $report
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Report $report)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-report') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class ReportPolicy
      * @param  \App\Models\Report  $report
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Report $report)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-report') || $systemWorker->hasAccess('control');
     }

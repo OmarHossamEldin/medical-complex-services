@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Module;
 use App\Models\SystemWorker;
 
 class ModulePolicy
@@ -28,7 +27,7 @@ class ModulePolicy
      * @param  \App\Models\Module  $module
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Module $module)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-Module') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class ModulePolicy
      * @param  \App\Models\Module  $module
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Module $module)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-Module') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class ModulePolicy
      * @param  \App\Models\Module  $module
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Module $module)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-Module') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class ModulePolicy
      * @param  \App\Models\Module  $module
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Module $module)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-Module') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class ModulePolicy
      * @param  \App\Models\Module  $module
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Module $module)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-Module') || $systemWorker->hasAccess('control');
     }

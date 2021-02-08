@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Degree;
 use App\Models\SystemWorker;
 
 class DegreePolicy
@@ -28,7 +27,7 @@ class DegreePolicy
      * @param  \App\Models\Degree  $degree
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Degree $degree)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-degree') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class DegreePolicy
      * @param  \App\Models\Degree  $degree
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Degree $degree)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-degree') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class DegreePolicy
      * @param  \App\Models\Degree  $degree
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Degree $degree)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-degree') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class DegreePolicy
      * @param  \App\Models\Degree  $degree
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Degree $degree)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-degree') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class DegreePolicy
      * @param  \App\Models\Degree  $degree
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Degree $degree)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-degree') || $systemWorker->hasAccess('control');
     }

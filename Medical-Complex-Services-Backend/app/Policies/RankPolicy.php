@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Rank;
 use App\Models\SystemWorker;
 
 class RankPolicy
@@ -28,7 +27,7 @@ class RankPolicy
      * @param  \App\Models\Rank  $rank
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Rank $rank)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-rank') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class RankPolicy
      * @param  \App\Models\Rank  $rank
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Rank $rank)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-rank') || $systemWorker->hasAccess('control'); 
     }
@@ -63,7 +62,7 @@ class RankPolicy
      * @param  \App\Models\Rank  $rank
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Rank $rank)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-rank') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class RankPolicy
      * @param  \App\Models\Rank  $rank
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Rank $rank)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-rank') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class RankPolicy
      * @param  \App\Models\Rank  $rank
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Rank $rank)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-rank') || $systemWorker->hasAccess('control');
     }

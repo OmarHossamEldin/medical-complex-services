@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\BillingOption;
 use App\Models\SystemWorker;
 
 class BillingOptionPolicy
@@ -28,7 +27,7 @@ class BillingOptionPolicy
      * @param  \App\Models\BillingOption  $billingOption
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, BillingOption $billingOption)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-billingOption') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class BillingOptionPolicy
      * @param  \App\Models\BillingOption  $billingOption
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, BillingOption $billingOption)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-billingOption') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class BillingOptionPolicy
      * @param  \App\Models\BillingOption  $billingOption
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, BillingOption $billingOption)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-billingOption') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class BillingOptionPolicy
      * @param  \App\Models\BillingOption  $billingOption
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, BillingOption $billingOption)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-billingOption') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class BillingOptionPolicy
      * @param  \App\Models\BillingOption  $billingOption
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, BillingOption $billingOption)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-billingOption') || $systemWorker->hasAccess('control');
     }

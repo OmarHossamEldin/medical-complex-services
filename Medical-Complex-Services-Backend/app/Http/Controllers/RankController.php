@@ -8,12 +8,6 @@ use Illuminate\Http\Request;
 
 class RankController extends Controller
 {
-    /**
-     * authorization systemWorker actions to check if he have permission to do action or not
-     */
-    public function __construct(){
-        $this->authorizeResource(Rank::class,'Rank');
-    }
     private $validationRules = [
         "name"=>"required|string|max:255|unique:ranks",
     ];

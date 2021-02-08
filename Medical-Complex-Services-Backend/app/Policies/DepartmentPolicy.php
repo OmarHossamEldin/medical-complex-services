@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Department;
 use App\Models\SystemWorker;
 
 class DepartmentPolicy
@@ -28,7 +27,7 @@ class DepartmentPolicy
      * @param  \App\Models\Department  $department
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Department $department)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-department') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class DepartmentPolicy
      * @param  \App\Models\Department  $department
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Department $department)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-department') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class DepartmentPolicy
      * @param  \App\Models\Department  $department
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Department $department)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-department') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class DepartmentPolicy
      * @param  \App\Models\Department  $department
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Department $department)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-department') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class DepartmentPolicy
      * @param  \App\Models\Department  $department
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Department $department)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-department') || $systemWorker->hasAccess('control');
     }

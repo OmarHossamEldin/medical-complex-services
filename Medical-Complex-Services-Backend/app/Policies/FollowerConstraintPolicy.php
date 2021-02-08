@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\FollowerConstraint;
 use App\Models\SystemWorker;
 
 class FollowerConstraintPolicy
@@ -28,7 +27,7 @@ class FollowerConstraintPolicy
      * @param  \App\Models\FollowerConstraint  $followerConstraint
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, FollowerConstraint $followerConstraint)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-FollowerConstraint') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class FollowerConstraintPolicy
      * @param  \App\Models\FollowerConstraint  $followerConstraint
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, FollowerConstraint $followerConstraint)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-FollowerConstraint') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class FollowerConstraintPolicy
      * @param  \App\Models\FollowerConstraint  $followerConstraint
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, FollowerConstraint $followerConstraint)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-FollowerConstraint') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class FollowerConstraintPolicy
      * @param  \App\Models\FollowerConstraint  $followerConstraint
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, FollowerConstraint $followerConstraint)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-FollowerConstraint') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class FollowerConstraintPolicy
      * @param  \App\Models\FollowerConstraint  $followerConstraint
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, FollowerConstraint $followerConstraint)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-FollowerConstraint') || $systemWorker->hasAccess('control');
     }

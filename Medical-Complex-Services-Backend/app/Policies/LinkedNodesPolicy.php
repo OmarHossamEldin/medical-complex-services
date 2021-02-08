@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\LinkedNodes;
 use App\Models\SystemWorker;
 
 class LinkedNodesPolicy
@@ -28,7 +27,7 @@ class LinkedNodesPolicy
      * @param  \App\Models\LinkedNodes  $linkedNodes
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, LinkedNodes $linkedNodes)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-LinkedNodes') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class LinkedNodesPolicy
      * @param  \App\Models\LinkedNodes  $linkedNodes
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, LinkedNodes $linkedNodes)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-LinkedNodes') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class LinkedNodesPolicy
      * @param  \App\Models\LinkedNodes  $linkedNodes
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, LinkedNodes $linkedNodes)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-LinkedNodes') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class LinkedNodesPolicy
      * @param  \App\Models\LinkedNodes  $linkedNodes
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, LinkedNodes $linkedNodes)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-LinkedNodes') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class LinkedNodesPolicy
      * @param  \App\Models\LinkedNodes  $linkedNodes
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, LinkedNodes $linkedNodes)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-LinkedNodes');
     }

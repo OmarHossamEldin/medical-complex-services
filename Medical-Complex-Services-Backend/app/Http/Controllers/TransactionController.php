@@ -8,12 +8,6 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    /**
-     * authorization systemWorker actions to check if he have permission to do action or not
-     */
-    public function __construct(){
-        $this->authorizeResource(Transaction::class,'Transaction');
-    }
     private $validationRules = [
         "printing_count"=>"required|numeric",
         "system_worker_id"=>"numeric|exists:system_workers,stakeholder_id",

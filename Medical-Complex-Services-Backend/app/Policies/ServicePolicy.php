@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Service;
 use App\Models\SystemWorker;
 
 class ServicePolicy
@@ -28,7 +27,7 @@ class ServicePolicy
      * @param  \App\Models\Service  $service
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Service $service)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-service') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class ServicePolicy
      * @param  \App\Models\Service  $service
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Service $service)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-service') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class ServicePolicy
      * @param  \App\Models\Service  $service
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Service $service)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-service') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class ServicePolicy
      * @param  \App\Models\Service  $service
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Service $service)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-service') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class ServicePolicy
      * @param  \App\Models\Service  $service
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Service $service)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-service') || $systemWorker->hasAccess('control');
     }

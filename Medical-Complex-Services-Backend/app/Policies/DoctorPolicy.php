@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Doctor;
 use App\Models\SystemWorker;
 
 class DoctorPolicy
@@ -28,7 +27,7 @@ class DoctorPolicy
      * @param  \App\Models\Doctor  $doctor
      * @return mixed
      */
-    public function view(SystemWorker $systemWorker, Doctor $doctor)
+    public function view(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('show-doctor') || $systemWorker->hasAccess('control');
     }
@@ -51,7 +50,7 @@ class DoctorPolicy
      * @param  \App\Models\Doctor  $doctor
      * @return mixed
      */
-    public function update(SystemWorker $systemWorker, Doctor $doctor)
+    public function update(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('update-doctor') || $systemWorker->hasAccess('control');
     }
@@ -63,7 +62,7 @@ class DoctorPolicy
      * @param  \App\Models\Doctor  $doctor
      * @return mixed
      */
-    public function delete(SystemWorker $systemWorker, Doctor $doctor)
+    public function delete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('delete-doctor') || $systemWorker->hasAccess('control');
     }
@@ -75,7 +74,7 @@ class DoctorPolicy
      * @param  \App\Models\Doctor  $doctor
      * @return mixed
      */
-    public function restore(SystemWorker $systemWorker, Doctor $doctor)
+    public function restore(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('restore-doctor') || $systemWorker->hasAccess('control');
     }
@@ -87,7 +86,7 @@ class DoctorPolicy
      * @param  \App\Models\Doctor  $doctor
      * @return mixed
      */
-    public function forceDelete(SystemWorker $systemWorker, Doctor $doctor)
+    public function forceDelete(SystemWorker $systemWorker)
     {
         return $systemWorker->hasAccess('Force-delete-doctor') || $systemWorker->hasAccess('control');
     }
