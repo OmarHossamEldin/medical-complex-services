@@ -90,8 +90,12 @@ class AuthServiceProvider extends ServiceProvider
         Gate::resource('transactions', ServicePolicy::class);
 
         Gate::resource('variable-labels', ServicePolicy::class);
-
-        Gate::resource('reports',ReportPolicy::class);
-        
+       
+        Gate::resource('reports', ReportPolicy::class);
+       
+        Gate::define('execute', function ($user) {
+            return false;
+        });
+      
     }
 }

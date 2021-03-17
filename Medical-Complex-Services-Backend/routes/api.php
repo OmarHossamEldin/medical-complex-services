@@ -168,7 +168,7 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
 
         Route::get('tree-of-services', 'ServiceController@treeOfServices')->name('treeOfServices');
 
-        Route::get('reports/execute/{report}', 'ReportController@execute')->name('Reports.execute');
+        Route::get('reports/execute/{report}', 'ReportController@execute')->name('Reports.execute')->middleware('can:execute,App\Models\Report');
 
     });
 });

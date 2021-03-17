@@ -90,4 +90,15 @@ class ReportPolicy
     {
         return $systemWorker->hasAccess('Force-delete-report') || $systemWorker->hasAccess('control');
     }
+
+    /**
+     * Determine whether the user can executeReport.
+     *
+     * @param  \App\Models\SystemWorker  $systemWorker
+     * @return mixed
+     */
+    public function execute(SystemWorker $systemWorker)
+    {
+        return false;//$systemWorker->hasAccess('execute-report') || $systemWorker->hasAccess('control');
+    }
 }
